@@ -107,7 +107,9 @@ logDepth_label <- expression(bold(paste(log[10], depth)))
 depthRatio_label <- expression(bold(paste(log[10], frac(depth[MT], depth[MG]))))
 alignmentLen_label <- expression(bold(paste(log[10], " ", "(", alignment, " ", length, ")")))
 contigLen_label <- expression(bold(paste(log[10], " ", "(", contig, " ", length, ")")))
-short_labels  <- c("C. intestinalis", "E. coli")
+short_labels  <- list(expression(paste(italic(C.~intestinalis))), 
+		   expression(paste(italic(E.~coli)))
+		   )
 
 dat <- unique(all.dat[,c("contig","MG_depth", "MT_depth", "ref_id")])
 dat$log_MG_depth <- log10(dat$MG_depth)
@@ -128,7 +130,6 @@ m.dat.2 <- rbind(
       which = rep(short_labels[2], length(which(m.dat$ref_id=="Escherichia_coli_P12b"))))
 )
 
-
 pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/beanplot_comparison.pdf", 
     width=25, height=25)
 par(mar=c(5.1,10,4.1,2.1))
@@ -147,28 +148,41 @@ beanplot(value ~ variable*which,
 	 show.names = FALSE,
 	 frame.plot = FALSE
 	 )
-axis(1, at=c(1,2,3), labels=levels(m.dat.2$which), pos=-2, cex.axis=3, font = 2, las=2)
+axis(1, at=c(1,2,3), labels=c(expression(paste(bolditalic(all))), 
+			      expression(paste(bolditalic(C.~intestinalis))),
+			      expression(paste(bolditalic(E.~coli)))
+			      ), 
+     pos=-2, cex.axis=3, font = 2, las=2)
 legend("bottomleft", fill = c("blue", "red"), legend = c("MG", "MT"), cex = 4, box.lwd = 0)
 dev.off()
 
 png("/home/shaman/Documents/Publications/IMP-manuscript/figures/IMP-vizbin_vs_Ecoli.png", 
-    width=1000, height=800)
+    width=1500, height=1200)
 ggplot(vb_dat, aes(x=x, y=y)) + 
-geom_point(aes(size=log10(length)), colour="gray75", alpha=0.5) +
+geom_point(aes(size=log10(length)), colour="gray85", alpha=0.5) +
 geom_point(data=rbind(vb_dat[which(vb_dat$ref_id == "Escherichia_coli_P12b"),],
 	   vb_dat[which(vb_dat$ref_id == "Collinsella_intestinalis_DSM_13280"),])
 	   , aes(x=x, y=y, 
 		 size=log10(length), 
-		 colour=log_depth_ratio, 
+		 fill=log_depth_ratio, 
+		 colour=ref_id,
 		 shape=ref_id)
 	   ) +
-		 scale_shape_manual(values=c(17,15), 
+		 scale_size_continuous("log10(length)", range = c(3,30)) +
+		 scale_shape_manual(values=c(24, 22), 
 				    labels=short_labels) +
-		 scale_colour_gradient(low="blue", high="red") +
+		 scale_fill_gradient(low="blue", high="red") +
+		 scale_colour_manual(values=c("green", "black"),
+				     labels=short_labels
+				     ) +
 		 guides(size=guide_legend(title=contigLen_label),
-			colour=guide_colourbar(title=depthRatio_label),
-			shape=guide_legend(title="Taxa"))+
+			fill=guide_colourbar(title=depthRatio_label),
+			shape=guide_legend(title="Taxa"
+					   ),
+			colour=guide_legend(title="Taxa", 
+					   override.aes = list(size=10)
+					   )
+			) + 
 theme_nothing()
 dev.off()
-
 
