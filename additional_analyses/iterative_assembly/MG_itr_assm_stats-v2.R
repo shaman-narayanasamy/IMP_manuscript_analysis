@@ -122,7 +122,7 @@ plot_grid(gp.ctg, gp.len, gp.rd, ncol=1, labels=c("(A)", "(B)", "(C)"), label_si
 ######################################################################################################
 ### MAIN
 ## Plot iterative assembly for A02 dataset
-A02.dat <- read.delim("A02_MG_iter_assm_stats.csv")
+A02.dat <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/A02_MG_iter_assm_stats.csv")
 png("/home/shaman/Documents/Publications/IMP-manuscript/figures/A02_MG_iter_assm_stats.png", 
     width = 1500,
     height = 1200)
