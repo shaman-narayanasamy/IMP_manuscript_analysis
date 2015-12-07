@@ -41,14 +41,14 @@ plot_itr_assm <- function(MG.itr){
 
 ######################################################################################################
 ## Plot the total no. of contigs, no. of non redundant contigs and predicted ORFs
+
 MG.itr.m <- melt(MG.itr[-1, c(2,3,9)])
 MG.itr.m <- cbind(rep(1:4,3), MG.itr.m)
 colnames(MG.itr.m) <- c("iter", "type", "number")
 
 contigs.plot <- ggplot(data = MG.itr.m, aes(x = iter, y = log10(number))) + 
-geom_line(aes(colour = type, group = type), size = 4, alpha = 0.75) + 
-geom_point(aes(colour = type, group = type, shape = type), size = 5, 
-	   show_guide = FALSE, alpha = 0.75) +
+geom_bar(aes(colour = type, group = type), size = 4, alpha = 0.75, 
+	 position="identity") + 
 scale_colour_brewer(palette = "Set1", labels = c("contigs (cummulative)",
 					     "non-redundant\ncontigs",
 					     "ORFs")) +
@@ -58,8 +58,15 @@ guides(colour = guide_legend(title = element_blank()),
 mytheme() +
 ylab("log10 (count)")
 
+ggplot(data = MG.itr.m, aes(type, fill = log10(number))) + 
+geom_bar(stat="identity", position="dodge")
+
+ggplot(diamonds, aes(clarity, fill=cut)) + geom_bar(position="dodge")
+ggplot(MG.itr.m, aes(iter, fill=type)) + geom_bar(position="dodge")
+
 ######################################################################################################
 ## Plot N50 and average contig size
+
 MG.itr.m <- melt(MG.itr[-1, c(5,6)])
 MG.itr.m <- cbind(rep(1:4,2), MG.itr.m)
 colnames(MG.itr.m) <- c("iter", "type", "len")
