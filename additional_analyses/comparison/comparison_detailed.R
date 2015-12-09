@@ -170,7 +170,7 @@ dat1 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis
 dat2 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/quast_output/quast_X310763260-20151028/combined_reference/transposed_report.tsv", header=T)
 
 ## Read in SD3 vs Bio17-1
-dat3 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/quast_output/quast_A02_Microthrix_Bio17-20151028/combined_reference/transposed_report.tsv", header=T)
+dat3 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/quast_output/quast_A02_Microthrix_Bio17-20151208/combined_reference/transposed_report.tsv", header=T)
 
 # Initialize colours, lines and fonts
 cols <- makeTransparent("darkred", "darkblue", "darkgreen", "orange", alpha=0.75)
@@ -182,7 +182,7 @@ linewd=3.5
 mcex=5
 
 # Generate figure
-png("/home/shaman/Documents/Publications/IMP-manuscript/figures/comparison_detailed_v2.png", 
+png("/home/shaman/Documents/Publications/IMP-manuscript/figures/comparison_detailed_v3.png", 
     width=2400, height=2000)
 
 ## Bottom, left, top, right
