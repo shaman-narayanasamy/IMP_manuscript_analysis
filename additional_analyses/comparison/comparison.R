@@ -95,9 +95,9 @@ dat1 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis
 dat2 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/quast_output/quast_X310763260-20151028/combined_reference/transposed_report.tsv", header=T)
 
 ## Read in SD3 vs Bio17-1
-dat3 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/quast_output/quast_A02_Microthrix_Bio17-20151028/combined_reference/transposed_report.tsv", header=T)
+dat3 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/quast_output/quast_A02_Microthrix_Bio17-20151208/combined_reference/transposed_report.tsv", header=T)
 
-png("/home/shaman/Documents/Publications/IMP-manuscript/figures/comparison_all-v3.png", 
+png("/home/shaman/Documents/Publications/IMP-manuscript/figures/comparison_all-v4.png", 
     width=2900, height=900)
 par(mfrow=c(1,3), mar = c(10,0,0,0))
 plot.basic.stats(dat1, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd, title = "(A) Mock") 
