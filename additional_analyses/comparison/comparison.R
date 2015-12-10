@@ -103,9 +103,12 @@ par(mfrow=c(1,3), mar = c(10,0,0,0))
 plot.basic.stats(dat1, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd, title = "(A) Mock") 
 plot.basic.stats(dat2, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd, title = "(B) HFD") 
 plot.basic.stats(dat3, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd, title = "(C) SD3") 
-par(fig = c(0, 1, 0, 0.4), oma = c(0, 0, 0, 0), mar=c(0,0,0,0), new = TRUE)
-legend("bottom", legend=dat1[1:nrow(dat1),1], xpd = TRUE, horiz = TRUE, 
-       bty = "o", col = cols, lty=linetype, 
-       lwd = c(2,2,2,2), cex = 5, box.lty=1, box.lwd=0, 
-       box.col="gray", text.col=cols, text.font=c(2,2,2,2))
+
+par(fig = c(0, 1, 0, 1), oma = c(0.5, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
+plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
+legend("bottom", legend=dat1[,1], xpd = TRUE, horiz = TRUE, inset = c(0, 
+    0), bty = "o", col = cols, lty=linetype, lwd = c(4,4,4,4), cex = 4,
+       text.font=c(4,4,4,4), box.lty=1, box.lwd=3, box.col="gray",
+       text.col=cols)
+
 dev.off()
