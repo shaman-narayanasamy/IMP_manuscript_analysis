@@ -68,29 +68,30 @@ se$additional_mapped[1]  <- se$mappable[1]
 
 dat.1 <- as.data.frame(
 		       cbind(Assembly=as.character(1:6),
-			     additional_mapped=2*(pe$additional_mapped) + se$additional_mapped,
-			     genome_size=c(dat[1,c(28)], dat[2:nrow(dat),c(28)] - dat[1:nrow(dat)-1,c(28)])
+			     genome_size=c(dat[1,c(28)], dat[2:nrow(dat),c(28)] - dat[1:nrow(dat)-1,c(28)]),
+			     additional_mapped=2*(pe$additional_mapped) + se$additional_mapped
 			     )
 		       )
 dat.1$additional_mapped <- as.numeric(as.character(dat.1$additional_mapped))
 dat.1$genome_size <- as.numeric(as.character(dat.1$genome_size))
 
 ### Plot number of reads and total assembly bases
+m.dat.1 <- melt(dat.1)
 colnames(m.dat.1) <- c("Assembly", "type", "count")
 
 p1 <- ggplot(data=m.dat.1, aes(x=Assembly, y=log10(count), fill=type)) + 
 geom_bar(stat="identity", position="dodge") +
 scale_fill_manual(values = c("darkorange1", "lightseagreen"), 
-		    labels = c("mappable reads", "base pairs")
+		    labels = c("Base pairs", "Mappable reads")
 		    ) +
 guides(fill = guide_legend(title = "Additional")) +
 mytheme() 
 
 ### Plot gain of contigs and genes relative to previous assembly
-dat.2 <- dat[2:nrow(dat),c(3,22)] - dat[1:nrow(dat)-1,c(3,22)]
-dat.2 <- rbind(dat[1,c(3,22)], dat.2)
+dat.2 <- dat[2:nrow(dat),c(22,3)] - dat[1:nrow(dat)-1,c(22,3)]
+dat.2 <- rbind(dat[1,c(22,3)], dat.2)
 dat.2 <- cbind(as.character(dat[,1]), dat.2)
-colnames(dat.2)[1] <- "Assembly"
+colnames(dat.2) <- c("Assembly", "Information", "Volume")
 dat.2$Assembly <- as.character(1:6)
 
 m.dat.2 <- melt(dat.2)
@@ -100,7 +101,7 @@ m.dat.2$count[m.dat.2$count==0] = NA
 p2 <- ggplot(data=m.dat.2, aes(x=Assembly, y=log10(count), fill=type)) + 
 geom_bar(stat="identity", position="dodge") +
 scale_fill_manual(values = c("seagreen", "salmon1"), 
-		    labels = c("contigs > 1kb", "unique genes")
+		    labels = c("Information", "Volume")
 		    ) +
 guides(fill = guide_legend(title = "Additional")) +
 mytheme() +
@@ -115,9 +116,9 @@ m.dat <- rbind(m.dat.1, m.dat.2)
 
 p3 <- ggplot(data=m.dat, aes(x=Assembly, y=log10(count), fill=type)) + 
 geom_bar(stat="identity", position="dodge") +
-scale_fill_manual(values = c("darkorange1", "lightseagreen", "seagreen", "salmon"), 
-		    labels = c("Mappable reads", "Base pairs", 
-			       "Volume", "Information")
+scale_fill_manual(values = c("darkorange1", "lightseagreen", "salmon", "seagreen"), 
+		    labels = c("Base pairs", "Mappable reads", 
+			       "Information", "Volume")
 		    ) +
 guides(fill = guide_legend(title = "Additional")) +
 mytheme() +
@@ -145,8 +146,8 @@ WW.plots <- plot_dat(WW.dat, WW.pe, WW.se)
 ### Generate plots
 pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MG_iter_assm.pdf", 
     height=15, width=15)
-plot_grid(HF.plots[[3]] + mytheme(), 
-	  WW.plots[[3]] + guides(fill=FALSE), ncol=1, align="v", labels=c("(A)", "(B)"), label_size=45, hjust=-0.5)
+plot_grid(HF.plots[[3]] + mytheme() + theme(axis.ticks.x = element_line(size=1)), 
+	  WW.plots[[3]] + guides(fill=FALSE) + theme(axis.ticks.x = element_line(size=1)), 
+	  ncol=1, align="v", labels=c("(A)", "(B)"), label_size=45, hjust=-0.5)
 dev.off()
-
 
