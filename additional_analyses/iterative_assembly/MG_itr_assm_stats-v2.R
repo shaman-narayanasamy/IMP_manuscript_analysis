@@ -143,9 +143,18 @@ WW.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative
 
 WW.plots <- plot_dat(WW.dat, WW.pe, WW.se)
 
-SD.dat <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/simDat-iterative_MG/collapsed_contigs_stats.tsv"
-SD.pe <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/simDat-iterative_MG/pair_counts.tsv"
-SD.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/simDat-iterative_MG/single_counts.tsv"
+SD.dat <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/simDat-iterative_MG/collapsed_contigs_stats-edited.tsv.csv"
+SD.pe <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/simDat-iterative_MG/pair_counts-edited.tsv.csv"
+SD.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/simDat-iterative_MG/single_counts-edited.tsv.csv"
+
+hf.dat <- read.delim(HF.dat)
+hf.pe <- read.table(HF.pe)
+hf.se <- read.table(HF.se)
+
+
+sd.dat <- read.delim(SD.dat)
+sd.pe <- read.table(SD.pe)
+sd.se <- read.table(SD.se)
 
 SD.plots <- plot_dat(SD.dat, SD.pe, SD.se)
 
