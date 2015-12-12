@@ -143,6 +143,13 @@ WW.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative
 
 WW.plots <- plot_dat(WW.dat, WW.pe, WW.se)
 
+SD.dat <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/simDat-iterative_MG/collapsed_contigs_stats.tsv"
+SD.pe <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/simDat-iterative_MG/pair_counts.tsv"
+SD.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/simDat-iterative_MG/single_counts.tsv"
+
+SD.plots <- plot_dat(SD.dat, SD.pe, SD.se)
+
+
 ### Generate plots
 pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MG_iter_assm.pdf", 
     height=15, width=15)

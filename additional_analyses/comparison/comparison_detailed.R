@@ -166,10 +166,10 @@ radarchart(data[,-1], pcol=cols, pfcol=dens, plty=linetype, plwd=plwd,
 ## Read in simulated data
 dat1 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/quast_output/quast_simDat_20151028/combined_reference/transposed_report.tsv", header=T)
 
-## Read in HFD
+## Read in HF
 dat2 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/quast_output/quast_X310763260-20151028/combined_reference/transposed_report.tsv", header=T)
 
-## Read in SD3 vs Bio17-1
+## Read in WW vs Bio17-1
 dat3 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/quast_output/quast_A02_Microthrix_Bio17-20151208/combined_reference/transposed_report.tsv", header=T)
 
 # Initialize colours, lines and fonts
@@ -182,7 +182,7 @@ linewd=3.5
 mcex=5
 
 # Generate figure
-png("/home/shaman/Documents/Publications/IMP-manuscript/figures/comparison_detailed_v3.png", 
+png("/home/shaman/Documents/Publications/IMP-manuscript/figures/comparison_detailed_v4.png", 
     width=2400, height=2000)
 
 ## Bottom, left, top, right
@@ -197,12 +197,12 @@ plot_gene_stats(dat1, font=fsize, lwd=linewd, plwd=linewd)
 mtext("Genes", side=3, line=2, cex=mcex, font=2)
 
 plot_basic_stats(dat2, font=fsize, lwd=linewd, plwd=linewd)
-mtext("HFD", side=2, line=1, srt=90, cex=mcex, font=4) 
+mtext("HF", side=2, line=1, srt=90, cex=mcex, font=4) 
 plot_misassembly_stats(dat2, font=fsize, lwd=linewd, plwd=linewd)
 plot_gene_stats(dat2, font=fsize, lwd=linewd, plwd=linewd)
 
 plot_basic_stats(dat3, font=fsize, lwd=linewd, plwd=linewd)
-mtext("SD3 vs Bio17-1", side=2, line=0, srt=90, cex=mcex, font=4) 
+mtext("WW", side=2, line=0, srt=90, cex=mcex, font=4) 
 plot_misassembly_stats(dat3, font=fsize, lwd=linewd, plwd=linewd)
 plot_gene_stats(dat3, font=fsize, lwd=linewd, plwd=linewd)
 
@@ -222,7 +222,7 @@ par(mfrow=c(3,3))
 
 plot_basic_stats(dat4, font=fsize, lwd=linewd, plwd=linewd)
 mtext("Assembly", side=3, line=2, cex=mcex, font=2)
-mtext("SD3 Sludge vs RN1", side=2, line=0, srt=90, cex=mcex, font=4) 
+mtext("WW vs RN1", side=2, line=0, srt=90, cex=mcex, font=4) 
 plot_misassembly_stats(dat3, font=fsize, lwd=linewd, plwd=linewd)
 mtext("Reference", side=3, line=2, cex=mcex, font=2)
 plot_gene_stats(dat3, font=fsize, lwd=linewd, plwd=linewd)

@@ -91,18 +91,18 @@ plwd=3.5
 ## Read in simulated data
 dat1 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/quast_output/quast_simDat_20151028/combined_reference/transposed_report.tsv", header=T)
 
-## Read in HFD
+## Read in HF
 dat2 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/quast_output/quast_X310763260-20151028/combined_reference/transposed_report.tsv", header=T)
 
-## Read in SD3 vs Bio17-1
+## Read in WW vs Bio17-1
 dat3 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/quast_output/quast_A02_Microthrix_Bio17-20151208/combined_reference/transposed_report.tsv", header=T)
 
-png("/home/shaman/Documents/Publications/IMP-manuscript/figures/comparison_all-v4.png", 
+png("/home/shaman/Documents/Publications/IMP-manuscript/figures/comparison_all-v5.png", 
     width=2900, height=900)
 par(mfrow=c(1,3), mar = c(10,0,0,0))
 plot.basic.stats(dat1, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd, title = "(A) Mock") 
-plot.basic.stats(dat2, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd, title = "(B) HFD") 
-plot.basic.stats(dat3, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd, title = "(C) SD3") 
+plot.basic.stats(dat2, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd, title = "(B) HF") 
+plot.basic.stats(dat3, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd, title = "(C) WW") 
 
 par(fig = c(0, 1, 0, 1), oma = c(0.5, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
 plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
