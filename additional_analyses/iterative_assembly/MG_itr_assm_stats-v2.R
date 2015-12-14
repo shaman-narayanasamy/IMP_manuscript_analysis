@@ -74,10 +74,12 @@ dat.1 <- as.data.frame(
 		       )
 dat.1$additional_mapped <- as.numeric(as.character(dat.1$additional_mapped))
 dat.1$genome_size <- as.numeric(as.character(dat.1$genome_size))
+dat.1 <- dat.1[-nrow(dat.1),]
 
 ### Plot number of reads and total assembly bases
 m.dat.1 <- melt(dat.1)
 colnames(m.dat.1) <- c("Assembly", "type", "count")
+m.dat.1$count[m.dat.1$count==0] = NA
 
 p1 <- ggplot(data=m.dat.1, aes(x=Assembly, y=log10(count), fill=type)) + 
 geom_bar(stat="identity", position="dodge") +
@@ -93,6 +95,7 @@ dat.2 <- rbind(dat[1,c(22,3)], dat.2)
 dat.2 <- cbind(as.character(dat[,1]), dat.2)
 colnames(dat.2) <- c("Assembly", "Information", "Volume")
 dat.2$Assembly <- as.character(1:6)
+dat.2 <- dat.2[-nrow(dat.2),]
 
 m.dat.2 <- melt(dat.2)
 colnames(m.dat.2)[2:3] <- c("type", "count")
@@ -147,17 +150,7 @@ SD.dat <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterativ
 SD.pe <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/simDat-iterative_MG/pair_counts-edited.tsv.csv"
 SD.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/simDat-iterative_MG/single_counts-edited.tsv.csv"
 
-hf.dat <- read.delim(HF.dat)
-hf.pe <- read.table(HF.pe)
-hf.se <- read.table(HF.se)
-
-
-sd.dat <- read.delim(SD.dat)
-sd.pe <- read.table(SD.pe)
-sd.se <- read.table(SD.se)
-
 SD.plots <- plot_dat(SD.dat, SD.pe, SD.se)
-
 
 ### Generate plots
 pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MG_iter_assm.pdf", 
@@ -167,3 +160,13 @@ plot_grid(HF.plots[[3]] + mytheme() + theme(axis.ticks.x = element_line(size=1))
 	  ncol=1, align="v", labels=c("(A)", "(B)"), label_size=45, hjust=-0.5)
 dev.off()
 
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MG_iter_assm-v2.pdf", 
+    height=15, width=15)
+plot_grid(
+	  SD.plots[[3]] + mytheme() + theme(axis.ticks.x = element_line(size=1),
+					    axis.title.y = element_blank()), 
+	  HF.plots[[3]] + guides(fill=FALSE) + mytheme() + theme(axis.ticks.x = element_line(size=1)), 
+	  WW.plots[[3]] + guides(fill=FALSE) + theme(axis.ticks.x = element_line(size=1), 
+					    axis.title.y = element_blank()), 
+	  ncol=1, align="v", labels=c("(A)", "(B)", "(C)"), label_size=45, hjust=-0.5)
+qev.off()
