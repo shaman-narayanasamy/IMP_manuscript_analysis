@@ -169,4 +169,4 @@ plot_grid(
 	  WW.plots[[3]] + guides(fill=FALSE) + theme(axis.ticks.x = element_line(size=1), 
 					    axis.title.y = element_blank()), 
 	  ncol=1, align="v", labels=c("(A)", "(B)", "(C)"), label_size=45, hjust=-0.5)
-qev.off()
+dev.off()
