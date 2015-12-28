@@ -182,7 +182,7 @@ linewd=3.5
 mcex=5
 
 # Generate figure
-png("/home/shaman/Documents/Publications/IMP-manuscript/figures/comparison_detailed_v4.png", 
+png("/home/shaman/Documents/Publications/IMP-manuscript/figures/comparison_detailed_v5.png", 
     width=2400, height=2000)
 
 ## Bottom, left, top, right
@@ -190,7 +190,7 @@ par(oma = c(4, 1.5, 3, 0))
 par(mfrow=c(3,3))
 plot_basic_stats(dat1, font=fsize, lwd=linewd, plwd=linewd)
 mtext("Assembly", side=3, line=2, cex=mcex, font=2)
-mtext("Mock", side=2, line=1, srt=90, cex=mcex, font=4) 
+mtext("SM", side=2, line=1, srt=90, cex=mcex, font=4) 
 plot_misassembly_stats(dat1, font=fsize, lwd=linewd, plwd=linewd)
 mtext("Reference", side=3, line=2, cex=mcex, font=2)
 plot_gene_stats(dat1, font=fsize, lwd=linewd, plwd=linewd)
@@ -214,35 +214,3 @@ legend("bottom", legend=dat1[,1], xpd = TRUE, horiz = TRUE, inset = c(0,
        text.col=cols)
 dev.off()
 
-# Generate figure
-png("/home/shaman/Documents/Publications/IMP-manuscript/figures/comparison_detailed2.png", 
-    width=2000, height=2000)
-par(oma = c(4, 1.5, 3, 0))
-par(mfrow=c(3,3))
-
-plot_basic_stats(dat4, font=fsize, lwd=linewd, plwd=linewd)
-mtext("Assembly", side=3, line=2, cex=mcex, font=2)
-mtext("WW vs RN1", side=2, line=0, srt=90, cex=mcex, font=4) 
-plot_misassembly_stats(dat3, font=fsize, lwd=linewd, plwd=linewd)
-mtext("Reference", side=3, line=2, cex=mcex, font=2)
-plot_gene_stats(dat3, font=fsize, lwd=linewd, plwd=linewd)
-mtext("Genes", side=3, line=2, cex=mcex, font=2)
-
-plot_basic_stats(dat5, font=fsize, lwd=linewd, plwd=linewd)
-mtext("SD6 Sludge vs Bio17", side=2, line=0, srt=90, cex=mcex, font=4) 
-plot_misassembly_stats(dat3, font=fsize, lwd=linewd, plwd=linewd)
-plot_gene_stats(dat3, font=fsize, lwd=linewd, plwd=linewd)
-
-plot_basic_stats(dat6, font=fsize, lwd=linewd, plwd=linewd)
-mtext("SD6 Sludge vs RN1", side=2, line=0, srt=90, cex=mcex, font=4) 
-plot_misassembly_stats(dat3, font=fsize, lwd=linewd, plwd=linewd)
-plot_gene_stats(dat3, font=fsize, lwd=linewd, plwd=linewd)
-
-par(fig = c(0, 1, 0, 1), oma = c(0.5, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
-plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
-legend("bottom", legend=dat1[,1], xpd = TRUE, horiz = TRUE, inset = c(0, 
-    0), bty = "o", col = cols, lty=linetype, lwd = c(4,4,4), cex = 4,
-       text.font=c(4,4,4), box.lty=1, box.lwd=3, box.col="gray",
-       text.col=c("darkblue", "darkred", "darkgreen"))
-
-dev.off()
