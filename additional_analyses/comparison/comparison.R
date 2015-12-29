@@ -39,10 +39,9 @@ dat <- dat[,c("Assembly",
        "X..contigs.....1000.bp.", 
        "N50", 
        "X..predicted.genes..unique.",
-       "X..misassemblies", 
        "Genome.fraction...."
        )]
-colnames(dat) <- c("Assembly", "Volume", "Contiguity", "Information", "Accuracy", "Recovery")
+colnames(dat) <- c("Assembly", "Volume", "Contiguity", "Information", "Recovery")
 dat$Accuracy <- -dat$Accuracy
 
 dat$Assembly <- factor(dat$Assembly, levels=c(levels(dat$Assembly), 'max', 'min'))
@@ -54,16 +53,16 @@ dat <- rbind(
 dat[,2:ncol(dat)] <- sapply(dat[,2:ncol(dat)], as.numeric)
 	     
 # Calculate maximum and minimum for positive values
-dat[1, !names(dat) %in% c("Assembly", "Accuracy")] <- 
-    dat[1, !names(dat) %in% c("Assembly", "Accuracy")] * 1.025
-dat[2, !names(dat) %in% c("Assembly", "Accuracy")] <- 
-    dat[2, !names(dat) %in% c("Assembly", "Accuracy")] * 0.75
+dat[1, !names(dat) %in% c("Assembly")] <- 
+    dat[1, !names(dat) %in% c("Assembly")] * 1.025
+dat[2, !names(dat) %in% c("Assembly")] <- 
+    dat[2, !names(dat) %in% c("Assembly")] * 0.75
 
 # Calculate maximum and minimum for negative values
-dat[1, names(dat) %in% c("Accuracy")] <- 
-    round(dat[1, names(dat) %in% c("Accuracy")] * 0.75)
-dat[2, names(dat) %in% c("Accuracy")] <- 
-    round(dat[2, names(dat) %in% c("Accuracy")] * 1.025)
+#dat[1, names(dat) %in% c("Accuracy")] <- 
+#    round(dat[1, names(dat) %in% c("Accuracy")] * 0.75)
+#dat[2, names(dat) %in% c("Accuracy")] <- 
+#    round(dat[2, names(dat) %in% c("Accuracy")] * 1.025)
 
 # Set min and max for percentages
 dat[1, names(dat) %in% c("Recovery")] <- 100
