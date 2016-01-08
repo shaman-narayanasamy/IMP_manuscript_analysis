@@ -1,3 +1,5 @@
+n=100
+
 treemap<-function (id, area, group, color, scale = NULL, lab = c(TRUE, 
     FALSE), main = "Tree Map", print = TRUE, pal="Blues", textcol="white", linecol="grey") 
 {
