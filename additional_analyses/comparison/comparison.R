@@ -76,13 +76,13 @@ title(title, outer = FALSE, line = 2, font = 2, cex.main = 7.5)
 
 cols <- makeTransparent("darkred", "darkblue", "darkgreen", "darkorange2", alpha=0.75)
 dens <- makeTransparent("red", "blue", "green", "orange", alpha=0.10)
-font=5
+font=10
 linetype <- c(1,1,2,2)
-fsize=4.5
-linewd=4.5
-mcex=4
-lwd=4.5
-plwd=3.5
+fsize=10
+linewd=8
+mcex=8
+lwd=8
+plwd=8
 
 ## Produce radar chart for the basic assembly statistics
 
@@ -96,7 +96,10 @@ dat2 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis
 dat3 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/quast_output/quast_A02_Microthrix_Bio17-20151208/combined_reference/transposed_report.tsv", header=T)
 
 png("/home/shaman/Documents/Publications/IMP-manuscript/figures/comparison_all-v7.png", 
-    width=2900, height=900)
+    width=2900, height=1500)
+
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/comparison_all-v7.pdf", 
+    width=30, height=15)
 par(mfrow=c(1,3), mar = c(10,0,0,0))
 plot.basic.stats(dat1, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd, title = "(A) SM") 
 plot.basic.stats(dat2, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd, title = "(B) HF") 
@@ -106,7 +109,24 @@ par(fig = c(0, 1, 0, 1), oma = c(0.5, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
 plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
 legend("bottom", legend=dat1[,1], xpd = TRUE, horiz = TRUE, inset = c(0, 
     0), bty = "o", col = cols, lty=linetype, lwd = c(4,4,4,4), cex = 4,
-       text.font=c(4,4,4,4), box.lty=1, box.lwd=3, box.col="gray",
+       text.font=c(4,4,4,4), box.lty=1, box.lwd=0, box.col="gray",
        text.col=cols)
 
 dev.off()
+
+
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/SM_radarChart.pdf", 
+    width=25, height=20)
+plot.basic.stats(dat1, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd) 
+dev.off()
+
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/HF_radarChart.pdf", 
+    width=25, height=20)
+plot.basic.stats(dat2, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd) 
+dev.off()
+
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/WW_radarChart.pdf", 
+    width=25, height=20)
+plot.basic.stats(dat3, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd) 
+dev.off()
+
