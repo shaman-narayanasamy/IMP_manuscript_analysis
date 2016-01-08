@@ -42,7 +42,6 @@ dat <- dat[,c("Assembly",
        "Genome.fraction...."
        )]
 colnames(dat) <- c("Assembly", "Volume", "Contiguity", "Information", "Recovery")
-dat$Accuracy <- -dat$Accuracy
 
 dat$Assembly <- factor(dat$Assembly, levels=c(levels(dat$Assembly), 'max', 'min'))
 dat <- rbind(
@@ -96,7 +95,7 @@ dat2 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis
 ## Read in WW vs Bio17-1
 dat3 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/quast_output/quast_A02_Microthrix_Bio17-20151208/combined_reference/transposed_report.tsv", header=T)
 
-png("/home/shaman/Documents/Publications/IMP-manuscript/figures/comparison_all-v6.png", 
+png("/home/shaman/Documents/Publications/IMP-manuscript/figures/comparison_all-v7.png", 
     width=2900, height=900)
 par(mfrow=c(1,3), mar = c(10,0,0,0))
 plot.basic.stats(dat1, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd, title = "(A) SM") 
