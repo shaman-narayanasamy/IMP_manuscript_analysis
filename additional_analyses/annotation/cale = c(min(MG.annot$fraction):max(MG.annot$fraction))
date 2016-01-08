@@ -1,0 +1,56 @@
+map.market              package:portfolio              R Documentation
+
+_C_r_e_a_t_e _a _M_a_p _o_f _t_h_e _M_a_r_k_e_t
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     Utility function for creating a "map of the market" visualization.
+     Creates a treemap where rectangular regions of different size,
+     color, and groupings visualize the stocks in a portfolio.
+
+_U_s_a_g_e:
+
+     map.market(id, area, group, color,
+                scale = NULL,
+                lab   = c("group"=TRUE, "id"=FALSE),
+                main  = "Map of the Market",
+                print = TRUE)
+     
+_A_r_g_u_m_e_n_t_s:
+
+      id: A vector storing the labels to be used for each stock.
+
+    area: A vector storing the values to be used to calculate the areas
+          of rectangles.
+
+   group: A vector specifying the group (i.e. country, sector, etc.) to
+          which each stock belongs.
+
+   color: A vector storing the values to be used to calculate the color
+          of rectangles.
+
+   scale: An object of class ‘numeric’ indicating the scale to be used
+          in determining colors.
+
+     lab: A logical vector of length 2 specifying whether group and
+          stock labels should be drawn.  If the two values are the
+          same, the second may be omitted.
+
+    main: A title for the plot.
+
+   print: An object of class ‘logical’ indicating whether the map
+          should be drawn.
+
+_A_u_t_h_o_r(_s):
+
+     Jeff Enos <email: jeff@kanecap.com>
+
+_E_x_a_m_p_l_e_s:
+
+     data(dow.jan.2005)
+     map.market(id    = dow.jan.2005$symbol,
+                area  = dow.jan.2005$price,
+                group = dow.jan.2005$sector,
+                color = 100 * dow.jan.2005$month.ret)
+     
+
