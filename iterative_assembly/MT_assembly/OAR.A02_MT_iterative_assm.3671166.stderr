@@ -1,0 +1,61 @@
+Provided cores: 1
+Job counts:
+	count	jobs
+	1	GENE_CALLING
+	1	ALL
+	2
+rule GENE_CALLING:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/A02-iterative_MT//MT_contigs_merged_2.fa
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/A02-iterative_MT//prokka_2/prokka_2.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/A02-iterative_MT//metagenemark_2.ffn
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/A02-iterative_MT/A02_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/A02-iterative_MT//benchmarks/GENE_CALLING_2.json
+[10:36:17] This is prokka 1.11
+[10:36:17] Written by Torsten Seemann <torsten.seemann@monash.edu>
+[10:36:17] Victorian Bioinformatics Consortium - http://www.vicbioinformatics.com
+[10:36:17] Local time is Mon Dec 21 10:36:17 2015
+[10:36:17] You are snarayanasamy
+[10:36:17] Operating system is linux
+[10:36:17] You have BioPerl 1.006901
+[10:36:17] System has 240 cores.
+[10:36:17] Will use maximum of 4 cores.
+[10:36:17] Annotating as >>> Bacteria <<<
+[10:36:17] Re-using existing --outdir /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/A02-iterative_MT//prokka_2
+[10:36:17] Using filename prefix: prokka_2.XXX
+[10:36:17] Setting HMMER_NCPU=1
+[10:36:17] Writing log to: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/A02-iterative_MT//prokka_2/prokka_2.log
+[10:36:17] Command: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/A02-iterative_MT//MT_contigs_merged_2.fa --outdir /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/A02-iterative_MT//prokka_2 --prefix prokka_2 --fast --force --cpus 4
+[10:36:17] Looking for 'aragorn' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/aragorn
+[10:36:17] Determined aragorn version is 1.2
+[10:36:17] Looking for 'blastp' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/blastp
+[10:36:17] Determined blastp version is 2.2
+[10:36:17] Looking for 'cmpress' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/cmpress
+[10:36:17] Determined cmpress version is 1.1
+[10:36:17] Looking for 'cmscan' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/cmscan
+[10:36:17] Determined cmscan version is 1.1
+[10:36:17] Looking for 'egrep' - found /bin/egrep
+[10:36:17] Looking for 'find' - found /usr/bin/find
+[10:36:17] Looking for 'grep' - found /bin/grep
+[10:36:17] Looking for 'hmmpress' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/hmmpress
+[10:36:17] Determined hmmpress version is 3.1
+[10:36:17] Looking for 'hmmscan' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/hmmscan
+[10:36:17] Determined hmmscan version is 3.1
+[10:36:17] Looking for 'less' - found /usr/bin/less
+[10:36:17] Looking for 'makeblastdb' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/makeblastdb
+[10:36:17] Determined makeblastdb version is 2.2
+[10:36:17] Looking for 'minced' - found /mnt/nfs/projects/ecosystem_biology/local_tools/minced
+[10:36:17] Determined minced version is 1.6
+[10:36:17] Looking for 'parallel' - found /usr/bin/parallel
+[10:36:17] Determined parallel version is 20130922
+[10:36:17] Looking for 'prodigal' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/prodigal
+[10:36:17] Determined prodigal version is 2.6
+[10:36:17] Looking for 'prokka-genbank_to_fasta_db' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/bin/prokka-genbank_to_fasta_db
+[10:36:17] Looking for 'sed' - found /bin/sed
+[10:36:17] Looking for 'signalp' - found /usr/bin/signalp
+[10:36:17] Determined signalp version is 3.0
+[10:36:17] Looking for 'tbl2asn' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/tbl2asn
+[tbl2asn] This copy of tbl2asn is more than a year old.  Please download the current version.
+[10:36:17] Determined tbl2asn version is 23.2
+[10:36:17] Using genetic code table 11.
+[10:36:17] Loading and checking input file: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/A02-iterative_MT//MT_contigs_merged_2.fa
+[10:36:26] Uh oh! Sequence file '/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/A02-iterative_MT//MT_contigs_merged_2.fa' contains duplicate sequence ID: k99_3
+## OAR [2015-12-21 10:37:02] Job 3671166 KILLED ##

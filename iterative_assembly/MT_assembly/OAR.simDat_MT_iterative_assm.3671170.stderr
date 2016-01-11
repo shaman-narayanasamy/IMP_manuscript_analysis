@@ -1,0 +1,1689 @@
+Provided cores: 1
+Job counts:
+	count	jobs
+	1	ASSEMBLY
+	1	GENE_CALLING_INITIAL_ASSEMBLY
+	1	MERGE_ASSEMBLIES
+	1	MERGE_INITIAL_ASSEMBLY
+	1	GENE_CALLING
+	1	INITIAL_ASSEMBLY
+	1	EXTRACT_UNMAPPED
+	1	ALL
+	8
+rule INITIAL_ASSEMBLY:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R1.preprocessed.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R2.preprocessed.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.SE.preprocessed.fq
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_1.fa
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/INITIAL_ASSEMBLY.json
+	priority: 50
+MEGAHIT v1.0.3
+--- [Mon Dec 21 10:38:25 2015] Start assembly. Number of CPU threads 4 ---
+--- [Mon Dec 21 10:38:25 2015] k list: 25,29,33,37,41,45,49,53,57,61,65,69,73,77,81,85,89,93,97,99 ---
+--- [Mon Dec 21 10:38:25 2015] Converting reads to binaries ---
+b'    [read_lib_functions-inl.h  : 209]     Lib 0 (/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R1.preprocessed.fq,/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R2.preprocessed.fq): pe, 3491566 reads, 76 max length'
+b'    [read_lib_functions-inl.h  : 209]     Lib 1 (/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.SE.preprocessed.fq): se, 0 reads, 0 max length'
+b'    [utils.h                   : 124]     Real: 3.1977\tuser: 2.4082\tsys: 0.5840\tmaxrss: 96956'
+--- [Mon Dec 21 10:38:28 2015] Extracting solid (k+1)-mers for k = 25 ---
+--- [Mon Dec 21 10:38:50 2015] Building graph for k = 25 ---
+--- [Mon Dec 21 10:39:26 2015] Assembling contigs from SdBG for k = 25 ---
+--- [Mon Dec 21 10:40:36 2015] Local assembling k = 25 ---
+--- [Mon Dec 21 10:40:50 2015] Extracting iterative edges from k = 25 to 29 ---
+--- [Mon Dec 21 10:41:07 2015] Building graph for k = 29 ---
+--- [Mon Dec 21 10:41:17 2015] Assembling contigs from SdBG for k = 29 ---
+--- [Mon Dec 21 10:42:04 2015] Local assembling k = 29 ---
+--- [Mon Dec 21 10:42:18 2015] Extracting iterative edges from k = 29 to 33 ---
+--- [Mon Dec 21 10:42:31 2015] Building graph for k = 33 ---
+--- [Mon Dec 21 10:42:38 2015] Assembling contigs from SdBG for k = 33 ---
+--- [Mon Dec 21 10:43:12 2015] Local assembling k = 33 ---
+--- [Mon Dec 21 10:43:27 2015] Extracting iterative edges from k = 33 to 37 ---
+--- [Mon Dec 21 10:43:40 2015] Building graph for k = 37 ---
+--- [Mon Dec 21 10:43:45 2015] Assembling contigs from SdBG for k = 37 ---
+--- [Mon Dec 21 10:44:15 2015] Local assembling k = 37 ---
+--- [Mon Dec 21 10:44:31 2015] Extracting iterative edges from k = 37 to 41 ---
+--- [Mon Dec 21 10:44:42 2015] Building graph for k = 41 ---
+--- [Mon Dec 21 10:44:47 2015] Assembling contigs from SdBG for k = 41 ---
+--- [Mon Dec 21 10:45:13 2015] Local assembling k = 41 ---
+--- [Mon Dec 21 10:45:29 2015] Extracting iterative edges from k = 41 to 45 ---
+--- [Mon Dec 21 10:45:40 2015] Building graph for k = 45 ---
+--- [Mon Dec 21 10:45:45 2015] Assembling contigs from SdBG for k = 45 ---
+--- [Mon Dec 21 10:46:09 2015] Local assembling k = 45 ---
+--- [Mon Dec 21 10:46:26 2015] Extracting iterative edges from k = 45 to 49 ---
+--- [Mon Dec 21 10:46:36 2015] Building graph for k = 49 ---
+--- [Mon Dec 21 10:46:40 2015] Assembling contigs from SdBG for k = 49 ---
+--- [Mon Dec 21 10:47:01 2015] Local assembling k = 49 ---
+--- [Mon Dec 21 10:47:18 2015] Extracting iterative edges from k = 49 to 53 ---
+--- [Mon Dec 21 10:47:26 2015] Building graph for k = 53 ---
+--- [Mon Dec 21 10:47:30 2015] Assembling contigs from SdBG for k = 53 ---
+--- [Mon Dec 21 10:47:49 2015] Local assembling k = 53 ---
+--- [Mon Dec 21 10:48:06 2015] Extracting iterative edges from k = 53 to 57 ---
+--- [Mon Dec 21 10:48:13 2015] Building graph for k = 57 ---
+--- [Mon Dec 21 10:48:16 2015] Assembling contigs from SdBG for k = 57 ---
+--- [Mon Dec 21 10:48:35 2015] Local assembling k = 57 ---
+--- [Mon Dec 21 10:48:52 2015] Extracting iterative edges from k = 57 to 61 ---
+--- [Mon Dec 21 10:48:58 2015] Building graph for k = 61 ---
+--- [Mon Dec 21 10:49:01 2015] Assembling contigs from SdBG for k = 61 ---
+--- [Mon Dec 21 10:49:22 2015] Local assembling k = 61 ---
+--- [Mon Dec 21 10:49:40 2015] Extracting iterative edges from k = 61 to 65 ---
+--- [Mon Dec 21 10:49:45 2015] Building graph for k = 65 ---
+--- [Mon Dec 21 10:49:48 2015] Assembling contigs from SdBG for k = 65 ---
+--- [Mon Dec 21 10:50:06 2015] Local assembling k = 65 ---
+--- [Mon Dec 21 10:50:23 2015] Extracting iterative edges from k = 65 to 69 ---
+--- [Mon Dec 21 10:50:28 2015] Building graph for k = 69 ---
+--- [Mon Dec 21 10:50:30 2015] Assembling contigs from SdBG for k = 69 ---
+--- [Mon Dec 21 10:50:47 2015] Local assembling k = 69 ---
+--- [Mon Dec 21 10:51:04 2015] Extracting iterative edges from k = 69 to 73 ---
+--- [Mon Dec 21 10:51:07 2015] Building graph for k = 73 ---
+--- [Mon Dec 21 10:51:10 2015] Assembling contigs from SdBG for k = 73 ---
+--- [Mon Dec 21 10:51:26 2015] Local assembling k = 73 ---
+--- [Mon Dec 21 10:51:42 2015] Extracting iterative edges from k = 73 to 77 ---
+--- [Mon Dec 21 10:51:42 2015] Building graph for k = 77 ---
+--- [Mon Dec 21 10:51:45 2015] Assembling contigs from SdBG for k = 77 ---
+--- [Mon Dec 21 10:52:01 2015] Local assembling k = 77 ---
+--- [Mon Dec 21 10:52:16 2015] Extracting iterative edges from k = 77 to 81 ---
+--- [Mon Dec 21 10:52:17 2015] Building graph for k = 81 ---
+--- [Mon Dec 21 10:52:20 2015] Assembling contigs from SdBG for k = 81 ---
+--- [Mon Dec 21 10:52:34 2015] Local assembling k = 81 ---
+--- [Mon Dec 21 10:52:49 2015] Extracting iterative edges from k = 81 to 85 ---
+--- [Mon Dec 21 10:52:50 2015] Building graph for k = 85 ---
+--- [Mon Dec 21 10:52:52 2015] Assembling contigs from SdBG for k = 85 ---
+--- [Mon Dec 21 10:53:08 2015] Local assembling k = 85 ---
+--- [Mon Dec 21 10:53:22 2015] Extracting iterative edges from k = 85 to 89 ---
+--- [Mon Dec 21 10:53:23 2015] Building graph for k = 89 ---
+--- [Mon Dec 21 10:53:25 2015] Assembling contigs from SdBG for k = 89 ---
+--- [Mon Dec 21 10:53:40 2015] Local assembling k = 89 ---
+--- [Mon Dec 21 10:53:53 2015] Extracting iterative edges from k = 89 to 93 ---
+--- [Mon Dec 21 10:53:54 2015] Building graph for k = 93 ---
+--- [Mon Dec 21 10:53:57 2015] Assembling contigs from SdBG for k = 93 ---
+--- [Mon Dec 21 10:54:10 2015] Local assembling k = 93 ---
+--- [Mon Dec 21 10:54:24 2015] Extracting iterative edges from k = 93 to 97 ---
+--- [Mon Dec 21 10:54:24 2015] Building graph for k = 97 ---
+--- [Mon Dec 21 10:54:27 2015] Assembling contigs from SdBG for k = 97 ---
+--- [Mon Dec 21 10:54:40 2015] Local assembling k = 97 ---
+--- [Mon Dec 21 10:54:53 2015] Extracting iterative edges from k = 97 to 99 ---
+--- [Mon Dec 21 10:54:54 2015] Building graph for k = 99 ---
+--- [Mon Dec 21 10:54:56 2015] Assembling contigs from SdBG for k = 99 ---
+--- [Mon Dec 21 10:55:10 2015] Merging to output final contigs ---
+--- [STAT] 13465 contigs, total 9004033 bp, min 202 bp, max 7888 bp, avg 669 bp, N50 740 bp
+--- [Mon Dec 21 10:55:11 2015] ALL DONE. Time elapsed: 1005.521096 seconds ---
+1 of 8 steps (12%) done
+rule MERGE_INITIAL_ASSEMBLY:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_1.fa
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_1.fa
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/MERGE_INITIAL_ASSEMBLY.json
+2 of 8 steps (25%) done
+rule EXTRACT_UNMAPPED:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_1.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R1.preprocessed.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R2.preprocessed.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.SE.preprocessed.fq
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R1.unmapped_1.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R2.unmapped_1.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.SE.unmapped_1.fq
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/EXTRACT_UNMAPPED_1.json
+[bwa_index] Pack FASTA... 0.09 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 3.01 seconds elapse.
+[bwa_index] Update BWT... 0.06 sec
+[bwa_index] Pack forward-only FASTA... 0.07 sec
+[bwa_index] Construct SA from BWT and Occ... 0.92 sec
+[main] Version: 0.7.9a-r786
+[main] CMD: bwa index /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_1.fa
+[main] Real time: 4.308 sec; CPU: 4.160 sec
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (264.13, 41.49)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[samopen] SAM header is present: 13437 sequences.
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (264.29, 41.47)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (57, 92, 134)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 288)
+[M::mem_pestat] mean and std.dev: (93.13, 52.66)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 365)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (264.11, 41.38)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (264.10, 41.65)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (264.04, 41.44)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.96, 41.15)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (264.18, 41.36)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[main] Version: 0.7.9a-r786
+[main] CMD: bwa mem -v 1 -t 4 /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_1.fa /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R1.preprocessed.fq /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R2.preprocessed.fq
+[main] Real time: 51.993 sec; CPU: 143.277 sec
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[main] Version: 0.7.9a-r786
+[main] CMD: bwa mem -v 1 -t 4 /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_1.fa /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.SE.preprocessed.fq
+[main] Real time: 0.111 sec; CPU: 0.064 sec
+[samopen] SAM header is present: 13437 sequences.
+[sam_read1] reference 'ID:bwa	PN:bwa	VN:0.7.9a-r786	CL:bwa mem -v 1 -t 4 /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_1.fa /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.SE.preprocessed.fq
+N:510
+@SQ	SN:contig_11	LN:355
+@SQ	SN:contig_12	LN:379
+@SQ	SN:contig_13	LN:710
+@SQ	SN:contig_14	LN:725
+@SQ	SN:contig_15	LN:324
+@SQ	SN:contig_16	LN:1283
+@SQ	SN:contig_17	LN:770
+@SQ	SN:contig_18	LN:640
+@SQ	SN:contig_19	LN:402
+@SQ	SN:contig_20	LN:353
+!' is recognized as '*'.
+[main_samview] truncated file.
+3 of 8 steps (38%) done
+rule ASSEMBLY:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R1.unmapped_1.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R2.unmapped_1.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.SE.unmapped_1.fq
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_2.fa
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/ASSEMBLY_2.json
+MEGAHIT v1.0.3
+--- [Mon Dec 21 11:00:51 2015] Start assembly. Number of CPU threads 4 ---
+--- [Mon Dec 21 11:00:51 2015] k list: 25,29,33,37,41,45,49,53,57,61,65,69,73,77,81,85,89,93,97,99 ---
+--- [Mon Dec 21 11:00:51 2015] Converting reads to binaries ---
+b'    [read_lib_functions-inl.h  : 209]     Lib 0 (/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R1.unmapped_1.fq,/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R2.unmapped_1.fq): pe, 2668808 reads, 76 max length'
+b'    [read_lib_functions-inl.h  : 209]     Lib 1 (/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.SE.unmapped_1.fq): se, 0 reads, 0 max length'
+b'    [utils.h                   : 124]     Real: 2.6623\tuser: 1.8641\tsys: 0.4080\tmaxrss: 96960'
+--- [Mon Dec 21 11:00:54 2015] Extracting solid (k+1)-mers for k = 25 ---
+--- [Mon Dec 21 11:01:09 2015] Building graph for k = 25 ---
+--- [Mon Dec 21 11:01:37 2015] Assembling contigs from SdBG for k = 25 ---
+--- [Mon Dec 21 11:02:33 2015] Local assembling k = 25 ---
+--- [Mon Dec 21 11:02:41 2015] Extracting iterative edges from k = 25 to 29 ---
+--- [Mon Dec 21 11:02:53 2015] Building graph for k = 29 ---
+--- [Mon Dec 21 11:03:00 2015] Assembling contigs from SdBG for k = 29 ---
+--- [Mon Dec 21 11:03:35 2015] Local assembling k = 29 ---
+--- [Mon Dec 21 11:03:42 2015] Extracting iterative edges from k = 29 to 33 ---
+--- [Mon Dec 21 11:03:52 2015] Building graph for k = 33 ---
+--- [Mon Dec 21 11:03:56 2015] Assembling contigs from SdBG for k = 33 ---
+--- [Mon Dec 21 11:04:20 2015] Local assembling k = 33 ---
+--- [Mon Dec 21 11:04:28 2015] Extracting iterative edges from k = 33 to 37 ---
+--- [Mon Dec 21 11:04:38 2015] Building graph for k = 37 ---
+--- [Mon Dec 21 11:04:41 2015] Assembling contigs from SdBG for k = 37 ---
+--- [Mon Dec 21 11:05:02 2015] Local assembling k = 37 ---
+--- [Mon Dec 21 11:05:10 2015] Extracting iterative edges from k = 37 to 41 ---
+--- [Mon Dec 21 11:05:18 2015] Building graph for k = 41 ---
+--- [Mon Dec 21 11:05:21 2015] Assembling contigs from SdBG for k = 41 ---
+--- [Mon Dec 21 11:05:39 2015] Local assembling k = 41 ---
+--- [Mon Dec 21 11:05:47 2015] Extracting iterative edges from k = 41 to 45 ---
+--- [Mon Dec 21 11:05:54 2015] Building graph for k = 45 ---
+--- [Mon Dec 21 11:05:56 2015] Assembling contigs from SdBG for k = 45 ---
+--- [Mon Dec 21 11:06:12 2015] Local assembling k = 45 ---
+--- [Mon Dec 21 11:06:21 2015] Extracting iterative edges from k = 45 to 49 ---
+--- [Mon Dec 21 11:06:27 2015] Building graph for k = 49 ---
+--- [Mon Dec 21 11:06:28 2015] Assembling contigs from SdBG for k = 49 ---
+--- [Mon Dec 21 11:06:42 2015] Local assembling k = 49 ---
+--- [Mon Dec 21 11:06:51 2015] Extracting iterative edges from k = 49 to 53 ---
+--- [Mon Dec 21 11:06:57 2015] Building graph for k = 53 ---
+--- [Mon Dec 21 11:06:58 2015] Assembling contigs from SdBG for k = 53 ---
+--- [Mon Dec 21 11:07:10 2015] Local assembling k = 53 ---
+--- [Mon Dec 21 11:07:19 2015] Extracting iterative edges from k = 53 to 57 ---
+--- [Mon Dec 21 11:07:24 2015] Building graph for k = 57 ---
+--- [Mon Dec 21 11:07:26 2015] Assembling contigs from SdBG for k = 57 ---
+--- [Mon Dec 21 11:07:36 2015] Local assembling k = 57 ---
+--- [Mon Dec 21 11:07:46 2015] Extracting iterative edges from k = 57 to 61 ---
+--- [Mon Dec 21 11:07:50 2015] Building graph for k = 61 ---
+--- [Mon Dec 21 11:07:51 2015] Assembling contigs from SdBG for k = 61 ---
+--- [Mon Dec 21 11:08:01 2015] Local assembling k = 61 ---
+--- [Mon Dec 21 11:08:10 2015] Extracting iterative edges from k = 61 to 65 ---
+--- [Mon Dec 21 11:08:14 2015] Building graph for k = 65 ---
+--- [Mon Dec 21 11:08:15 2015] Assembling contigs from SdBG for k = 65 ---
+--- [Mon Dec 21 11:08:24 2015] Local assembling k = 65 ---
+--- [Mon Dec 21 11:08:34 2015] Extracting iterative edges from k = 65 to 69 ---
+--- [Mon Dec 21 11:08:37 2015] Building graph for k = 69 ---
+--- [Mon Dec 21 11:08:38 2015] Assembling contigs from SdBG for k = 69 ---
+--- [Mon Dec 21 11:08:48 2015] Local assembling k = 69 ---
+--- [Mon Dec 21 11:08:57 2015] Extracting iterative edges from k = 69 to 73 ---
+--- [Mon Dec 21 11:08:59 2015] Building graph for k = 73 ---
+--- [Mon Dec 21 11:09:00 2015] Assembling contigs from SdBG for k = 73 ---
+--- [Mon Dec 21 11:09:08 2015] Local assembling k = 73 ---
+--- [Mon Dec 21 11:09:16 2015] Extracting iterative edges from k = 73 to 77 ---
+--- [Mon Dec 21 11:09:16 2015] Building graph for k = 77 ---
+--- [Mon Dec 21 11:09:17 2015] Assembling contigs from SdBG for k = 77 ---
+--- [Mon Dec 21 11:09:25 2015] Local assembling k = 77 ---
+--- [Mon Dec 21 11:09:32 2015] Extracting iterative edges from k = 77 to 81 ---
+--- [Mon Dec 21 11:09:32 2015] Building graph for k = 81 ---
+--- [Mon Dec 21 11:09:32 2015] Assembling contigs from SdBG for k = 81 ---
+--- [Mon Dec 21 11:09:40 2015] Local assembling k = 81 ---
+--- [Mon Dec 21 11:09:46 2015] Extracting iterative edges from k = 81 to 85 ---
+--- [Mon Dec 21 11:09:47 2015] Building graph for k = 85 ---
+--- [Mon Dec 21 11:09:47 2015] Assembling contigs from SdBG for k = 85 ---
+--- [Mon Dec 21 11:09:54 2015] Local assembling k = 85 ---
+--- [Mon Dec 21 11:09:59 2015] Extracting iterative edges from k = 85 to 89 ---
+--- [Mon Dec 21 11:10:00 2015] Building graph for k = 89 ---
+--- [Mon Dec 21 11:10:00 2015] Assembling contigs from SdBG for k = 89 ---
+--- [Mon Dec 21 11:10:07 2015] Local assembling k = 89 ---
+--- [Mon Dec 21 11:10:12 2015] Extracting iterative edges from k = 89 to 93 ---
+--- [Mon Dec 21 11:10:13 2015] Building graph for k = 93 ---
+--- [Mon Dec 21 11:10:13 2015] Assembling contigs from SdBG for k = 93 ---
+--- [Mon Dec 21 11:10:20 2015] Local assembling k = 93 ---
+--- [Mon Dec 21 11:10:25 2015] Extracting iterative edges from k = 93 to 97 ---
+--- [Mon Dec 21 11:10:25 2015] Building graph for k = 97 ---
+--- [Mon Dec 21 11:10:26 2015] Assembling contigs from SdBG for k = 97 ---
+--- [Mon Dec 21 11:10:32 2015] Local assembling k = 97 ---
+--- [Mon Dec 21 11:10:36 2015] Extracting iterative edges from k = 97 to 99 ---
+--- [Mon Dec 21 11:10:36 2015] Building graph for k = 99 ---
+--- [Mon Dec 21 11:10:37 2015] Assembling contigs from SdBG for k = 99 ---
+--- [Mon Dec 21 11:10:43 2015] Merging to output final contigs ---
+--- [STAT] 1412 contigs, total 543599 bp, min 220 bp, max 1033 bp, avg 385 bp, N50 388 bp
+--- [Mon Dec 21 11:10:43 2015] ALL DONE. Time elapsed: 592.194577 seconds ---
+4 of 8 steps (50%) done
+rule MERGE_ASSEMBLIES:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_1.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_2.fa
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_cat_2.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_2.fa
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/MERGE_ASSEMBLIES_2.json
+5 of 8 steps (62%) done
+rule GENE_CALLING:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_2.fa
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_2/prokka_2.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/metagenemark_2.ffn
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/GENE_CALLING_2.json
+[11:10:50] This is prokka 1.11
+[11:10:50] Written by Torsten Seemann <torsten.seemann@monash.edu>
+[11:10:50] Victorian Bioinformatics Consortium - http://www.vicbioinformatics.com
+[11:10:50] Local time is Mon Dec 21 11:10:50 2015
+[11:10:50] You are snarayanasamy
+[11:10:50] Operating system is linux
+[11:10:50] You have BioPerl 1.006901
+[11:10:50] System has 240 cores.
+[11:10:50] Will use maximum of 4 cores.
+[11:10:50] Annotating as >>> Bacteria <<<
+[11:10:50] Re-using existing --outdir /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_2
+[11:10:50] Using filename prefix: prokka_2.XXX
+[11:10:50] Setting HMMER_NCPU=1
+[11:10:50] Writing log to: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_2/prokka_2.log
+[11:10:50] Command: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_2.fa --outdir /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_2 --prefix prokka_2 --fast --force --cpus 4
+[11:10:50] Looking for 'aragorn' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/aragorn
+[11:10:50] Determined aragorn version is 1.2
+[11:10:50] Looking for 'blastp' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/blastp
+[11:10:50] Determined blastp version is 2.2
+[11:10:50] Looking for 'cmpress' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/cmpress
+[11:10:50] Determined cmpress version is 1.1
+[11:10:50] Looking for 'cmscan' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/cmscan
+[11:10:50] Determined cmscan version is 1.1
+[11:10:50] Looking for 'egrep' - found /bin/egrep
+[11:10:50] Looking for 'find' - found /usr/bin/find
+[11:10:50] Looking for 'grep' - found /bin/grep
+[11:10:50] Looking for 'hmmpress' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/hmmpress
+[11:10:50] Determined hmmpress version is 3.1
+[11:10:50] Looking for 'hmmscan' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/hmmscan
+[11:10:50] Determined hmmscan version is 3.1
+[11:10:50] Looking for 'less' - found /usr/bin/less
+[11:10:50] Looking for 'makeblastdb' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/makeblastdb
+[11:10:50] Determined makeblastdb version is 2.2
+[11:10:50] Looking for 'minced' - found /mnt/nfs/projects/ecosystem_biology/local_tools/minced
+[11:10:50] Determined minced version is 1.6
+[11:10:50] Looking for 'parallel' - found /usr/bin/parallel
+[11:10:50] Determined parallel version is 20130922
+[11:10:50] Looking for 'prodigal' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/prodigal
+[11:10:50] Determined prodigal version is 2.6
+[11:10:50] Looking for 'prokka-genbank_to_fasta_db' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/bin/prokka-genbank_to_fasta_db
+[11:10:50] Looking for 'sed' - found /bin/sed
+[11:10:50] Looking for 'signalp' - found /usr/bin/signalp
+[11:10:50] Determined signalp version is 3.0
+[11:10:50] Looking for 'tbl2asn' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/tbl2asn
+[tbl2asn] This copy of tbl2asn is more than a year old.  Please download the current version.
+[11:10:50] Determined tbl2asn version is 23.2
+[11:10:50] Using genetic code table 11.
+[11:10:50] Loading and checking input file: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_2.fa
+[11:10:53] Wrote 14723 contigs
+[11:10:53] Predicting tRNAs and tmRNAs
+[11:10:53] Running: aragorn -gc11  -w \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_2\/prokka_2\.fna
+[11:10:56] 1 tRNA-Thr c[537,609] 33 (ggt)
+[11:10:56] Found 1 tRNAs
+[11:10:56] Predicting Ribosomal RNAs
+[11:10:56] You need either Barrnap or RNAmmer installed to predict rRNAs!
+[11:10:56] Skipping ncRNA search, enable with --rfam if desired.
+[11:10:56] Total of 1 tRNA + rRNA features
+[11:10:56] Searching for CRISPR repeats
+[11:10:58] Found 0 CRISPRs
+[11:10:58] Predicting coding sequences
+[11:10:58] Contigs total 9497250 bp, so using single mode
+[11:10:58] Running: prodigal -i \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_2\/prokka_2\.fna -c -m -g 11 -p single -f sco -q
+[11:11:26] Found 3164 CDS
+[11:11:26] Connecting features back to sequences
+[11:11:26] Option --gram not specified, will NOT check for signal peptides.
+[11:11:26] Not using genus-specific database. Try --usegenus to enable it.
+[11:11:26] Option --fast enabled, so skipping CDS similarity searches
+[11:11:26] Labelling remaining 3164 proteins as 'unannotated protein'
+[11:11:26] Found 0 unique /gene codes.
+[11:11:26] Fixed 0 colliding /gene names.
+[11:11:26] Adding /locus_tag identifiers
+[11:11:26] Assigned 3165 locus_tags to CDS and RNA features.
+[11:11:26] Writing outputs to /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_2/
+[11:11:31] Generating annotation statistics file
+[11:11:31] Generating Genbank and Sequin files
+[11:11:31] Running: tbl2asn -V b -a r10k -l paired-ends -M n -N 1 -y 'Annotated using prokka 1.11 from http://www.vicbioinformatics.com' -Z \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_2\/prokka_2\.err -i \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_2\/prokka_2\.fsa 2> /dev/null
+[11:12:18] Could not run command: tbl2asn -V b -a r10k -l paired-ends -M n -N 1 -y 'Annotated using prokka 1.11 from http://www.vicbioinformatics.com' -Z \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_2\/prokka_2\.err -i \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_2\/prokka_2\.fsa 2> /dev/null
+6 of 8 steps (75%) done
+rule GENE_CALLING_INITIAL_ASSEMBLY:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_1.fa
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_1/prokka_1.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/metagenemark_1.ffn
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/GENE_CALLING_INITIAL_ASSEMBLY.json
+[11:13:30] This is prokka 1.11
+[11:13:30] Written by Torsten Seemann <torsten.seemann@monash.edu>
+[11:13:30] Victorian Bioinformatics Consortium - http://www.vicbioinformatics.com
+[11:13:30] Local time is Mon Dec 21 11:13:30 2015
+[11:13:30] You are snarayanasamy
+[11:13:30] Operating system is linux
+[11:13:30] You have BioPerl 1.006901
+[11:13:30] System has 240 cores.
+[11:13:30] Will use maximum of 4 cores.
+[11:13:30] Annotating as >>> Bacteria <<<
+[11:13:30] Re-using existing --outdir /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_1
+[11:13:30] Using filename prefix: prokka_1.XXX
+[11:13:30] Setting HMMER_NCPU=1
+[11:13:30] Writing log to: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_1/prokka_1.log
+[11:13:30] Command: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_1.fa --outdir /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_1 --prefix prokka_1 --fast --force --cpus 4
+[11:13:30] Looking for 'aragorn' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/aragorn
+[11:13:30] Determined aragorn version is 1.2
+[11:13:30] Looking for 'blastp' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/blastp
+[11:13:30] Determined blastp version is 2.2
+[11:13:30] Looking for 'cmpress' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/cmpress
+[11:13:30] Determined cmpress version is 1.1
+[11:13:30] Looking for 'cmscan' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/cmscan
+[11:13:30] Determined cmscan version is 1.1
+[11:13:30] Looking for 'egrep' - found /bin/egrep
+[11:13:30] Looking for 'find' - found /usr/bin/find
+[11:13:30] Looking for 'grep' - found /bin/grep
+[11:13:30] Looking for 'hmmpress' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/hmmpress
+[11:13:30] Determined hmmpress version is 3.1
+[11:13:30] Looking for 'hmmscan' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/hmmscan
+[11:13:30] Determined hmmscan version is 3.1
+[11:13:30] Looking for 'less' - found /usr/bin/less
+[11:13:30] Looking for 'makeblastdb' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/makeblastdb
+[11:13:30] Determined makeblastdb version is 2.2
+[11:13:30] Looking for 'minced' - found /mnt/nfs/projects/ecosystem_biology/local_tools/minced
+[11:13:30] Determined minced version is 1.6
+[11:13:30] Looking for 'parallel' - found /usr/bin/parallel
+[11:13:30] Determined parallel version is 20130922
+[11:13:30] Looking for 'prodigal' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/prodigal
+[11:13:30] Determined prodigal version is 2.6
+[11:13:30] Looking for 'prokka-genbank_to_fasta_db' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/bin/prokka-genbank_to_fasta_db
+[11:13:30] Looking for 'sed' - found /bin/sed
+[11:13:30] Looking for 'signalp' - found /usr/bin/signalp
+[11:13:30] Determined signalp version is 3.0
+[11:13:30] Looking for 'tbl2asn' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/tbl2asn
+[tbl2asn] This copy of tbl2asn is more than a year old.  Please download the current version.
+[11:13:30] Determined tbl2asn version is 23.2
+[11:13:30] Using genetic code table 11.
+[11:13:30] Loading and checking input file: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_1.fa
+[11:13:33] Wrote 13465 contigs
+[11:13:33] Predicting tRNAs and tmRNAs
+[11:13:33] Running: aragorn -gc11  -w \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_1\/prokka_1\.fna
+[11:13:36] 1 tRNA-Thr c[537,609] 33 (ggt)
+[11:13:36] Found 1 tRNAs
+[11:13:36] Predicting Ribosomal RNAs
+[11:13:36] You need either Barrnap or RNAmmer installed to predict rRNAs!
+[11:13:36] Skipping ncRNA search, enable with --rfam if desired.
+[11:13:36] Total of 1 tRNA + rRNA features
+[11:13:36] Searching for CRISPR repeats
+[11:13:38] Found 0 CRISPRs
+[11:13:38] Predicting coding sequences
+[11:13:38] Contigs total 9004033 bp, so using single mode
+[11:13:38] Running: prodigal -i \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_1\/prokka_1\.fna -c -m -g 11 -p single -f sco -q
+[11:14:06] Found 3085 CDS
+[11:14:06] Connecting features back to sequences
+[11:14:06] Option --gram not specified, will NOT check for signal peptides.
+[11:14:06] Not using genus-specific database. Try --usegenus to enable it.
+[11:14:06] Option --fast enabled, so skipping CDS similarity searches
+[11:14:06] Labelling remaining 3085 proteins as 'unannotated protein'
+[11:14:06] Found 0 unique /gene codes.
+[11:14:06] Fixed 0 colliding /gene names.
+[11:14:06] Adding /locus_tag identifiers
+[11:14:06] Assigned 3086 locus_tags to CDS and RNA features.
+[11:14:06] Writing outputs to /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_1/
+[11:14:11] Generating annotation statistics file
+[11:14:11] Generating Genbank and Sequin files
+[11:14:11] Running: tbl2asn -V b -a r10k -l paired-ends -M n -N 1 -y 'Annotated using prokka 1.11 from http://www.vicbioinformatics.com' -Z \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_1\/prokka_1\.err -i \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_1\/prokka_1\.fsa 2> /dev/null
+[11:14:51] Could not run command: tbl2asn -V b -a r10k -l paired-ends -M n -N 1 -y 'Annotated using prokka 1.11 from http://www.vicbioinformatics.com' -Z \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_1\/prokka_1\.err -i \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_1\/prokka_1\.fsa 2> /dev/null
+7 of 8 steps (88%) done
+rule ALL:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_2.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_2.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_1/prokka_1.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/metagenemark_1.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_2/prokka_2.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/metagenemark_2.ffn
+8 of 8 steps (100%) done
+Nothing to be done.
+Provided cores: 1
+Job counts:
+	count	jobs
+	1	ASSEMBLY
+	1	MERGE_ASSEMBLIES
+	1	EXTRACT_UNMAPPED
+	1	ALL
+	1	GENE_CALLING
+	5
+rule EXTRACT_UNMAPPED:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_2.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R1.preprocessed.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R2.preprocessed.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.SE.preprocessed.fq
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R1.unmapped_2.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R2.unmapped_2.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.SE.unmapped_2.fq
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/EXTRACT_UNMAPPED_2.json
+[bwa_index] Pack FASTA... 0.39 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 3.26 seconds elapse.
+[bwa_index] Update BWT... 0.07 sec
+[bwa_index] Pack forward-only FASTA... 0.07 sec
+[bwa_index] Construct SA from BWT and Occ... 1.01 sec
+[main] Version: 0.7.9a-r786
+[main] CMD: bwa index /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_2.fa
+[main] Real time: 5.075 sec; CPU: 4.800 sec
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.93, 41.43)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[samopen] SAM header is present: 14723 sequences.
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (264.05, 41.41)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (32, 87, 134)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 338)
+[M::mem_pestat] mean and std.dev: (87.39, 54.77)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 440)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.90, 41.34)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.87, 41.62)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.88, 41.39)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.75, 41.10)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.99, 41.34)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[main] Version: 0.7.9a-r786
+[main] CMD: bwa mem -v 1 -t 4 /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_2.fa /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R1.preprocessed.fq /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R2.preprocessed.fq
+[main] Real time: 54.373 sec; CPU: 152.234 sec
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[main] Version: 0.7.9a-r786
+[main] CMD: bwa mem -v 1 -t 4 /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_2.fa /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.SE.preprocessed.fq
+[main] Real time: 0.171 sec; CPU: 0.056 sec
+[samopen] SAM header is present: 14723 sequences.
+[sam_read1] reference 'ID:bwa	PN:bwa	VN:0.7.9a-r786	CL:bwa mem -v 1 -t 4 /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_2.fa /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.SE.preprocessed.fq
+N:510
+@SQ	SN:contig_11	LN:355
+@SQ	SN:contig_12	LN:379
+@SQ	SN:contig_13	LN:710
+@SQ	SN:contig_14	LN:725
+@SQ	SN:contig_15	LN:324
+@SQ	SN:contig_16	LN:1283
+@SQ	SN:contig_17	LN:770
+@SQ	SN:contig_18	LN:640
+@SQ	SN:contig_19	LN:402
+@SQ	SN:contig_20	LN:353
+!' is recognized as '*'.
+[main_samview] truncated file.
+1 of 5 steps (20%) done
+rule ASSEMBLY:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R1.unmapped_2.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R2.unmapped_2.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.SE.unmapped_2.fq
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_3.fa
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/ASSEMBLY_3.json
+MEGAHIT v1.0.3
+--- [Mon Dec 21 11:21:29 2015] Start assembly. Number of CPU threads 4 ---
+--- [Mon Dec 21 11:21:29 2015] k list: 25,29,33,37,41,45,49,53,57,61,65,69,73,77,81,85,89,93,97,99 ---
+--- [Mon Dec 21 11:21:29 2015] Converting reads to binaries ---
+b'    [read_lib_functions-inl.h  : 209]     Lib 0 (/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R1.unmapped_2.fq,/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R2.unmapped_2.fq): pe, 2652756 reads, 76 max length'
+b'    [read_lib_functions-inl.h  : 209]     Lib 1 (/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.SE.unmapped_2.fq): se, 0 reads, 0 max length'
+b'    [utils.h                   : 124]     Real: 2.3642\tuser: 1.8001\tsys: 0.4520\tmaxrss: 96960'
+--- [Mon Dec 21 11:21:31 2015] Extracting solid (k+1)-mers for k = 25 ---
+--- [Mon Dec 21 11:21:46 2015] Building graph for k = 25 ---
+--- [Mon Dec 21 11:22:14 2015] Assembling contigs from SdBG for k = 25 ---
+--- [Mon Dec 21 11:23:10 2015] Local assembling k = 25 ---
+--- [Mon Dec 21 11:23:18 2015] Extracting iterative edges from k = 25 to 29 ---
+--- [Mon Dec 21 11:23:30 2015] Building graph for k = 29 ---
+--- [Mon Dec 21 11:23:36 2015] Assembling contigs from SdBG for k = 29 ---
+--- [Mon Dec 21 11:24:11 2015] Local assembling k = 29 ---
+--- [Mon Dec 21 11:24:19 2015] Extracting iterative edges from k = 29 to 33 ---
+--- [Mon Dec 21 11:24:30 2015] Building graph for k = 33 ---
+--- [Mon Dec 21 11:24:34 2015] Assembling contigs from SdBG for k = 33 ---
+--- [Mon Dec 21 11:24:57 2015] Local assembling k = 33 ---
+--- [Mon Dec 21 11:25:06 2015] Extracting iterative edges from k = 33 to 37 ---
+--- [Mon Dec 21 11:25:16 2015] Building graph for k = 37 ---
+--- [Mon Dec 21 11:25:19 2015] Assembling contigs from SdBG for k = 37 ---
+--- [Mon Dec 21 11:25:39 2015] Local assembling k = 37 ---
+--- [Mon Dec 21 11:25:49 2015] Extracting iterative edges from k = 37 to 41 ---
+--- [Mon Dec 21 11:25:57 2015] Building graph for k = 41 ---
+--- [Mon Dec 21 11:25:59 2015] Assembling contigs from SdBG for k = 41 ---
+--- [Mon Dec 21 11:26:17 2015] Local assembling k = 41 ---
+--- [Mon Dec 21 11:26:26 2015] Extracting iterative edges from k = 41 to 45 ---
+--- [Mon Dec 21 11:26:33 2015] Building graph for k = 45 ---
+--- [Mon Dec 21 11:26:35 2015] Assembling contigs from SdBG for k = 45 ---
+--- [Mon Dec 21 11:26:50 2015] Local assembling k = 45 ---
+--- [Mon Dec 21 11:26:59 2015] Extracting iterative edges from k = 45 to 49 ---
+--- [Mon Dec 21 11:27:05 2015] Building graph for k = 49 ---
+--- [Mon Dec 21 11:27:07 2015] Assembling contigs from SdBG for k = 49 ---
+--- [Mon Dec 21 11:27:20 2015] Local assembling k = 49 ---
+--- [Mon Dec 21 11:27:29 2015] Extracting iterative edges from k = 49 to 53 ---
+--- [Mon Dec 21 11:27:35 2015] Building graph for k = 53 ---
+--- [Mon Dec 21 11:27:36 2015] Assembling contigs from SdBG for k = 53 ---
+--- [Mon Dec 21 11:27:48 2015] Local assembling k = 53 ---
+--- [Mon Dec 21 11:27:58 2015] Extracting iterative edges from k = 53 to 57 ---
+--- [Mon Dec 21 11:28:02 2015] Building graph for k = 57 ---
+--- [Mon Dec 21 11:28:03 2015] Assembling contigs from SdBG for k = 57 ---
+--- [Mon Dec 21 11:28:13 2015] Local assembling k = 57 ---
+--- [Mon Dec 21 11:28:23 2015] Extracting iterative edges from k = 57 to 61 ---
+--- [Mon Dec 21 11:28:27 2015] Building graph for k = 61 ---
+--- [Mon Dec 21 11:28:28 2015] Assembling contigs from SdBG for k = 61 ---
+--- [Mon Dec 21 11:28:37 2015] Local assembling k = 61 ---
+--- [Mon Dec 21 11:28:47 2015] Extracting iterative edges from k = 61 to 65 ---
+--- [Mon Dec 21 11:28:50 2015] Building graph for k = 65 ---
+--- [Mon Dec 21 11:28:51 2015] Assembling contigs from SdBG for k = 65 ---
+--- [Mon Dec 21 11:29:01 2015] Local assembling k = 65 ---
+--- [Mon Dec 21 11:29:11 2015] Extracting iterative edges from k = 65 to 69 ---
+--- [Mon Dec 21 11:29:14 2015] Building graph for k = 69 ---
+--- [Mon Dec 21 11:29:15 2015] Assembling contigs from SdBG for k = 69 ---
+--- [Mon Dec 21 11:29:23 2015] Local assembling k = 69 ---
+--- [Mon Dec 21 11:29:33 2015] Extracting iterative edges from k = 69 to 73 ---
+--- [Mon Dec 21 11:29:35 2015] Building graph for k = 73 ---
+--- [Mon Dec 21 11:29:36 2015] Assembling contigs from SdBG for k = 73 ---
+--- [Mon Dec 21 11:29:44 2015] Local assembling k = 73 ---
+--- [Mon Dec 21 11:29:52 2015] Extracting iterative edges from k = 73 to 77 ---
+--- [Mon Dec 21 11:29:52 2015] Building graph for k = 77 ---
+--- [Mon Dec 21 11:29:53 2015] Assembling contigs from SdBG for k = 77 ---
+--- [Mon Dec 21 11:30:00 2015] Local assembling k = 77 ---
+--- [Mon Dec 21 11:30:07 2015] Extracting iterative edges from k = 77 to 81 ---
+--- [Mon Dec 21 11:30:08 2015] Building graph for k = 81 ---
+--- [Mon Dec 21 11:30:08 2015] Assembling contigs from SdBG for k = 81 ---
+--- [Mon Dec 21 11:30:15 2015] Local assembling k = 81 ---
+--- [Mon Dec 21 11:30:21 2015] Extracting iterative edges from k = 81 to 85 ---
+--- [Mon Dec 21 11:30:22 2015] Building graph for k = 85 ---
+--- [Mon Dec 21 11:30:22 2015] Assembling contigs from SdBG for k = 85 ---
+--- [Mon Dec 21 11:30:29 2015] Local assembling k = 85 ---
+--- [Mon Dec 21 11:30:34 2015] Extracting iterative edges from k = 85 to 89 ---
+--- [Mon Dec 21 11:30:34 2015] Building graph for k = 89 ---
+--- [Mon Dec 21 11:30:35 2015] Assembling contigs from SdBG for k = 89 ---
+--- [Mon Dec 21 11:30:43 2015] Local assembling k = 89 ---
+--- [Mon Dec 21 11:30:48 2015] Extracting iterative edges from k = 89 to 93 ---
+--- [Mon Dec 21 11:30:48 2015] Building graph for k = 93 ---
+--- [Mon Dec 21 11:30:49 2015] Assembling contigs from SdBG for k = 93 ---
+--- [Mon Dec 21 11:30:57 2015] Local assembling k = 93 ---
+--- [Mon Dec 21 11:31:01 2015] Extracting iterative edges from k = 93 to 97 ---
+--- [Mon Dec 21 11:31:01 2015] Building graph for k = 97 ---
+--- [Mon Dec 21 11:31:02 2015] Assembling contigs from SdBG for k = 97 ---
+--- [Mon Dec 21 11:31:08 2015] Local assembling k = 97 ---
+--- [Mon Dec 21 11:31:11 2015] Extracting iterative edges from k = 97 to 99 ---
+--- [Mon Dec 21 11:31:11 2015] Building graph for k = 99 ---
+--- [Mon Dec 21 11:31:12 2015] Assembling contigs from SdBG for k = 99 ---
+--- [Mon Dec 21 11:31:17 2015] Merging to output final contigs ---
+--- [STAT] 167 contigs, total 57363 bp, min 258 bp, max 675 bp, avg 343 bp, N50 332 bp
+--- [Mon Dec 21 11:31:17 2015] ALL DONE. Time elapsed: 588.634810 seconds ---
+2 of 5 steps (40%) done
+rule MERGE_ASSEMBLIES:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_2.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_3.fa
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_cat_3.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_3.fa
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/MERGE_ASSEMBLIES_3.json
+3 of 5 steps (60%) done
+rule GENE_CALLING:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_3.fa
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_3/prokka_3.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/metagenemark_3.ffn
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/GENE_CALLING_3.json
+[11:31:24] This is prokka 1.11
+[11:31:24] Written by Torsten Seemann <torsten.seemann@monash.edu>
+[11:31:24] Victorian Bioinformatics Consortium - http://www.vicbioinformatics.com
+[11:31:24] Local time is Mon Dec 21 11:31:24 2015
+[11:31:24] You are snarayanasamy
+[11:31:24] Operating system is linux
+[11:31:24] You have BioPerl 1.006901
+[11:31:24] System has 240 cores.
+[11:31:24] Will use maximum of 4 cores.
+[11:31:24] Annotating as >>> Bacteria <<<
+[11:31:24] Re-using existing --outdir /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_3
+[11:31:24] Using filename prefix: prokka_3.XXX
+[11:31:24] Setting HMMER_NCPU=1
+[11:31:24] Writing log to: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_3/prokka_3.log
+[11:31:24] Command: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_3.fa --outdir /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_3 --prefix prokka_3 --fast --force --cpus 4
+[11:31:24] Looking for 'aragorn' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/aragorn
+[11:31:24] Determined aragorn version is 1.2
+[11:31:24] Looking for 'blastp' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/blastp
+[11:31:24] Determined blastp version is 2.2
+[11:31:24] Looking for 'cmpress' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/cmpress
+[11:31:24] Determined cmpress version is 1.1
+[11:31:24] Looking for 'cmscan' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/cmscan
+[11:31:24] Determined cmscan version is 1.1
+[11:31:24] Looking for 'egrep' - found /bin/egrep
+[11:31:24] Looking for 'find' - found /usr/bin/find
+[11:31:24] Looking for 'grep' - found /bin/grep
+[11:31:24] Looking for 'hmmpress' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/hmmpress
+[11:31:24] Determined hmmpress version is 3.1
+[11:31:24] Looking for 'hmmscan' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/hmmscan
+[11:31:24] Determined hmmscan version is 3.1
+[11:31:24] Looking for 'less' - found /usr/bin/less
+[11:31:24] Looking for 'makeblastdb' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/makeblastdb
+[11:31:24] Determined makeblastdb version is 2.2
+[11:31:24] Looking for 'minced' - found /mnt/nfs/projects/ecosystem_biology/local_tools/minced
+[11:31:25] Determined minced version is 1.6
+[11:31:25] Looking for 'parallel' - found /usr/bin/parallel
+[11:31:25] Determined parallel version is 20130922
+[11:31:25] Looking for 'prodigal' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/prodigal
+[11:31:25] Determined prodigal version is 2.6
+[11:31:25] Looking for 'prokka-genbank_to_fasta_db' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/bin/prokka-genbank_to_fasta_db
+[11:31:25] Looking for 'sed' - found /bin/sed
+[11:31:25] Looking for 'signalp' - found /usr/bin/signalp
+[11:31:25] Determined signalp version is 3.0
+[11:31:25] Looking for 'tbl2asn' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/tbl2asn
+[tbl2asn] This copy of tbl2asn is more than a year old.  Please download the current version.
+[11:31:25] Determined tbl2asn version is 23.2
+[11:31:25] Using genetic code table 11.
+[11:31:25] Loading and checking input file: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_3.fa
+[11:31:27] Wrote 14771 contigs
+[11:31:27] Predicting tRNAs and tmRNAs
+[11:31:27] Running: aragorn -gc11  -w \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_3\/prokka_3\.fna
+[11:31:30] 1 tRNA-Thr c[537,609] 33 (ggt)
+[11:31:31] Found 1 tRNAs
+[11:31:31] Predicting Ribosomal RNAs
+[11:31:31] You need either Barrnap or RNAmmer installed to predict rRNAs!
+[11:31:31] Skipping ncRNA search, enable with --rfam if desired.
+[11:31:31] Total of 1 tRNA + rRNA features
+[11:31:31] Searching for CRISPR repeats
+[11:31:33] Found 0 CRISPRs
+[11:31:33] Predicting coding sequences
+[11:31:33] Contigs total 9515710 bp, so using single mode
+[11:31:33] Running: prodigal -i \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_3\/prokka_3\.fna -c -m -g 11 -p single -f sco -q
+[11:32:01] Found 3188 CDS
+[11:32:01] Connecting features back to sequences
+[11:32:01] Option --gram not specified, will NOT check for signal peptides.
+[11:32:01] Not using genus-specific database. Try --usegenus to enable it.
+[11:32:01] Option --fast enabled, so skipping CDS similarity searches
+[11:32:01] Labelling remaining 3188 proteins as 'unannotated protein'
+[11:32:01] Found 0 unique /gene codes.
+[11:32:01] Fixed 0 colliding /gene names.
+[11:32:01] Adding /locus_tag identifiers
+[11:32:01] Assigned 3189 locus_tags to CDS and RNA features.
+[11:32:01] Writing outputs to /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_3/
+[11:32:07] Generating annotation statistics file
+[11:32:07] Generating Genbank and Sequin files
+[11:32:07] Running: tbl2asn -V b -a r10k -l paired-ends -M n -N 1 -y 'Annotated using prokka 1.11 from http://www.vicbioinformatics.com' -Z \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_3\/prokka_3\.err -i \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_3\/prokka_3\.fsa 2> /dev/null
+[11:32:52] Could not run command: tbl2asn -V b -a r10k -l paired-ends -M n -N 1 -y 'Annotated using prokka 1.11 from http://www.vicbioinformatics.com' -Z \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_3\/prokka_3\.err -i \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_3\/prokka_3\.fsa 2> /dev/null
+4 of 5 steps (80%) done
+rule ALL:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_3.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_3.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_1/prokka_1.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/metagenemark_1.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_3/prokka_3.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/metagenemark_3.ffn
+5 of 5 steps (100%) done
+Provided cores: 1
+Job counts:
+	count	jobs
+	1	ALL
+	1	ASSEMBLY
+	1	EXTRACT_UNMAPPED
+	1	GENE_CALLING
+	1	MERGE_ASSEMBLIES
+	5
+rule EXTRACT_UNMAPPED:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_3.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R1.preprocessed.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R2.preprocessed.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.SE.preprocessed.fq
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R1.unmapped_3.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R2.unmapped_3.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.SE.unmapped_3.fq
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/EXTRACT_UNMAPPED_3.json
+[bwa_index] Pack FASTA... 0.14 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 3.20 seconds elapse.
+[bwa_index] Update BWT... 0.08 sec
+[bwa_index] Pack forward-only FASTA... 0.08 sec
+[bwa_index] Construct SA from BWT and Occ... 0.97 sec
+[main] Version: 0.7.9a-r786
+[main] CMD: bwa index /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_3.fa
+[main] Real time: 4.649 sec; CPU: 4.484 sec
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.92, 41.43)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[samopen] SAM header is present: 14771 sequences.
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (264.04, 41.41)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (32, 87, 134)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 338)
+[M::mem_pestat] mean and std.dev: (87.39, 54.77)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 440)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.88, 41.33)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.87, 41.61)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.86, 41.39)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.74, 41.10)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.97, 41.34)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[main] Version: 0.7.9a-r786
+[main] CMD: bwa mem -v 1 -t 4 /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_3.fa /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R1.preprocessed.fq /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R2.preprocessed.fq
+[main] Real time: 50.275 sec; CPU: 136.481 sec
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[main] Version: 0.7.9a-r786
+[main] CMD: bwa mem -v 1 -t 4 /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_3.fa /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.SE.preprocessed.fq
+[main] Real time: 0.046 sec; CPU: 0.040 sec
+[samopen] SAM header is present: 14771 sequences.
+[sam_read1] reference 'ID:bwa	PN:bwa	VN:0.7.9a-r786	CL:bwa mem -v 1 -t 4 /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_3.fa /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.SE.preprocessed.fq
+N:510
+@SQ	SN:contig_11	LN:355
+@SQ	SN:contig_12	LN:379
+@SQ	SN:contig_13	LN:710
+@SQ	SN:contig_14	LN:725
+@SQ	SN:contig_15	LN:324
+@SQ	SN:contig_16	LN:1283
+@SQ	SN:contig_17	LN:770
+@SQ	SN:contig_18	LN:640
+@SQ	SN:contig_19	LN:402
+@SQ	SN:contig_20	LN:353
+!' is recognized as '*'.
+[main_samview] truncated file.
+1 of 5 steps (20%) done
+rule ASSEMBLY:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R1.unmapped_3.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R2.unmapped_3.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.SE.unmapped_3.fq
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_4.fa
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/ASSEMBLY_4.json
+MEGAHIT v1.0.3
+--- [Mon Dec 21 11:39:37 2015] Start assembly. Number of CPU threads 4 ---
+--- [Mon Dec 21 11:39:37 2015] k list: 25,29,33,37,41,45,49,53,57,61,65,69,73,77,81,85,89,93,97,99 ---
+--- [Mon Dec 21 11:39:37 2015] Converting reads to binaries ---
+b'    [read_lib_functions-inl.h  : 209]     Lib 0 (/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R1.unmapped_3.fq,/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R2.unmapped_3.fq): pe, 2652096 reads, 76 max length'
+b'    [read_lib_functions-inl.h  : 209]     Lib 1 (/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.SE.unmapped_3.fq): se, 0 reads, 0 max length'
+b'    [utils.h                   : 124]     Real: 2.4031\tuser: 1.8641\tsys: 0.4200\tmaxrss: 96956'
+--- [Mon Dec 21 11:39:39 2015] Extracting solid (k+1)-mers for k = 25 ---
+--- [Mon Dec 21 11:39:54 2015] Building graph for k = 25 ---
+--- [Mon Dec 21 11:40:23 2015] Assembling contigs from SdBG for k = 25 ---
+--- [Mon Dec 21 11:41:19 2015] Local assembling k = 25 ---
+--- [Mon Dec 21 11:41:27 2015] Extracting iterative edges from k = 25 to 29 ---
+--- [Mon Dec 21 11:41:38 2015] Building graph for k = 29 ---
+--- [Mon Dec 21 11:41:43 2015] Assembling contigs from SdBG for k = 29 ---
+--- [Mon Dec 21 11:42:18 2015] Local assembling k = 29 ---
+--- [Mon Dec 21 11:42:26 2015] Extracting iterative edges from k = 29 to 33 ---
+--- [Mon Dec 21 11:42:37 2015] Building graph for k = 33 ---
+--- [Mon Dec 21 11:42:40 2015] Assembling contigs from SdBG for k = 33 ---
+--- [Mon Dec 21 11:43:04 2015] Local assembling k = 33 ---
+--- [Mon Dec 21 11:43:13 2015] Extracting iterative edges from k = 33 to 37 ---
+--- [Mon Dec 21 11:43:22 2015] Building graph for k = 37 ---
+--- [Mon Dec 21 11:43:25 2015] Assembling contigs from SdBG for k = 37 ---
+--- [Mon Dec 21 11:43:46 2015] Local assembling k = 37 ---
+--- [Mon Dec 21 11:43:55 2015] Extracting iterative edges from k = 37 to 41 ---
+--- [Mon Dec 21 11:44:04 2015] Building graph for k = 41 ---
+--- [Mon Dec 21 11:44:06 2015] Assembling contigs from SdBG for k = 41 ---
+--- [Mon Dec 21 11:44:24 2015] Local assembling k = 41 ---
+--- [Mon Dec 21 11:44:34 2015] Extracting iterative edges from k = 41 to 45 ---
+--- [Mon Dec 21 11:44:41 2015] Building graph for k = 45 ---
+--- [Mon Dec 21 11:44:43 2015] Assembling contigs from SdBG for k = 45 ---
+--- [Mon Dec 21 11:44:59 2015] Local assembling k = 45 ---
+--- [Mon Dec 21 11:45:09 2015] Extracting iterative edges from k = 45 to 49 ---
+--- [Mon Dec 21 11:45:15 2015] Building graph for k = 49 ---
+--- [Mon Dec 21 11:45:17 2015] Assembling contigs from SdBG for k = 49 ---
+--- [Mon Dec 21 11:45:30 2015] Local assembling k = 49 ---
+--- [Mon Dec 21 11:45:39 2015] Extracting iterative edges from k = 49 to 53 ---
+--- [Mon Dec 21 11:45:44 2015] Building graph for k = 53 ---
+--- [Mon Dec 21 11:45:46 2015] Assembling contigs from SdBG for k = 53 ---
+--- [Mon Dec 21 11:45:57 2015] Local assembling k = 53 ---
+--- [Mon Dec 21 11:46:07 2015] Extracting iterative edges from k = 53 to 57 ---
+--- [Mon Dec 21 11:46:12 2015] Building graph for k = 57 ---
+--- [Mon Dec 21 11:46:13 2015] Assembling contigs from SdBG for k = 57 ---
+--- [Mon Dec 21 11:46:23 2015] Local assembling k = 57 ---
+--- [Mon Dec 21 11:46:33 2015] Extracting iterative edges from k = 57 to 61 ---
+--- [Mon Dec 21 11:46:38 2015] Building graph for k = 61 ---
+--- [Mon Dec 21 11:46:39 2015] Assembling contigs from SdBG for k = 61 ---
+--- [Mon Dec 21 11:46:48 2015] Local assembling k = 61 ---
+--- [Mon Dec 21 11:46:58 2015] Extracting iterative edges from k = 61 to 65 ---
+--- [Mon Dec 21 11:47:01 2015] Building graph for k = 65 ---
+--- [Mon Dec 21 11:47:02 2015] Assembling contigs from SdBG for k = 65 ---
+--- [Mon Dec 21 11:47:11 2015] Local assembling k = 65 ---
+--- [Mon Dec 21 11:47:21 2015] Extracting iterative edges from k = 65 to 69 ---
+--- [Mon Dec 21 11:47:24 2015] Building graph for k = 69 ---
+--- [Mon Dec 21 11:47:25 2015] Assembling contigs from SdBG for k = 69 ---
+--- [Mon Dec 21 11:47:34 2015] Local assembling k = 69 ---
+--- [Mon Dec 21 11:47:45 2015] Extracting iterative edges from k = 69 to 73 ---
+--- [Mon Dec 21 11:47:47 2015] Building graph for k = 73 ---
+--- [Mon Dec 21 11:47:48 2015] Assembling contigs from SdBG for k = 73 ---
+--- [Mon Dec 21 11:47:56 2015] Local assembling k = 73 ---
+--- [Mon Dec 21 11:48:04 2015] Extracting iterative edges from k = 73 to 77 ---
+--- [Mon Dec 21 11:48:04 2015] Building graph for k = 77 ---
+--- [Mon Dec 21 11:48:05 2015] Assembling contigs from SdBG for k = 77 ---
+--- [Mon Dec 21 11:48:12 2015] Local assembling k = 77 ---
+--- [Mon Dec 21 11:48:19 2015] Extracting iterative edges from k = 77 to 81 ---
+--- [Mon Dec 21 11:48:20 2015] Building graph for k = 81 ---
+--- [Mon Dec 21 11:48:20 2015] Assembling contigs from SdBG for k = 81 ---
+--- [Mon Dec 21 11:48:28 2015] Local assembling k = 81 ---
+--- [Mon Dec 21 11:48:34 2015] Extracting iterative edges from k = 81 to 85 ---
+--- [Mon Dec 21 11:48:34 2015] Building graph for k = 85 ---
+--- [Mon Dec 21 11:48:35 2015] Assembling contigs from SdBG for k = 85 ---
+--- [Mon Dec 21 11:48:44 2015] Local assembling k = 85 ---
+--- [Mon Dec 21 11:48:49 2015] Extracting iterative edges from k = 85 to 89 ---
+--- [Mon Dec 21 11:48:50 2015] Building graph for k = 89 ---
+--- [Mon Dec 21 11:48:50 2015] Assembling contigs from SdBG for k = 89 ---
+--- [Mon Dec 21 11:48:59 2015] Local assembling k = 89 ---
+--- [Mon Dec 21 11:49:03 2015] Extracting iterative edges from k = 89 to 93 ---
+--- [Mon Dec 21 11:49:04 2015] Building graph for k = 93 ---
+--- [Mon Dec 21 11:49:04 2015] Assembling contigs from SdBG for k = 93 ---
+--- [Mon Dec 21 11:49:10 2015] Local assembling k = 93 ---
+--- [Mon Dec 21 11:49:13 2015] Extracting iterative edges from k = 93 to 97 ---
+--- [Mon Dec 21 11:49:14 2015] Building graph for k = 97 ---
+--- [Mon Dec 21 11:49:14 2015] Assembling contigs from SdBG for k = 97 ---
+--- [Mon Dec 21 11:49:20 2015] Local assembling k = 97 ---
+--- [Mon Dec 21 11:49:23 2015] Extracting iterative edges from k = 97 to 99 ---
+--- [Mon Dec 21 11:49:24 2015] Building graph for k = 99 ---
+--- [Mon Dec 21 11:49:24 2015] Assembling contigs from SdBG for k = 99 ---
+--- [Mon Dec 21 11:49:29 2015] Merging to output final contigs ---
+--- [STAT] 122 contigs, total 39828 bp, min 258 bp, max 448 bp, avg 326 bp, N50 321 bp
+--- [Mon Dec 21 11:49:30 2015] ALL DONE. Time elapsed: 592.835222 seconds ---
+2 of 5 steps (40%) done
+rule MERGE_ASSEMBLIES:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_3.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_4.fa
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_cat_4.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_4.fa
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/MERGE_ASSEMBLIES_4.json
+3 of 5 steps (60%) done
+rule GENE_CALLING:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_4.fa
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_4/prokka_4.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/metagenemark_4.ffn
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/GENE_CALLING_4.json
+[11:49:37] This is prokka 1.11
+[11:49:37] Written by Torsten Seemann <torsten.seemann@monash.edu>
+[11:49:37] Victorian Bioinformatics Consortium - http://www.vicbioinformatics.com
+[11:49:37] Local time is Mon Dec 21 11:49:37 2015
+[11:49:37] You are snarayanasamy
+[11:49:37] Operating system is linux
+[11:49:37] You have BioPerl 1.006901
+[11:49:37] System has 240 cores.
+[11:49:37] Will use maximum of 4 cores.
+[11:49:37] Annotating as >>> Bacteria <<<
+[11:49:37] Re-using existing --outdir /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_4
+[11:49:37] Using filename prefix: prokka_4.XXX
+[11:49:37] Setting HMMER_NCPU=1
+[11:49:37] Writing log to: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_4/prokka_4.log
+[11:49:37] Command: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_4.fa --outdir /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_4 --prefix prokka_4 --fast --force --cpus 4
+[11:49:37] Looking for 'aragorn' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/aragorn
+[11:49:37] Determined aragorn version is 1.2
+[11:49:37] Looking for 'blastp' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/blastp
+[11:49:37] Determined blastp version is 2.2
+[11:49:37] Looking for 'cmpress' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/cmpress
+[11:49:37] Determined cmpress version is 1.1
+[11:49:37] Looking for 'cmscan' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/cmscan
+[11:49:37] Determined cmscan version is 1.1
+[11:49:37] Looking for 'egrep' - found /bin/egrep
+[11:49:37] Looking for 'find' - found /usr/bin/find
+[11:49:37] Looking for 'grep' - found /bin/grep
+[11:49:37] Looking for 'hmmpress' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/hmmpress
+[11:49:37] Determined hmmpress version is 3.1
+[11:49:37] Looking for 'hmmscan' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/hmmscan
+[11:49:37] Determined hmmscan version is 3.1
+[11:49:37] Looking for 'less' - found /usr/bin/less
+[11:49:37] Looking for 'makeblastdb' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/makeblastdb
+[11:49:37] Determined makeblastdb version is 2.2
+[11:49:37] Looking for 'minced' - found /mnt/nfs/projects/ecosystem_biology/local_tools/minced
+[11:49:37] Determined minced version is 1.6
+[11:49:37] Looking for 'parallel' - found /usr/bin/parallel
+[11:49:37] Determined parallel version is 20130922
+[11:49:37] Looking for 'prodigal' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/prodigal
+[11:49:37] Determined prodigal version is 2.6
+[11:49:37] Looking for 'prokka-genbank_to_fasta_db' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/bin/prokka-genbank_to_fasta_db
+[11:49:37] Looking for 'sed' - found /bin/sed
+[11:49:37] Looking for 'signalp' - found /usr/bin/signalp
+[11:49:37] Determined signalp version is 3.0
+[11:49:37] Looking for 'tbl2asn' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/tbl2asn
+[tbl2asn] This copy of tbl2asn is more than a year old.  Please download the current version.
+[11:49:37] Determined tbl2asn version is 23.2
+[11:49:37] Using genetic code table 11.
+[11:49:37] Loading and checking input file: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_4.fa
+[11:49:40] Wrote 14772 contigs
+[11:49:40] Predicting tRNAs and tmRNAs
+[11:49:40] Running: aragorn -gc11  -w \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_4\/prokka_4\.fna
+[11:49:43] 1 tRNA-Thr c[537,609] 33 (ggt)
+[11:49:43] Found 1 tRNAs
+[11:49:43] Predicting Ribosomal RNAs
+[11:49:43] You need either Barrnap or RNAmmer installed to predict rRNAs!
+[11:49:43] Skipping ncRNA search, enable with --rfam if desired.
+[11:49:43] Total of 1 tRNA + rRNA features
+[11:49:43] Searching for CRISPR repeats
+[11:49:45] Found 0 CRISPRs
+[11:49:45] Predicting coding sequences
+[11:49:45] Contigs total 9516024 bp, so using single mode
+[11:49:45] Running: prodigal -i \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_4\/prokka_4\.fna -c -m -g 11 -p single -f sco -q
+[11:50:13] Found 3186 CDS
+[11:50:13] Connecting features back to sequences
+[11:50:13] Option --gram not specified, will NOT check for signal peptides.
+[11:50:13] Not using genus-specific database. Try --usegenus to enable it.
+[11:50:13] Option --fast enabled, so skipping CDS similarity searches
+[11:50:13] Labelling remaining 3186 proteins as 'unannotated protein'
+[11:50:13] Found 0 unique /gene codes.
+[11:50:13] Fixed 0 colliding /gene names.
+[11:50:13] Adding /locus_tag identifiers
+[11:50:13] Assigned 3187 locus_tags to CDS and RNA features.
+[11:50:13] Writing outputs to /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_4/
+[11:50:19] Generating annotation statistics file
+[11:50:19] Generating Genbank and Sequin files
+[11:50:19] Running: tbl2asn -V b -a r10k -l paired-ends -M n -N 1 -y 'Annotated using prokka 1.11 from http://www.vicbioinformatics.com' -Z \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_4\/prokka_4\.err -i \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_4\/prokka_4\.fsa 2> /dev/null
+[11:51:05] Could not run command: tbl2asn -V b -a r10k -l paired-ends -M n -N 1 -y 'Annotated using prokka 1.11 from http://www.vicbioinformatics.com' -Z \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_4\/prokka_4\.err -i \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_4\/prokka_4\.fsa 2> /dev/null
+4 of 5 steps (80%) done
+rule ALL:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_4.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_4.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_1/prokka_1.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/metagenemark_1.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_4/prokka_4.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/metagenemark_4.ffn
+5 of 5 steps (100%) done
+Provided cores: 1
+Job counts:
+	count	jobs
+	1	GENE_CALLING
+	1	MERGE_ASSEMBLIES
+	1	EXTRACT_UNMAPPED
+	1	ASSEMBLY
+	1	ALL
+	5
+rule EXTRACT_UNMAPPED:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_4.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R1.preprocessed.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R2.preprocessed.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.SE.preprocessed.fq
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R1.unmapped_4.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R2.unmapped_4.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.SE.unmapped_4.fq
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/EXTRACT_UNMAPPED_4.json
+[bwa_index] Pack FASTA... 0.09 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 3.23 seconds elapse.
+[bwa_index] Update BWT... 0.08 sec
+[bwa_index] Pack forward-only FASTA... 0.06 sec
+[bwa_index] Construct SA from BWT and Occ... 1.00 sec
+[main] Version: 0.7.9a-r786
+[main] CMD: bwa index /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_4.fa
+[main] Real time: 4.647 sec; CPU: 4.464 sec
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.92, 41.43)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[samopen] SAM header is present: 14772 sequences.
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (264.04, 41.41)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (32, 87, 134)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 338)
+[M::mem_pestat] mean and std.dev: (87.39, 54.77)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 440)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.88, 41.33)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.87, 41.61)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.86, 41.39)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.74, 41.10)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.97, 41.34)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[main] Version: 0.7.9a-r786
+[main] CMD: bwa mem -v 1 -t 4 /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_4.fa /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R1.preprocessed.fq /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R2.preprocessed.fq
+[main] Real time: 53.414 sec; CPU: 149.853 sec
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[main] Version: 0.7.9a-r786
+[main] CMD: bwa mem -v 1 -t 4 /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_4.fa /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.SE.preprocessed.fq
+[main] Real time: 0.045 sec; CPU: 0.040 sec
+[samopen] SAM header is present: 14772 sequences.
+[sam_read1] reference 'ID:bwa	PN:bwa	VN:0.7.9a-r786	CL:bwa mem -v 1 -t 4 /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_4.fa /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.SE.preprocessed.fq
+N:510
+@SQ	SN:contig_11	LN:355
+@SQ	SN:contig_12	LN:379
+@SQ	SN:contig_13	LN:710
+@SQ	SN:contig_14	LN:725
+@SQ	SN:contig_15	LN:324
+@SQ	SN:contig_16	LN:1283
+@SQ	SN:contig_17	LN:770
+@SQ	SN:contig_18	LN:640
+@SQ	SN:contig_19	LN:402
+@SQ	SN:contig_20	LN:353
+!' is recognized as '*'.
+[main_samview] truncated file.
+1 of 5 steps (20%) done
+rule ASSEMBLY:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R1.unmapped_4.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R2.unmapped_4.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.SE.unmapped_4.fq
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_5.fa
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/ASSEMBLY_5.json
+MEGAHIT v1.0.3
+--- [Mon Dec 21 11:57:53 2015] Start assembly. Number of CPU threads 4 ---
+--- [Mon Dec 21 11:57:53 2015] k list: 25,29,33,37,41,45,49,53,57,61,65,69,73,77,81,85,89,93,97,99 ---
+--- [Mon Dec 21 11:57:53 2015] Converting reads to binaries ---
+b'    [read_lib_functions-inl.h  : 209]     Lib 0 (/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R1.unmapped_4.fq,/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R2.unmapped_4.fq): pe, 2652096 reads, 76 max length'
+b'    [read_lib_functions-inl.h  : 209]     Lib 1 (/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.SE.unmapped_4.fq): se, 0 reads, 0 max length'
+b'    [utils.h                   : 124]     Real: 2.3973\tuser: 1.8081\tsys: 0.4480\tmaxrss: 96956'
+--- [Mon Dec 21 11:57:55 2015] Extracting solid (k+1)-mers for k = 25 ---
+--- [Mon Dec 21 11:58:10 2015] Building graph for k = 25 ---
+--- [Mon Dec 21 11:58:39 2015] Assembling contigs from SdBG for k = 25 ---
+--- [Mon Dec 21 11:59:34 2015] Local assembling k = 25 ---
+--- [Mon Dec 21 11:59:42 2015] Extracting iterative edges from k = 25 to 29 ---
+--- [Mon Dec 21 11:59:54 2015] Building graph for k = 29 ---
+--- [Mon Dec 21 12:00:00 2015] Assembling contigs from SdBG for k = 29 ---
+--- [Mon Dec 21 12:00:35 2015] Local assembling k = 29 ---
+--- [Mon Dec 21 12:00:44 2015] Extracting iterative edges from k = 29 to 33 ---
+--- [Mon Dec 21 12:00:54 2015] Building graph for k = 33 ---
+--- [Mon Dec 21 12:00:58 2015] Assembling contigs from SdBG for k = 33 ---
+--- [Mon Dec 21 12:01:23 2015] Local assembling k = 33 ---
+--- [Mon Dec 21 12:01:32 2015] Extracting iterative edges from k = 33 to 37 ---
+--- [Mon Dec 21 12:01:41 2015] Building graph for k = 37 ---
+--- [Mon Dec 21 12:01:44 2015] Assembling contigs from SdBG for k = 37 ---
+--- [Mon Dec 21 12:02:06 2015] Local assembling k = 37 ---
+--- [Mon Dec 21 12:02:16 2015] Extracting iterative edges from k = 37 to 41 ---
+--- [Mon Dec 21 12:02:25 2015] Building graph for k = 41 ---
+--- [Mon Dec 21 12:02:27 2015] Assembling contigs from SdBG for k = 41 ---
+--- [Mon Dec 21 12:02:47 2015] Local assembling k = 41 ---
+--- [Mon Dec 21 12:02:58 2015] Extracting iterative edges from k = 41 to 45 ---
+--- [Mon Dec 21 12:03:06 2015] Building graph for k = 45 ---
+--- [Mon Dec 21 12:03:08 2015] Assembling contigs from SdBG for k = 45 ---
+--- [Mon Dec 21 12:03:24 2015] Local assembling k = 45 ---
+--- [Mon Dec 21 12:03:35 2015] Extracting iterative edges from k = 45 to 49 ---
+--- [Mon Dec 21 12:03:41 2015] Building graph for k = 49 ---
+--- [Mon Dec 21 12:03:43 2015] Assembling contigs from SdBG for k = 49 ---
+--- [Mon Dec 21 12:03:57 2015] Local assembling k = 49 ---
+--- [Mon Dec 21 12:04:07 2015] Extracting iterative edges from k = 49 to 53 ---
+--- [Mon Dec 21 12:04:12 2015] Building graph for k = 53 ---
+--- [Mon Dec 21 12:04:14 2015] Assembling contigs from SdBG for k = 53 ---
+--- [Mon Dec 21 12:04:26 2015] Local assembling k = 53 ---
+--- [Mon Dec 21 12:04:36 2015] Extracting iterative edges from k = 53 to 57 ---
+--- [Mon Dec 21 12:04:41 2015] Building graph for k = 57 ---
+--- [Mon Dec 21 12:04:42 2015] Assembling contigs from SdBG for k = 57 ---
+--- [Mon Dec 21 12:04:53 2015] Local assembling k = 57 ---
+--- [Mon Dec 21 12:05:04 2015] Extracting iterative edges from k = 57 to 61 ---
+--- [Mon Dec 21 12:05:08 2015] Building graph for k = 61 ---
+--- [Mon Dec 21 12:05:09 2015] Assembling contigs from SdBG for k = 61 ---
+--- [Mon Dec 21 12:05:18 2015] Local assembling k = 61 ---
+--- [Mon Dec 21 12:05:29 2015] Extracting iterative edges from k = 61 to 65 ---
+--- [Mon Dec 21 12:05:32 2015] Building graph for k = 65 ---
+--- [Mon Dec 21 12:05:33 2015] Assembling contigs from SdBG for k = 65 ---
+--- [Mon Dec 21 12:05:43 2015] Local assembling k = 65 ---
+--- [Mon Dec 21 12:05:54 2015] Extracting iterative edges from k = 65 to 69 ---
+--- [Mon Dec 21 12:05:57 2015] Building graph for k = 69 ---
+--- [Mon Dec 21 12:05:58 2015] Assembling contigs from SdBG for k = 69 ---
+--- [Mon Dec 21 12:06:06 2015] Local assembling k = 69 ---
+--- [Mon Dec 21 12:06:17 2015] Extracting iterative edges from k = 69 to 73 ---
+--- [Mon Dec 21 12:06:19 2015] Building graph for k = 73 ---
+--- [Mon Dec 21 12:06:20 2015] Assembling contigs from SdBG for k = 73 ---
+--- [Mon Dec 21 12:06:28 2015] Local assembling k = 73 ---
+--- [Mon Dec 21 12:06:36 2015] Extracting iterative edges from k = 73 to 77 ---
+--- [Mon Dec 21 12:06:37 2015] Building graph for k = 77 ---
+--- [Mon Dec 21 12:06:37 2015] Assembling contigs from SdBG for k = 77 ---
+--- [Mon Dec 21 12:06:45 2015] Local assembling k = 77 ---
+--- [Mon Dec 21 12:06:52 2015] Extracting iterative edges from k = 77 to 81 ---
+--- [Mon Dec 21 12:06:52 2015] Building graph for k = 81 ---
+--- [Mon Dec 21 12:06:52 2015] Assembling contigs from SdBG for k = 81 ---
+--- [Mon Dec 21 12:07:00 2015] Local assembling k = 81 ---
+--- [Mon Dec 21 12:07:06 2015] Extracting iterative edges from k = 81 to 85 ---
+--- [Mon Dec 21 12:07:06 2015] Building graph for k = 85 ---
+--- [Mon Dec 21 12:07:07 2015] Assembling contigs from SdBG for k = 85 ---
+--- [Mon Dec 21 12:07:14 2015] Local assembling k = 85 ---
+--- [Mon Dec 21 12:07:19 2015] Extracting iterative edges from k = 85 to 89 ---
+--- [Mon Dec 21 12:07:19 2015] Building graph for k = 89 ---
+--- [Mon Dec 21 12:07:20 2015] Assembling contigs from SdBG for k = 89 ---
+--- [Mon Dec 21 12:07:27 2015] Local assembling k = 89 ---
+--- [Mon Dec 21 12:07:32 2015] Extracting iterative edges from k = 89 to 93 ---
+--- [Mon Dec 21 12:07:32 2015] Building graph for k = 93 ---
+--- [Mon Dec 21 12:07:33 2015] Assembling contigs from SdBG for k = 93 ---
+--- [Mon Dec 21 12:07:39 2015] Local assembling k = 93 ---
+--- [Mon Dec 21 12:07:43 2015] Extracting iterative edges from k = 93 to 97 ---
+--- [Mon Dec 21 12:07:43 2015] Building graph for k = 97 ---
+--- [Mon Dec 21 12:07:44 2015] Assembling contigs from SdBG for k = 97 ---
+--- [Mon Dec 21 12:07:50 2015] Local assembling k = 97 ---
+--- [Mon Dec 21 12:07:53 2015] Extracting iterative edges from k = 97 to 99 ---
+--- [Mon Dec 21 12:07:53 2015] Building graph for k = 99 ---
+--- [Mon Dec 21 12:07:53 2015] Assembling contigs from SdBG for k = 99 ---
+--- [Mon Dec 21 12:07:59 2015] Merging to output final contigs ---
+--- [STAT] 122 contigs, total 39828 bp, min 258 bp, max 448 bp, avg 326 bp, N50 321 bp
+--- [Mon Dec 21 12:07:59 2015] ALL DONE. Time elapsed: 606.378382 seconds ---
+2 of 5 steps (40%) done
+rule MERGE_ASSEMBLIES:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_4.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_5.fa
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_cat_5.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_5.fa
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/MERGE_ASSEMBLIES_5.json
+3 of 5 steps (60%) done
+rule GENE_CALLING:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_5.fa
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_5/prokka_5.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/metagenemark_5.ffn
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/GENE_CALLING_5.json
+[12:08:06] This is prokka 1.11
+[12:08:06] Written by Torsten Seemann <torsten.seemann@monash.edu>
+[12:08:06] Victorian Bioinformatics Consortium - http://www.vicbioinformatics.com
+[12:08:06] Local time is Mon Dec 21 12:08:06 2015
+[12:08:06] You are snarayanasamy
+[12:08:06] Operating system is linux
+[12:08:06] You have BioPerl 1.006901
+[12:08:06] System has 240 cores.
+[12:08:06] Will use maximum of 4 cores.
+[12:08:06] Annotating as >>> Bacteria <<<
+[12:08:06] Re-using existing --outdir /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_5
+[12:08:06] Using filename prefix: prokka_5.XXX
+[12:08:06] Setting HMMER_NCPU=1
+[12:08:06] Writing log to: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_5/prokka_5.log
+[12:08:06] Command: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_5.fa --outdir /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_5 --prefix prokka_5 --fast --force --cpus 4
+[12:08:06] Looking for 'aragorn' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/aragorn
+[12:08:06] Determined aragorn version is 1.2
+[12:08:06] Looking for 'blastp' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/blastp
+[12:08:06] Determined blastp version is 2.2
+[12:08:06] Looking for 'cmpress' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/cmpress
+[12:08:06] Determined cmpress version is 1.1
+[12:08:06] Looking for 'cmscan' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/cmscan
+[12:08:07] Determined cmscan version is 1.1
+[12:08:07] Looking for 'egrep' - found /bin/egrep
+[12:08:07] Looking for 'find' - found /usr/bin/find
+[12:08:07] Looking for 'grep' - found /bin/grep
+[12:08:07] Looking for 'hmmpress' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/hmmpress
+[12:08:07] Determined hmmpress version is 3.1
+[12:08:07] Looking for 'hmmscan' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/hmmscan
+[12:08:07] Determined hmmscan version is 3.1
+[12:08:07] Looking for 'less' - found /usr/bin/less
+[12:08:07] Looking for 'makeblastdb' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/makeblastdb
+[12:08:07] Determined makeblastdb version is 2.2
+[12:08:07] Looking for 'minced' - found /mnt/nfs/projects/ecosystem_biology/local_tools/minced
+[12:08:07] Determined minced version is 1.6
+[12:08:07] Looking for 'parallel' - found /usr/bin/parallel
+[12:08:07] Determined parallel version is 20130922
+[12:08:07] Looking for 'prodigal' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/prodigal
+[12:08:07] Determined prodigal version is 2.6
+[12:08:07] Looking for 'prokka-genbank_to_fasta_db' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/bin/prokka-genbank_to_fasta_db
+[12:08:07] Looking for 'sed' - found /bin/sed
+[12:08:07] Looking for 'signalp' - found /usr/bin/signalp
+[12:08:07] Determined signalp version is 3.0
+[12:08:07] Looking for 'tbl2asn' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/tbl2asn
+[tbl2asn] This copy of tbl2asn is more than a year old.  Please download the current version.
+[12:08:07] Determined tbl2asn version is 23.2
+[12:08:07] Using genetic code table 11.
+[12:08:07] Loading and checking input file: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_5.fa
+[12:08:10] Wrote 14772 contigs
+[12:08:10] Predicting tRNAs and tmRNAs
+[12:08:10] Running: aragorn -gc11  -w \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_5\/prokka_5\.fna
+[12:08:12] 1 tRNA-Thr c[537,609] 33 (ggt)
+[12:08:13] Found 1 tRNAs
+[12:08:13] Predicting Ribosomal RNAs
+[12:08:13] You need either Barrnap or RNAmmer installed to predict rRNAs!
+[12:08:13] Skipping ncRNA search, enable with --rfam if desired.
+[12:08:13] Total of 1 tRNA + rRNA features
+[12:08:13] Searching for CRISPR repeats
+[12:08:15] Found 0 CRISPRs
+[12:08:15] Predicting coding sequences
+[12:08:15] Contigs total 9516024 bp, so using single mode
+[12:08:15] Running: prodigal -i \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_5\/prokka_5\.fna -c -m -g 11 -p single -f sco -q
+[12:08:43] Found 3186 CDS
+[12:08:43] Connecting features back to sequences
+[12:08:43] Option --gram not specified, will NOT check for signal peptides.
+[12:08:43] Not using genus-specific database. Try --usegenus to enable it.
+[12:08:43] Option --fast enabled, so skipping CDS similarity searches
+[12:08:43] Labelling remaining 3186 proteins as 'unannotated protein'
+[12:08:43] Found 0 unique /gene codes.
+[12:08:43] Fixed 0 colliding /gene names.
+[12:08:43] Adding /locus_tag identifiers
+[12:08:43] Assigned 3187 locus_tags to CDS and RNA features.
+[12:08:43] Writing outputs to /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_5/
+[12:08:48] Generating annotation statistics file
+[12:08:48] Generating Genbank and Sequin files
+[12:08:48] Running: tbl2asn -V b -a r10k -l paired-ends -M n -N 1 -y 'Annotated using prokka 1.11 from http://www.vicbioinformatics.com' -Z \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_5\/prokka_5\.err -i \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_5\/prokka_5\.fsa 2> /dev/null
+[12:09:34] Could not run command: tbl2asn -V b -a r10k -l paired-ends -M n -N 1 -y 'Annotated using prokka 1.11 from http://www.vicbioinformatics.com' -Z \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_5\/prokka_5\.err -i \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_5\/prokka_5\.fsa 2> /dev/null
+4 of 5 steps (80%) done
+rule ALL:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_5.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_5.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_1/prokka_1.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/metagenemark_1.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_5/prokka_5.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/metagenemark_5.ffn
+5 of 5 steps (100%) done
+Provided cores: 1
+Job counts:
+	count	jobs
+	1	ALL
+	1	MERGE_ASSEMBLIES
+	1	ASSEMBLY
+	1	EXTRACT_UNMAPPED
+	1	GENE_CALLING
+	5
+rule EXTRACT_UNMAPPED:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_5.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R1.preprocessed.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R2.preprocessed.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.SE.preprocessed.fq
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R1.unmapped_5.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R2.unmapped_5.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.SE.unmapped_5.fq
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/EXTRACT_UNMAPPED_5.json
+[bwa_index] Pack FASTA... 0.30 sec
+[bwa_index] Construct BWT for the packed sequence...
+[bwa_index] 3.21 seconds elapse.
+[bwa_index] Update BWT... 0.06 sec
+[bwa_index] Pack forward-only FASTA... 0.07 sec
+[bwa_index] Construct SA from BWT and Occ... 1.00 sec
+[main] Version: 0.7.9a-r786
+[main] CMD: bwa index /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_5.fa
+[main] Real time: 4.836 sec; CPU: 4.640 sec
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.92, 41.43)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[samopen] SAM header is present: 14772 sequences.
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (264.04, 41.41)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] analyzing insert size distribution for orientation RF...
+[M::mem_pestat] (25, 50, 75) percentile: (32, 87, 134)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (1, 338)
+[M::mem_pestat] mean and std.dev: (87.39, 54.77)
+[M::mem_pestat] low and high boundaries for proper pairs: (1, 440)
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation RF
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.88, 41.33)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.87, 41.61)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.86, 41.39)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.74, 41.10)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[M::mem_pestat] skip orientation FF as there are not enough pairs
+[M::mem_pestat] analyzing insert size distribution for orientation FR...
+[M::mem_pestat] (25, 50, 75) percentile: (228, 262, 283)
+[M::mem_pestat] low and high boundaries for computing mean and std.dev: (118, 393)
+[M::mem_pestat] mean and std.dev: (263.97, 41.34)
+[M::mem_pestat] low and high boundaries for proper pairs: (63, 448)
+[M::mem_pestat] skip orientation RF as there are not enough pairs
+[M::mem_pestat] skip orientation RR as there are not enough pairs
+[main] Version: 0.7.9a-r786
+[main] CMD: bwa mem -v 1 -t 4 /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_5.fa /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R1.preprocessed.fq /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.R2.preprocessed.fq
+[main] Real time: 54.078 sec; CPU: 151.097 sec
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[bam_header_read] EOF marker is absent. The input is probably truncated.
+[main] Version: 0.7.9a-r786
+[main] CMD: bwa mem -v 1 -t 4 /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_5.fa /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.SE.preprocessed.fq
+[main] Real time: 0.041 sec; CPU: 0.036 sec
+[samopen] SAM header is present: 14772 sequences.
+[sam_read1] reference 'ID:bwa	PN:bwa	VN:0.7.9a-r786	CL:bwa mem -v 1 -t 4 /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_5.fa /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing/MT.SE.preprocessed.fq
+N:510
+@SQ	SN:contig_11	LN:355
+@SQ	SN:contig_12	LN:379
+@SQ	SN:contig_13	LN:710
+@SQ	SN:contig_14	LN:725
+@SQ	SN:contig_15	LN:324
+@SQ	SN:contig_16	LN:1283
+@SQ	SN:contig_17	LN:770
+@SQ	SN:contig_18	LN:640
+@SQ	SN:contig_19	LN:402
+@SQ	SN:contig_20	LN:353
+!' is recognized as '*'.
+[main_samview] truncated file.
+1 of 5 steps (20%) done
+rule ASSEMBLY:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R1.unmapped_5.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R2.unmapped_5.fq, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.SE.unmapped_5.fq
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_6.fa
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/ASSEMBLY_6.json
+MEGAHIT v1.0.3
+--- [Mon Dec 21 12:16:06 2015] Start assembly. Number of CPU threads 4 ---
+--- [Mon Dec 21 12:16:06 2015] k list: 25,29,33,37,41,45,49,53,57,61,65,69,73,77,81,85,89,93,97,99 ---
+--- [Mon Dec 21 12:16:06 2015] Converting reads to binaries ---
+b'    [read_lib_functions-inl.h  : 209]     Lib 0 (/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R1.unmapped_5.fq,/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.R2.unmapped_5.fq): pe, 2652096 reads, 76 max length'
+b'    [read_lib_functions-inl.h  : 209]     Lib 1 (/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT.SE.unmapped_5.fq): se, 0 reads, 0 max length'
+b'    [utils.h                   : 124]     Real: 2.2972\tuser: 1.8361\tsys: 0.3920\tmaxrss: 96956'
+--- [Mon Dec 21 12:16:09 2015] Extracting solid (k+1)-mers for k = 25 ---
+--- [Mon Dec 21 12:16:24 2015] Building graph for k = 25 ---
+--- [Mon Dec 21 12:16:54 2015] Assembling contigs from SdBG for k = 25 ---
+--- [Mon Dec 21 12:17:49 2015] Local assembling k = 25 ---
+--- [Mon Dec 21 12:17:57 2015] Extracting iterative edges from k = 25 to 29 ---
+--- [Mon Dec 21 12:18:09 2015] Building graph for k = 29 ---
+--- [Mon Dec 21 12:18:15 2015] Assembling contigs from SdBG for k = 29 ---
+--- [Mon Dec 21 12:18:54 2015] Local assembling k = 29 ---
+--- [Mon Dec 21 12:19:02 2015] Extracting iterative edges from k = 29 to 33 ---
+--- [Mon Dec 21 12:19:13 2015] Building graph for k = 33 ---
+--- [Mon Dec 21 12:19:16 2015] Assembling contigs from SdBG for k = 33 ---
+--- [Mon Dec 21 12:19:45 2015] Local assembling k = 33 ---
+--- [Mon Dec 21 12:19:55 2015] Extracting iterative edges from k = 33 to 37 ---
+--- [Mon Dec 21 12:20:04 2015] Building graph for k = 37 ---
+--- [Mon Dec 21 12:20:07 2015] Assembling contigs from SdBG for k = 37 ---
+--- [Mon Dec 21 12:20:31 2015] Local assembling k = 37 ---
+--- [Mon Dec 21 12:20:42 2015] Extracting iterative edges from k = 37 to 41 ---
+--- [Mon Dec 21 12:20:50 2015] Building graph for k = 41 ---
+--- [Mon Dec 21 12:20:53 2015] Assembling contigs from SdBG for k = 41 ---
+--- [Mon Dec 21 12:21:14 2015] Local assembling k = 41 ---
+--- [Mon Dec 21 12:21:25 2015] Extracting iterative edges from k = 41 to 45 ---
+--- [Mon Dec 21 12:21:32 2015] Building graph for k = 45 ---
+--- [Mon Dec 21 12:21:34 2015] Assembling contigs from SdBG for k = 45 ---
+--- [Mon Dec 21 12:21:52 2015] Local assembling k = 45 ---
+--- [Mon Dec 21 12:22:03 2015] Extracting iterative edges from k = 45 to 49 ---
+--- [Mon Dec 21 12:22:09 2015] Building graph for k = 49 ---
+--- [Mon Dec 21 12:22:11 2015] Assembling contigs from SdBG for k = 49 ---
+--- [Mon Dec 21 12:22:26 2015] Local assembling k = 49 ---
+--- [Mon Dec 21 12:22:36 2015] Extracting iterative edges from k = 49 to 53 ---
+--- [Mon Dec 21 12:22:42 2015] Building graph for k = 53 ---
+--- [Mon Dec 21 12:22:43 2015] Assembling contigs from SdBG for k = 53 ---
+--- [Mon Dec 21 12:22:56 2015] Local assembling k = 53 ---
+--- [Mon Dec 21 12:23:06 2015] Extracting iterative edges from k = 53 to 57 ---
+--- [Mon Dec 21 12:23:11 2015] Building graph for k = 57 ---
+--- [Mon Dec 21 12:23:12 2015] Assembling contigs from SdBG for k = 57 ---
+--- [Mon Dec 21 12:23:22 2015] Local assembling k = 57 ---
+--- [Mon Dec 21 12:23:33 2015] Extracting iterative edges from k = 57 to 61 ---
+--- [Mon Dec 21 12:23:37 2015] Building graph for k = 61 ---
+--- [Mon Dec 21 12:23:38 2015] Assembling contigs from SdBG for k = 61 ---
+--- [Mon Dec 21 12:23:47 2015] Local assembling k = 61 ---
+--- [Mon Dec 21 12:23:59 2015] Extracting iterative edges from k = 61 to 65 ---
+--- [Mon Dec 21 12:24:02 2015] Building graph for k = 65 ---
+--- [Mon Dec 21 12:24:03 2015] Assembling contigs from SdBG for k = 65 ---
+--- [Mon Dec 21 12:24:13 2015] Local assembling k = 65 ---
+--- [Mon Dec 21 12:24:23 2015] Extracting iterative edges from k = 65 to 69 ---
+--- [Mon Dec 21 12:24:26 2015] Building graph for k = 69 ---
+--- [Mon Dec 21 12:24:27 2015] Assembling contigs from SdBG for k = 69 ---
+--- [Mon Dec 21 12:24:36 2015] Local assembling k = 69 ---
+--- [Mon Dec 21 12:24:47 2015] Extracting iterative edges from k = 69 to 73 ---
+--- [Mon Dec 21 12:24:49 2015] Building graph for k = 73 ---
+--- [Mon Dec 21 12:24:50 2015] Assembling contigs from SdBG for k = 73 ---
+--- [Mon Dec 21 12:24:59 2015] Local assembling k = 73 ---
+--- [Mon Dec 21 12:25:08 2015] Extracting iterative edges from k = 73 to 77 ---
+--- [Mon Dec 21 12:25:08 2015] Building graph for k = 77 ---
+--- [Mon Dec 21 12:25:09 2015] Assembling contigs from SdBG for k = 77 ---
+--- [Mon Dec 21 12:25:16 2015] Local assembling k = 77 ---
+--- [Mon Dec 21 12:25:23 2015] Extracting iterative edges from k = 77 to 81 ---
+--- [Mon Dec 21 12:25:23 2015] Building graph for k = 81 ---
+--- [Mon Dec 21 12:25:24 2015] Assembling contigs from SdBG for k = 81 ---
+--- [Mon Dec 21 12:25:31 2015] Local assembling k = 81 ---
+--- [Mon Dec 21 12:25:37 2015] Extracting iterative edges from k = 81 to 85 ---
+--- [Mon Dec 21 12:25:37 2015] Building graph for k = 85 ---
+--- [Mon Dec 21 12:25:38 2015] Assembling contigs from SdBG for k = 85 ---
+--- [Mon Dec 21 12:25:45 2015] Local assembling k = 85 ---
+--- [Mon Dec 21 12:25:50 2015] Extracting iterative edges from k = 85 to 89 ---
+--- [Mon Dec 21 12:25:50 2015] Building graph for k = 89 ---
+--- [Mon Dec 21 12:25:51 2015] Assembling contigs from SdBG for k = 89 ---
+--- [Mon Dec 21 12:25:57 2015] Local assembling k = 89 ---
+--- [Mon Dec 21 12:26:01 2015] Extracting iterative edges from k = 89 to 93 ---
+--- [Mon Dec 21 12:26:02 2015] Building graph for k = 93 ---
+--- [Mon Dec 21 12:26:02 2015] Assembling contigs from SdBG for k = 93 ---
+--- [Mon Dec 21 12:26:09 2015] Local assembling k = 93 ---
+--- [Mon Dec 21 12:26:12 2015] Extracting iterative edges from k = 93 to 97 ---
+--- [Mon Dec 21 12:26:13 2015] Building graph for k = 97 ---
+--- [Mon Dec 21 12:26:13 2015] Assembling contigs from SdBG for k = 97 ---
+--- [Mon Dec 21 12:26:18 2015] Local assembling k = 97 ---
+--- [Mon Dec 21 12:26:21 2015] Extracting iterative edges from k = 97 to 99 ---
+--- [Mon Dec 21 12:26:22 2015] Building graph for k = 99 ---
+--- [Mon Dec 21 12:26:22 2015] Assembling contigs from SdBG for k = 99 ---
+--- [Mon Dec 21 12:26:27 2015] Merging to output final contigs ---
+--- [STAT] 122 contigs, total 39828 bp, min 258 bp, max 448 bp, avg 326 bp, N50 321 bp
+--- [Mon Dec 21 12:26:28 2015] ALL DONE. Time elapsed: 621.497897 seconds ---
+2 of 5 steps (40%) done
+rule MERGE_ASSEMBLIES:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_5.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_6.fa
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_cat_6.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_6.fa
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/MERGE_ASSEMBLIES_6.json
+3 of 5 steps (60%) done
+rule GENE_CALLING:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_6.fa
+	output: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_6/prokka_6.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/metagenemark_6.ffn
+	log: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/simDat_iterative_MT.log
+	benchmark: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/benchmarks/GENE_CALLING_6.json
+[12:26:35] This is prokka 1.11
+[12:26:35] Written by Torsten Seemann <torsten.seemann@monash.edu>
+[12:26:35] Victorian Bioinformatics Consortium - http://www.vicbioinformatics.com
+[12:26:35] Local time is Mon Dec 21 12:26:35 2015
+[12:26:35] You are snarayanasamy
+[12:26:35] Operating system is linux
+[12:26:35] You have BioPerl 1.006901
+[12:26:35] System has 240 cores.
+[12:26:35] Will use maximum of 4 cores.
+[12:26:35] Annotating as >>> Bacteria <<<
+[12:26:35] Re-using existing --outdir /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_6
+[12:26:35] Using filename prefix: prokka_6.XXX
+[12:26:35] Setting HMMER_NCPU=1
+[12:26:35] Writing log to: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_6/prokka_6.log
+[12:26:35] Command: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_6.fa --outdir /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_6 --prefix prokka_6 --fast --force --cpus 4
+[12:26:35] Looking for 'aragorn' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/aragorn
+[12:26:35] Determined aragorn version is 1.2
+[12:26:35] Looking for 'blastp' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/blastp
+[12:26:35] Determined blastp version is 2.2
+[12:26:35] Looking for 'cmpress' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/cmpress
+[12:26:35] Determined cmpress version is 1.1
+[12:26:35] Looking for 'cmscan' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/cmscan
+[12:26:35] Determined cmscan version is 1.1
+[12:26:35] Looking for 'egrep' - found /bin/egrep
+[12:26:35] Looking for 'find' - found /usr/bin/find
+[12:26:35] Looking for 'grep' - found /bin/grep
+[12:26:35] Looking for 'hmmpress' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/hmmpress
+[12:26:35] Determined hmmpress version is 3.1
+[12:26:35] Looking for 'hmmscan' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/hmmscan
+[12:26:35] Determined hmmscan version is 3.1
+[12:26:35] Looking for 'less' - found /usr/bin/less
+[12:26:35] Looking for 'makeblastdb' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/makeblastdb
+[12:26:35] Determined makeblastdb version is 2.2
+[12:26:35] Looking for 'minced' - found /mnt/nfs/projects/ecosystem_biology/local_tools/minced
+[12:26:35] Determined minced version is 1.6
+[12:26:35] Looking for 'parallel' - found /usr/bin/parallel
+[12:26:35] Determined parallel version is 20130922
+[12:26:35] Looking for 'prodigal' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/prodigal
+[12:26:35] Determined prodigal version is 2.6
+[12:26:35] Looking for 'prokka-genbank_to_fasta_db' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/bin/prokka-genbank_to_fasta_db
+[12:26:35] Looking for 'sed' - found /bin/sed
+[12:26:35] Looking for 'signalp' - found /usr/bin/signalp
+[12:26:35] Determined signalp version is 3.0
+[12:26:35] Looking for 'tbl2asn' - found /mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/prokka/binaries/linux/tbl2asn
+[tbl2asn] This copy of tbl2asn is more than a year old.  Please download the current version.
+[12:26:35] Determined tbl2asn version is 23.2
+[12:26:35] Using genetic code table 11.
+[12:26:35] Loading and checking input file: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_6.fa
+[12:26:38] Wrote 14772 contigs
+[12:26:38] Predicting tRNAs and tmRNAs
+[12:26:38] Running: aragorn -gc11  -w \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_6\/prokka_6\.fna
+[12:26:41] 1 tRNA-Thr c[537,609] 33 (ggt)
+[12:26:42] Found 1 tRNAs
+[12:26:42] Predicting Ribosomal RNAs
+[12:26:42] You need either Barrnap or RNAmmer installed to predict rRNAs!
+[12:26:42] Skipping ncRNA search, enable with --rfam if desired.
+[12:26:42] Total of 1 tRNA + rRNA features
+[12:26:42] Searching for CRISPR repeats
+[12:26:43] Found 0 CRISPRs
+[12:26:43] Predicting coding sequences
+[12:26:43] Contigs total 9516024 bp, so using single mode
+[12:26:43] Running: prodigal -i \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_6\/prokka_6\.fna -c -m -g 11 -p single -f sco -q
+[12:27:11] Found 3186 CDS
+[12:27:11] Connecting features back to sequences
+[12:27:11] Option --gram not specified, will NOT check for signal peptides.
+[12:27:11] Not using genus-specific database. Try --usegenus to enable it.
+[12:27:11] Option --fast enabled, so skipping CDS similarity searches
+[12:27:11] Labelling remaining 3186 proteins as 'unannotated protein'
+[12:27:11] Found 0 unique /gene codes.
+[12:27:11] Fixed 0 colliding /gene names.
+[12:27:11] Adding /locus_tag identifiers
+[12:27:11] Assigned 3187 locus_tags to CDS and RNA features.
+[12:27:11] Writing outputs to /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_6/
+[12:27:17] Generating annotation statistics file
+[12:27:17] Generating Genbank and Sequin files
+[12:27:17] Running: tbl2asn -V b -a r10k -l paired-ends -M n -N 1 -y 'Annotated using prokka 1.11 from http://www.vicbioinformatics.com' -Z \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_6\/prokka_6\.err -i \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_6\/prokka_6\.fsa 2> /dev/null
+[12:28:03] Could not run command: tbl2asn -V b -a r10k -l paired-ends -M n -N 1 -y 'Annotated using prokka 1.11 from http://www.vicbioinformatics.com' -Z \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_6\/prokka_6\.err -i \/scratch\/users\/snarayanasamy\/IMP_MS_data\/IMP_analysis\/simDat\-iterative_MT\/prokka_6\/prokka_6\.fsa 2> /dev/null
+4 of 5 steps (80%) done
+rule ALL:
+	input: /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_6.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/MT_contigs_merged_6.fa, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_1/prokka_1.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/metagenemark_1.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/prokka_6/prokka_6.ffn, /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MT/metagenemark_6.ffn
+5 of 5 steps (100%) done

@@ -1,0 +1,48 @@
+Thu Dec 10 21:18:20 CET 2015
+Executing inital assembly
+[x] Running assembly 1 [x]
+[x] Interleave MG fastq files
+[x] Merging initial assembly contigs [x]
+[x] Extracting unmapped from assembly 1 [x]
+[x] Indexing assembly 1 [x]
+[bwt_gen] Finished constructing BWT in 97 iterations.
+[x] Extracting unmapped reads [x]
+[x] Running assembly 2 [x]
+[x] Interleave MG fastq files
+[x] Merging assemblies 1 and 2 [x]
+DONE
+Executing inital assembly
+Iteration 2
+[x] Extracting unmapped from assembly 2 [x]
+[x] Indexing assembly 2 [x]
+[bwt_gen] Finished constructing BWT in 97 iterations.
+[x] Extracting unmapped reads [x]
+[x] Running assembly 3 [x]
+[x] Interleave MG fastq files
+[x] Merging assemblies 2 and 3 [x]
+DONE
+Iteration 3
+[x] Extracting unmapped from assembly 3 [x]
+[x] Indexing assembly 3 [x]
+[bwt_gen] Finished constructing BWT in 97 iterations.
+[x] Extracting unmapped reads [x]
+[x] Running assembly 4 [x]
+[x] Interleave MG fastq files
+[x] Merging assemblies 3 and 4 [x]
+DONE
+Iteration 4
+[x] Extracting unmapped from assembly 4 [x]
+[x] Indexing assembly 4 [x]
+[bwt_gen] Finished constructing BWT in 97 iterations.
+[x] Extracting unmapped reads [x]
+[x] Running assembly 5 [x]
+[x] Interleave MG fastq files
+[x] Merging assemblies 4 and 5 [x]
+Iteration 5
+[x] Extracting unmapped from assembly 5 [x]
+[x] Indexing assembly 5 [x]
+[x] Extracting unmapped reads [x]
+[x] Running assembly 6 [x]
+[x] Interleave MG fastq files
+[x] Merging assemblies 5 and 6 [x]
+Fri Dec 11 19:08:12 CET 2015
