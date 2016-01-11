@@ -131,7 +131,7 @@ theme(axis.title.x = element_text(size = 35),
       ) +
 xlab("Assembly")
 
-list(p1, p2, p3)
+list(p1, p2, p3, dat.1, dat.2)
 }
 
 HF.dat <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/X310763260-iterative_MG/collapsed_contigs_stats.tsv"
@@ -153,13 +153,6 @@ SD.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative
 SD.plots <- plot_dat(SD.dat, SD.pe, SD.se)
 
 ### Generate plots
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MG_iter_assm.pdf", 
-    height=15, width=15)
-plot_grid(HF.plots[[3]] + mytheme() + theme(axis.ticks.x = element_line(size=1)), 
-	  WW.plots[[3]] + guides(fill=FALSE) + theme(axis.ticks.x = element_line(size=1)), 
-	  ncol=1, align="v", labels=c("(A)", "(B)"), label_size=45, hjust=-0.5)
-dev.off()
-
 pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MG_iter_assm-v2.pdf", 
     height=15, width=15)
 plot_grid(
@@ -170,3 +163,13 @@ plot_grid(
 					    axis.title.y = element_blank()), 
 	  ncol=1, align="v", labels=c("(A)", "(B)", "(C)"), label_size=45, hjust=-0.5)
 dev.off()
+
+SD.table <- cbind(SD.plots[[4]], SD.plots[[5]][,-1])
+
+HF.table <- cbind(HF.plots[[4]], HF.plots[[5]][,-1])
+
+WW.table <- cbind(WW.plots[[4]], WW.plots[[5]][,-1])
+
+write.table(SD.table, 
+	    "/home/shaman/Documents/Publications/IMP-manuscript/tables/SM_iterative_assm.tsv",
+	    quote = F, row.names = F, sep = "\t")
