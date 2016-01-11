@@ -130,3 +130,15 @@ pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/WW_radarChart.pd
 plot.basic.stats(dat3, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd) 
 dev.off()
 
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/radarChart_legend.pdf", 
+    width=40, height=2.5)
+par(fig = c(0, 1, 0, 1), oma = c(0.5, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
+plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
+legend("bottom", legend=dat1[,1], xpd = TRUE, horiz = TRUE, inset = c(0, 
+    0), bty = "o", col = cols, lty=linetype, lwd = c(4,4,4,4), cex = 4,
+       text.font=c(4,4,4,4), box.lty=1, box.lwd=0, box.col="gray",
+       text.col=cols)
+
+dev.off()
+
+
