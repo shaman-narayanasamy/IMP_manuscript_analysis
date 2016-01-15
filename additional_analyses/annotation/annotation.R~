@@ -19,15 +19,19 @@ source("http://dl.dropbox.com/u/10640416/treemapbrewer.r")
 tax.dat <- read.table("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/datasets/IMP_analysis/X310763260_20151004-idba/Analysis/results/quast/summary/TSV/genome_fraction.tsv", header=T)
 colnames(tax.dat) <- c("genome", "genome_fraction")
 
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/genome_recovery.pdf", 
+### Reorder according to value
+tax.dat <- transform(tax.dat, genome = reorder(genome, genome_fraction))
+
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/genome_recovery-v2.pdf", 
     width = 15, height = 15)
-ggplot(data = tax.dat, aes(x = genome, y = genome_fraction, fill = genome)) +
-geom_bar(stat = "identity") +
+ggplot(data = tax.dat, aes(x = genome, y = genome_fraction)) +
+geom_bar(stat = "identity", position="dodge", fill = "mediumorchid4") +
 guides(fill = FALSE) +
 theme(axis.title.y = element_blank(),
-      axis.text.y = element_text(size=25),
+      axis.text.y = element_text(size=25, face="italic"),
       axis.title.x = element_text(size=30),
       axis.text.x = element_text(size=25)) +
+scale_x_discrete(labels = c(gsub("_", " ", tax.dat$genome))) +
 ylab("Genome fraction (%)") +
 coord_flip()
 
