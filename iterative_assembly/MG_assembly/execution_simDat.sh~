@@ -21,14 +21,15 @@ date
 
 ### For some reason, it is not possible to run cap3 on the fifth assembly. Therefore, we simply copy the 
 ### concatenated set of contigs to perform the mapping
-OUT_DIR="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/"
-cp ${OUT_DIR}/MG_contigs_cat_5.fa ${OUT_DIR}/MG_contigs_merged_5.fa
-
-    INPUT_DIR="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing" \
-      OUT_DIR="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/" \
-      OUT_LOG="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/simDat_iterative_MG-2.log" \
-      TMP="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/tmp" \
-      STEP=4 snakemake --cleanup-metadata ${OUT_DIR}/MG_contigs_merged_5.fa
+#OUT_DIR="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/"
+#cp ${OUT_DIR}/MG_contigs_cat_5.fa ${OUT_DIR}/MG_contigs_merged_5.fa
+#
+#    INPUT_DIR="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing" \
+#      OUT_DIR="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/" \
+#      OUT_LOG="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/simDat_iterative_MG-2.log" \
+#      TMP="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/tmp" \
+#      STEP=4 snakemake --cleanup-metadata ${OUT_DIR}/MG_contigs_merged_5.fa
+#
 
 for ITER in 4 5
 do
@@ -37,10 +38,10 @@ do
       OUT_DIR="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/" \
       OUT_LOG="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/simDat_iterative_MG-2.log" \
       TMP="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/tmp" \
-      STEP=${ITER} snakemake -f ALL
+      STEP=${ITER} snakemake -Fnp ALL
 done
 
-### Join tables
+## Join tables
 #OUT_DIR="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/"
 #
 #cat <(cat ${OUT_DIR}/quast_1/transposed_report.tsv) \
@@ -66,7 +67,7 @@ done
 #  sed -e 's/GENOMESIZE=//g' \
 #  >> ${OUT_DIR}/merged_contigs_tmp.tsv
 #
-#paste <(cat full_report.tsv) <(cat <(echo -e "avg_contig_len\tgenome_len") <(cat ${OUT_DIR}/merged_contigs_tmp.tsv)) > ${OUT_DIR}/collapsed_contigs_stats.tsv
+#paste <(cat $OUT_DIR/full_report.tsv) <(cat <(echo -e "avg_contig_len\tgenome_len") <(cat ${OUT_DIR}/merged_contigs_tmp.tsv)) > ${OUT_DIR}/collapsed_contigs_stats.tsv
 #
 #rm -rf ${OUT_DIR}/uncollapsed_tmp2.tsv  ${OUT_DIR}/uncollapsed_tmp.tsv ${OUT_DIR}/merged_contigs_tmp.tsv
 #
@@ -82,5 +83,5 @@ done
 #awk '{print $2, $1/4}' ${OUT_DIR}/pairs-raw_counts.tsv > ${OUT_DIR}/pair_counts.tsv
 #
 #awk '{print $2, $1/4}' ${OUT_DIR}/singles-raw_counts.tsv > ${OUT_DIR}/single_counts.tsv
-#
+
 date
