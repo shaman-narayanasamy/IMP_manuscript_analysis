@@ -33,7 +33,7 @@ makeTransparent = function(..., alpha=0.5) {
 ## Read assessment of simulated dat
 
 plot.basic.stats <- function(dat, cols, dens, font, linetype, 
-			     fsize, linewd, mcex, lwd, plwd, title) 
+			     fsize, linewd, mcex, lwd, plwd, title = "") 
 {
 dat <- dat[,c("Assembly", 
        "X..contigs.....1000.bp.", 
@@ -41,7 +41,7 @@ dat <- dat[,c("Assembly",
        "X..predicted.genes..unique.",
        "Genome.fraction...."
        )]
-colnames(dat) <- c("Assembly", "Volume", "Contiguity", "Information", "Recovery")
+colnames(dat) <- c("Assembly", "contigs \u2265 1kb", "N50 length", "no. of genes", "genome fraction (%)")
 
 dat$Assembly <- factor(dat$Assembly, levels=c(levels(dat$Assembly), 'max', 'min'))
 dat <- rbind(
@@ -69,7 +69,8 @@ dat[2, names(dat) %in% c("Recovery")] <- 0
 
 par(mar=c(0,0,8,0)) 
 radarchart(dat[,-1], pcol=cols, pfcol=dens, plty=linetype, plwd=plwd,
-	   cglwd=lwd, palcex=font, calcex=font, vlcex=font, cglcol="gray",
+	   cglwd=lwd, palcex=font, calcex=font, vlcex=font, cglcol="darkgray",
+	   paxislabels = c("contigs \u2265 1kb", "N50 length", "no. of genes", "genome fraction (%)"),
 	   oma=c(0,0,0,0))#, title = title, cex.main = 6)
 title(title, outer = FALSE, line = 2, font = 2, cex.main = 7.5)
 }
@@ -79,10 +80,10 @@ dens <- makeTransparent("red", "blue", "green", "orange", alpha=0.10)
 font=10
 linetype <- c(1,1,2,2)
 fsize=10
-linewd=8
+linewd=15
 mcex=8
-lwd=8
-plwd=8
+lwd=16
+plwd=15
 
 ## Produce radar chart for the basic assembly statistics
 
@@ -98,7 +99,7 @@ dat3 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis
 png("/home/shaman/Documents/Publications/IMP-manuscript/figures/comparison_all-v7.png", 
     width=2900, height=1500)
 
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/comparison_all-v7.pdf", 
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/comparison_all-v8.pdf", 
     width=30, height=15)
 par(mfrow=c(1,3), mar = c(10,0,0,0))
 plot.basic.stats(dat1, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd, title = "(A) SM") 
@@ -115,18 +116,18 @@ legend("bottom", legend=dat1[,1], xpd = TRUE, horiz = TRUE, inset = c(0,
 dev.off()
 
 
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/SM_radarChart.pdf", 
-    width=25, height=20)
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/SM_radarChart_v2.pdf", 
+    width=38, height=25)
 plot.basic.stats(dat1, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd) 
 dev.off()
 
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/HF_radarChart.pdf", 
-    width=25, height=20)
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/HF_radarChart_v2.pdf", 
+    width=38, height=25)
 plot.basic.stats(dat2, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd) 
 dev.off()
 
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/WW_radarChart.pdf", 
-    width=25, height=20)
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/WW_radarChart_v2.pdf", 
+    width=38, height=25)
 plot.basic.stats(dat3, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd) 
 dev.off()
 
