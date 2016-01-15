@@ -78,3 +78,41 @@ treemap(   id=MT.annot$Level3,
 	   main = "Functional expression")
 dev.off()
 
+load("/home/shaman/Documents/Publications/IMP-manuscript/figures/X310763260_20151004-idba/Analysis/results/MGMT_results.Rdat")
+source()
+
+vb.MGvarden.new <- vb.MGvarden + scale_size(range = c(2,20))
+vb.depRatio.new <- vb.depRatio + scale_size(range = c(2,20))
+
+
+png("/home/shaman/Documents/Publications/IMP-manuscript/figures/IMP-vizbin_length_MGvardens.png", width=1500, height=1500)
+vb.MGvarden.new + guides(colour=F, size=F, alpha=F) 
+dev.off()
+
+png("/home/shaman/Documents/Publications/IMP-manuscript/figures/IMP-vizbin_length_depRatio.png", width=1500, height=1500)
+vb.depRatio.new + guides(colour=F, size=F, alpha=F) 
+dev.off()
+
+## Extract the legend
+a.gplot <- vb.MGvarden.new
+
+g_legend<-function(a.gplot){ 
+  tmp <- ggplot_gtable(ggplot_build(a.gplot)) 
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box") 
+  legend <- tmp$grobs[[leg]] 
+  return(legend)} 
+
+legend <- g_legend(vb.MGvarden.new) 
+
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/IMP-vizbin_length_MGvardens_legend.pdf", width=10, height=25)
+grid.draw(legend) 
+dev.off()
+
+legend <- g_legend(vb.depRatio.new) 
+
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/IMP-vizbin_length_depRatio_legend.pdf", width=10, height=25)
+grid.draw(legend) 
+dev.off()
+
+
+
