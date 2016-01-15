@@ -39,7 +39,7 @@ colnames(pe) <- c("file", "reads_used")
 se <- read.table(se.file, header=F)
 colnames(se) <- c("file", "reads_used")
 
-# Reformulate table
+# Reformulate tables
 pe <- 
     cbind(pe, 
 	    type=rep("PE", nrow(pe)),
@@ -51,8 +51,6 @@ pe <-
 additional_mapped=c(NA, pe$mappable[2:nrow(pe)] - pe$mappable[1:nrow(pe)-1])
 pe <- cbind(pe, additional_mapped)
 pe$additional_mapped[1]  <- pe$mappable[1]
-
-
 
 se <- 
     cbind(se, 
@@ -72,24 +70,15 @@ dat.1 <- as.data.frame(
 			     additional_mapped=2*(pe$additional_mapped) + se$additional_mapped
 			     )
 		       )
+
 dat.1$additional_mapped <- as.numeric(as.character(dat.1$additional_mapped))
 dat.1$genome_size <- as.numeric(as.character(dat.1$genome_size))
 dat.1 <- dat.1[-nrow(dat.1),]
 
-### Plot number of reads and total assembly bases
 m.dat.1 <- melt(dat.1)
 colnames(m.dat.1) <- c("Assembly", "type", "count")
 m.dat.1$count[m.dat.1$count==0] = NA
 
-p1 <- ggplot(data=m.dat.1, aes(x=Assembly, y=log10(count), fill=type)) + 
-geom_bar(stat="identity", position="dodge") +
-scale_fill_manual(values = c("darkorange1", "lightseagreen"), 
-		    labels = c("Base pairs", "Mappable reads")
-		    ) +
-guides(fill = guide_legend(title = "Additional")) +
-mytheme() 
-
-### Plot gain of contigs and genes relative to previous assembly
 dat.2 <- dat[2:nrow(dat),c(22,3)] - dat[1:nrow(dat)-1,c(22,3)]
 dat.2 <- rbind(dat[1,c(22,3)], dat.2)
 dat.2 <- cbind(as.character(dat[,1]), dat.2)
@@ -101,37 +90,31 @@ m.dat.2 <- melt(dat.2)
 colnames(m.dat.2)[2:3] <- c("type", "count")
 m.dat.2$count[m.dat.2$count==0] = NA
 
-p2 <- ggplot(data=m.dat.2, aes(x=Assembly, y=log10(count), fill=type)) + 
-geom_bar(stat="identity", position="dodge") +
-scale_fill_manual(values = c("seagreen", "salmon1"), 
-		    labels = c("Information", "Volume")
-		    ) +
-guides(fill = guide_legend(title = "Additional")) +
-mytheme() +
-theme(axis.title.x = element_text(size = 35),
-      axis.text.x = element_text(size = 30, vjust=0),
-      plot.margin = unit(c(0.5, 0.5, 1, 4) , "lines")
-      ) +
-xlab("Assembly")
-
 ### Plot all the values in a single plot
+# Join both table
 m.dat <- rbind(m.dat.1, m.dat.2)
 
-p3 <- ggplot(data=m.dat, aes(x=Assembly, y=log10(count), fill=type)) + 
+p1 <- ggplot(data=m.dat, aes(x=Assembly, y=log10(count), fill=type)) + 
 geom_bar(stat="identity", position="dodge") +
 scale_fill_manual(values = c("darkorange1", "lightseagreen", "salmon", "seagreen"), 
-		    labels = c("Base pairs", "Mappable reads", 
-			       "Information", "Volume")
+		    labels = c("total length", "mappable reads", 
+			       "no. of genes", "no. of contigs \u2265 1kb")
 		    ) +
-guides(fill = guide_legend(title = "Additional")) +
+	  scale_x_discrete("Assembly", 
+			   labels = c("1" = "Initial assembly",
+				      "2" = "First",
+				      "3" = "Second",
+				      "4" = "Third",
+				      "5" = "Fourth")) +
+guides(fill = guide_legend(title = "measure")) +
 mytheme() +
 theme(axis.title.x = element_text(size = 35),
       axis.text.x = element_text(size = 30, vjust=0),
       plot.margin = unit(c(0.5, 0.5, 1, 4) , "lines")
       ) +
-xlab("Assembly")
+xlab("iteration")
 
-list(p1, p2, p3, dat.1, dat.2)
+list(p1, dat.1, dat.2)
 }
 
 HF.dat <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/X310763260-iterative_MG/collapsed_contigs_stats.tsv"
@@ -153,23 +136,26 @@ SD.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative
 SD.plots <- plot_dat(SD.dat, SD.pe, SD.se)
 
 ### Generate plots
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MG_iter_assm-v2.pdf", 
-    height=15, width=15)
+#pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MG_iter_assm-v2.pdf", 
+#    height=15, width=15)
 plot_grid(
-	  SD.plots[[3]] + mytheme() + theme(axis.ticks.x = element_line(size=1),
-					    axis.title.y = element_blank()), 
-	  HF.plots[[3]] + guides(fill=FALSE) + mytheme() + theme(axis.ticks.x = element_line(size=1)), 
-	  WW.plots[[3]] + guides(fill=FALSE) + theme(axis.ticks.x = element_line(size=1), 
-					    axis.title.y = element_blank()), 
+	  SD.plots[[1]] + mytheme() + 
+	  theme(axis.ticks.x = element_line(size=1), axis.title.y = element_blank()),
+
+	  HF.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1)),
+
+	  WW.plots[[1]] + guides(fill=FALSE) + mytheme() + theme(axis.ticks.x = element_line(size=1), axis.title.y = element_blank()),
+
 	  ncol=1, align="v", labels=c("(A)", "(B)", "(C)"), label_size=45, hjust=-0.5)
 dev.off()
 
 SD.table <- cbind(SD.plots[[4]], SD.plots[[5]][,-1])
-
 HF.table <- cbind(HF.plots[[4]], HF.plots[[5]][,-1])
-
 WW.table <- cbind(WW.plots[[4]], WW.plots[[5]][,-1])
 
 write.table(SD.table, 
-	    "/home/shaman/Documents/Publications/IMP-manuscript/tables/SM_iterative_assm.tsv",
+	    "/home/shaman/Documents/Publications/IMP-manuscript/tables/SD_iterative_assm.tsv",
 	    quote = F, row.names = F, sep = "\t")
+
+
