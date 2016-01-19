@@ -4,7 +4,7 @@
 
 PATH=/home/users/claczny/apps/software/pullseq/bin/:$PATH
 DIR_HF=/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/X310763260_20151004-idba-virusContigs
-DIR_WW=/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/A02_20151004-idba-virusContigs
+DIR_WW=/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/A02_20151130-idba-virusContigs
 INPUT_HF=/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/X310763260_20151004-idba/Assembly/MGMT.assembly.merged.fa
 INPUT_WW=/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/A02_20151130-idba/Assembly/MGMT.assembly.merged.fa
 
@@ -19,6 +19,9 @@ INPUT_WW=/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/A02_20151130-idba
 #scp X310763260_MT_contigs.ids gaia:/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/X310763260_20151004-idba-virusContigs
 #scp A02_MT_contigs.ids gaia:/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/A02_20151004-idba-virusContigs
 
-# Extract the sequences
-pullseq -i $INPUT_HF -n $DIR_HF/X310763260_MT_contigs.ids 
-pullseq -i $INPUT_WW -n $DIR_WW/A02_MT_contigs.ids 
+## Extract the sequences
+pullseq -i $INPUT_HF -n $DIR_HF/X310763260_MT_contigs.ids > $DIR_HF/X310763260_MT_contigs.fa
+pullseq -i $INPUT_WW -n $DIR_WW/A02_MT_contigs.ids > $DIR_WW/A02_MT_contigs.fa
+
+## The fasta files with the virus contigs are submitted to NCBI BLAST
+
