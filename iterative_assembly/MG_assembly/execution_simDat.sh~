@@ -31,15 +31,17 @@ date
 #      STEP=4 snakemake --cleanup-metadata ${OUT_DIR}/MG_contigs_merged_5.fa
 #
 
-for ITER in 4 5
-do
-  echo "Iteration $ITER"
-    INPUT_DIR="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing" \
-      OUT_DIR="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/" \
-      OUT_LOG="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/simDat_iterative_MG-2.log" \
-      TMP="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/tmp" \
-      STEP=${ITER} snakemake -Fnp ALL
-done
+#for ITER in 4 5
+#do
+#  echo "Iteration $ITER"
+#    INPUT_DIR="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simulated_data_output_20151002-idba/Preprocessing" \
+#      OUT_DIR="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/" \
+#      OUT_LOG="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/simDat_iterative_MG-2.log" \
+#      TMP="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/tmp" \
+#      STEP=${ITER} snakemake -f ALL
+#done
+
+/mnt/nfs/projects/ecosystem_biology/local_tools/cd-hit-v4.6.1-2012-08-27_OpenMP_MAX_SEQ-5MBP/cd-hit-est -i /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/MG_contigs_cat_6.fa -o /scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/MG_contigs_cat_6-cdhit.fa -c 0.95 -t 16
 
 ## Join tables
 #OUT_DIR="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/simDat-iterative_MG/"
