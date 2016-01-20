@@ -22,7 +22,7 @@ colnames(tax.dat) <- c("genome", "genome_fraction")
 ### Reorder according to value
 tax.dat <- transform(tax.dat, genome = reorder(genome, genome_fraction))
 
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/genome_recovery-v2.pdf", 
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/genome_recovery-v3.pdf", 
     width = 15, height = 15)
 ggplot(data = tax.dat, aes(x = genome, y = genome_fraction)) +
 geom_bar(stat = "identity", position="dodge", fill = "mediumorchid4") +
@@ -31,12 +31,11 @@ theme(axis.title.y = element_blank(),
       axis.text.y = element_text(size=25, face="italic"),
       axis.title.x = element_text(size=30),
       axis.text.x = element_text(size=25)) +
-scale_x_discrete(labels = c(gsub("_", " ", tax.dat$genome))) +
-ylab("Genome fraction (%)") +
-coord_flip()
+coord_flip() +
+scale_x_discrete(labels = c(gsub("_", " ", levels(tax.dat$genome)))) +
+ylab("Genome fraction (%)") 
 
 dev.off()
-
 
 ### Generate R plot from Krona plot data
 
