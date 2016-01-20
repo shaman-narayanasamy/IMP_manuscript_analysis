@@ -9,6 +9,15 @@ library(gtable)
 library(cowplot)
 require(stringr)
 
+set_panel_size <- function(p=NULL, g=ggplotGrob(p), width=unit(3, "cm"), height=unit(3, "cm")){
+  panel_index_w<- g$layout$l[g$layout$name=="panel"]
+  panel_index_h<- g$layout$t[g$layout$name=="panel"]
+  g$widths[[panel_index_w]] <- width
+  g$heights[[panel_index_h]] <- height
+  class(g) <- c("fixed", class(g), "ggplot")
+  g
+}
+
 mytheme <- function(){
     theme(
         axis.text.y = element_text(size = 25),
@@ -20,9 +29,6 @@ mytheme <- function(){
 	legend.key.size = unit(1.5, "cm"),
 	legend.key = element_rect(colour = NA, fill = NA),
 	legend.background = element_rect(fill = NA, colour = "gray"),
-#       axis.text.x = element_blank(),
-#	axis.title.x = element_blank(),
-#       axis.ticks.x = element_blank(),
 	axis.line = element_line(size = 1),
         plot.title = element_blank(),
         plot.margin = unit(c(0, 0, 0, 0), "lines")
@@ -65,40 +71,33 @@ se <- cbind(se, additional_mapped)
 se$additional_mapped[1]  <- se$mappable[1]
 
 dat.1 <- as.data.frame(
-		       cbind(iteration=as.character(1:6),
-			     genome_size=c(dat[1,c(28)], dat[2:nrow(dat),c(28)] - dat[1:nrow(dat)-1,c(28)]),
-			     additional_mapped=2*(pe$additional_mapped) + se$additional_mapped
+		       cbind(iteration = as.character(1:6),
+			     no.of_contigs = c(dat[1,3], dat[2:nrow(dat),c(3)] - dat[1:nrow(dat)-1,c(3)]),
+			     total_length = c(dat[1,c(28)], dat[2:nrow(dat),c(28)] - dat[1:nrow(dat)-1,c(28)]),
+			     no.of_genes = c(dat[1,22], dat[2:nrow(dat),c(22)] - dat[1:nrow(dat)-1,c(22)]),
+			     additional_mapped = 2*(pe$additional_mapped) + se$additional_mapped
 			     )
 		       )
 
 dat.1$additional_mapped <- as.numeric(as.character(dat.1$additional_mapped))
-dat.1$genome_size <- as.numeric(as.character(dat.1$genome_size))
+dat.1$total_length <- as.numeric(as.character(dat.1$total_length))
+dat.1$no.of_contigs <- as.numeric(as.character(dat.1$no.of_contigs))
+dat.1$no.of_genes <- as.numeric(as.character(dat.1$no.of_genes))
 dat.1 <- dat.1[-nrow(dat.1),]
 
 m.dat.1 <- melt(dat.1)
 colnames(m.dat.1) <- c("iteration", "type", "count")
 m.dat.1$count[m.dat.1$count==0] = NA
 
-dat.2 <- dat[2:nrow(dat),c(22,3)] - dat[1:nrow(dat)-1,c(22,3)]
-dat.2 <- rbind(dat[1,c(22,3)], dat.2)
-dat.2 <- cbind(as.character(dat[,1]), dat.2)
-colnames(dat.2) <- c("iteration", "Information", "Volume")
-dat.2$iteration <- as.character(1:6)
-dat.2 <- dat.2[-nrow(dat.2),]
+m.dat.1$type <- factor(m.dat.1$type, levels(m.dat.1$type)[c(2,4,3,1)])
 
-m.dat.2 <- melt(dat.2)
-colnames(m.dat.2)[2:3] <- c("type", "count")
-m.dat.2$count[m.dat.2$count==0] = NA
-
-### Plot all the values in a single plot
-# Join both table
-m.dat <- rbind(m.dat.1, m.dat.2)
-
-p1 <- ggplot(data=m.dat, aes(x=iteration, y=log10(count), fill=type)) + 
+p1 <- ggplot(data=m.dat.1, aes(x=iteration, y=log10(count), fill=type)) + 
 geom_bar(stat="identity", position="dodge") +
 scale_fill_manual(values = c("darkorange1", "lightseagreen", "salmon", "seagreen"), 
-		    labels = c("total length", "mappable reads", 
-			       "no. of genes", "no. of contigs \u2265 1kb")
+		    labels = c("no.of_contigs" = "no. of contigs \u2265 1kb", 
+			       "total_length" = "total length", 
+			       "no.of_genes" = "no. of genes",
+			       "additional_mapped" = "mappable reads")
 		    ) +
 	  scale_x_discrete("iteration", 
 			   labels = c("1" = "Initial assembly",
@@ -113,7 +112,7 @@ theme(axis.title.x = element_text(size = 35),
       ) +
 xlab("iteration")
 
-list(p1, dat.1, dat.2)
+list(p1, dat.1)
 }
 
 HF.dat <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/X310763260-iterative_MG/collapsed_contigs_stats.tsv"
@@ -134,13 +133,16 @@ SD.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative
 
 SD.plots <- plot_dat(SD.dat, SD.pe, SD.se)
 
+set_panel_size(SD.plots[[1]])
+set_panel_size(HF.plots[[1]])
+set_panel_size(WW.plots[[1]])
+
 ### Generate plots
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MG_iter_assm-v3.pdf", 
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MG_iter_assm-v4.pdf", 
     height=16, width=20)
 plot_grid(
 	  SD.plots[[1]] + guides(fill=FALSE) + mytheme() +
 	  theme(axis.ticks.x = element_line(size=1), 
-		axis.title.y = element_blank(),
 		axis.title.x = element_blank(),
 		axis.text.x = element_blank()),
 
@@ -150,19 +152,17 @@ plot_grid(
 		axis.text.x = element_blank()),
 
 	  WW.plots[[1]] + mytheme() +
-	  theme(axis.ticks.x = element_line(size=1), 
-		axis.title.y = element_blank()) +
+	  theme(axis.ticks.x = element_line(size=1)) +
 	  xlab("iteration"),
 
 	  ncol=1, align="v", labels=c("(A)", "(B)", "(C)"), label_size=45, hjust=-0.5)
 dev.off()
 
-SD.table <- cbind(SD.plots[[4]], SD.plots[[5]][,-1])
-HF.table <- cbind(HF.plots[[4]], HF.plots[[5]][,-1])
-WW.table <- cbind(WW.plots[[4]], WW.plots[[5]][,-1])
+### Produce the complementary table
+table <- rbind(cbind(data = rep("SM", nrow(SD.plots[[2]])), SD.plots[[2]]), 
+	       cbind(data = rep("HF", nrow(HF.plots[[2]])), HF.plots[[2]]), 
+	       cbind(data = rep("WW", nrow(WW.plots[[2]])),  WW.plots[[2]]))
 
-write.table(SD.table, 
-	    "/home/shaman/Documents/Publications/IMP-manuscript/tables/SD_iterative_assm.tsv",
+write.table(table, "/home/shaman/Documents/Publications/IMP-manuscript/tables/MG_iterative_assm.tsv",
 	    quote = F, row.names = F, sep = "\t")
-
 

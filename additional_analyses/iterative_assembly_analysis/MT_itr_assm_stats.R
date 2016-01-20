@@ -139,12 +139,11 @@ SD.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative
 SD.plots <- plot_dat(SD.dat, SD.pe, SD.se)
 
 ### Generate plots
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MG_iter_assm-v3.pdf", 
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MT_iter_assm.pdf", 
     height=16, width=20)
 plot_grid(
 	  SD.plots[[1]] + guides(fill=FALSE) + mytheme() +
 	  theme(axis.ticks.x = element_line(size=1), 
-		axis.title.y = element_blank(),
 		axis.title.x = element_blank(),
 		axis.text.x = element_blank()),
 
@@ -161,12 +160,11 @@ plot_grid(
 	  ncol=1, align="v", labels=c("(A)", "(B)", "(C)"), label_size=45, hjust=-0.5)
 dev.off()
 
-SD.table <- cbind(SD.plots[[4]], SD.plots[[5]][,-1])
-HF.table <- cbind(HF.plots[[4]], HF.plots[[5]][,-1])
-WW.table <- cbind(WW.plots[[4]], WW.plots[[5]][,-1])
+### Produce the complementary table
+table <- rbind(cbind(data = rep("SM", nrow(SD.plots[[2]])), SD.plots[[2]]), 
+	       cbind(data = rep("HF", nrow(HF.plots[[2]])), HF.plots[[2]]), 
+	       cbind(data = rep("WW", nrow(WW.plots[[2]])),  WW.plots[[2]]))
 
-write.table(SD.table, 
-	    "/home/shaman/Documents/Publications/IMP-manuscript/tables/SD_iterative_assm.tsv",
+write.table(table, "/home/shaman/Documents/Publications/IMP-manuscript/tables/MT_iterative_assm.tsv",
 	    quote = F, row.names = F, sep = "\t")
-
 
