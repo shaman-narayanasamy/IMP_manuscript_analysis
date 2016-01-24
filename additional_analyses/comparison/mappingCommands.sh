@@ -134,4 +134,4 @@
 	MT \
 	WW
 
-
+### Perform the same for metAmos assemblies
