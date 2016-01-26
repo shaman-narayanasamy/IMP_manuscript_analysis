@@ -138,7 +138,7 @@ set_panel_size(HF.plots[[1]])
 set_panel_size(WW.plots[[1]])
 
 ### Generate plots
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MG_iter_assm-v4.pdf", 
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MG_iter_assm-v5.pdf", 
     height=16, width=20)
 plot_grid(
 	  SD.plots[[1]] + guides(fill=FALSE) + mytheme() +
@@ -152,8 +152,9 @@ plot_grid(
 		axis.text.x = element_blank()),
 
 	  WW.plots[[1]] + mytheme() +
-	  theme(axis.ticks.x = element_line(size=1)) +
-	  xlab("iteration"),
+	  theme(axis.ticks.x = element_line(size=1),
+		axis.title.x = element_blank(),
+		axis.text.x = element_blank()),
 
 	  ncol=1, align="v", labels=c("(A)", "(B)", "(C)"), label_size=45, hjust=-0.5)
 dev.off()

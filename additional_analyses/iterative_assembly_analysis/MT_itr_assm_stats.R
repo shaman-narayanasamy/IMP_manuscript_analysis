@@ -139,23 +139,26 @@ SD.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative
 SD.plots <- plot_dat(SD.dat, SD.pe, SD.se)
 
 ### Generate plots
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MT_iter_assm.pdf", 
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MT_iter_assm-v2.pdf", 
     height=16, width=20)
 plot_grid(
 	  SD.plots[[1]] + guides(fill=FALSE) + mytheme() +
 	  theme(axis.ticks.x = element_line(size=1), 
 		axis.title.x = element_blank(),
-		axis.text.x = element_blank()),
+		axis.text.x = element_blank()) +
+	  ylim(0,8),
 
 	  HF.plots[[1]] + guides(fill=FALSE) + mytheme() +
 	  theme(axis.ticks.x = element_line(size=1),
 		axis.title.x = element_blank(),
-		axis.text.x = element_blank()),
+		axis.text.x = element_blank()) +
+	  ylim(0,8),
 
 	  WW.plots[[1]] + mytheme() +
 	  theme(axis.ticks.x = element_line(size=1), 
-		axis.title.y = element_blank()) +
-	  xlab("iteration"),
+		axis.title.x = element_blank(),
+		axis.text.x = element_blank()) +
+	  ylim(0,8),
 
 	  ncol=1, align="v", labels=c("(A)", "(B)", "(C)"), label_size=45, hjust=-0.5)
 dev.off()
