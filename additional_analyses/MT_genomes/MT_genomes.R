@@ -186,3 +186,18 @@ geom_point(data=rbind(vb_dat[which(vb_dat$ref_id == "Escherichia_coli_P12b"),],
 theme_nothing()
 dev.off()
 
+
+###
+# Check no. of reads constituting E. coli
+colSums(
+	unique(
+	       all.dat[grep("Escherichia_coli_P12b", 
+			    all.dat$ref <- id),c(3,6)]))
+
+# Check no. of reads constituting C. intestinalis
+colSums(
+	unique(
+	       all.dat[grep("Collinsella_intestinalis_DSM_13280", 
+			    all.dat$ref <- id),c(3,6)]))
+
+
