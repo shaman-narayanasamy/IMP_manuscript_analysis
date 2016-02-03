@@ -58,7 +58,7 @@ D36.wkspc <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/datas
 X310763260.MG <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/datasets/IMP_analysis/X310763260_20150728/Analysis/MG.gene_depth.avg"
 X310763260.MT <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/datasets/IMP_analysis/X310763260_20150728/Analysis/MT.gene_depth.avg"
 X310763260.wkspc <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/datasets/IMP_analysis/X310763260_20151004-idba/Analysis/results/MGMT_results.Rdat"
-X310763260.wkspc_2 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/datasets/IMP_analysis/X310763260_20151006-megahit/Analysis/results/MGMT_results.Rdat"
+#X310763260.wkspc_2 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/datasets/IMP_analysis/X310763260_20151006-megahit/Analysis/results/MGMT_results.Rdat"
 
 
 ## Get genes only expressed in MT data sets
@@ -189,15 +189,12 @@ dev.off()
 
 ###
 # Check no. of reads constituting E. coli
-colSums(
-	unique(
-	       all.dat[grep("Escherichia_coli_P12b", 
-			    all.dat$ref <- id),c(3,6)]))
+ecoli.reads <- colSums(unique(all.dat[grep("Escherichia_coli_P12b", all.dat$ref_id),c(3,6)])) 
+cintest.reads <- colSums(unique(all.dat[grep("Collinsella_intestinalis_DSM_13280", all.dat$ref_id),c(3,6)])) 
 
 # Check no. of reads constituting C. intestinalis
-colSums(
-	unique(
-	       all.dat[grep("Collinsella_intestinalis_DSM_13280", 
-			    all.dat$ref <- id),c(3,6)]))
+all.reads <- colSums(unique(all.dat[,c(1,3,6)])[,-1]) 
 
+ecoli.reads/all.reads * 100
+cintest.reads/all.reads * 100
 
