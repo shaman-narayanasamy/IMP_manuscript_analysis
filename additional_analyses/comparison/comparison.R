@@ -4,6 +4,7 @@ require(fmsb)
 require(ggplot2)
 require(grDevices)
 library(dplyr)
+library(plyr)
 library(tidyr)
 library(graphics)
 library(cowplot)
@@ -168,4 +169,16 @@ legend("bottom", legend=c("IMP", "IMP-MEGAHIT", "MetAMOS", "MetAMOS-IDBA_UD"), x
        text.col=cols)
 
 dev.off()
+
+### Create a full table for the data
+
+all.dat <- rbind.fill( 
+		      cbind(data=rep("SM",4), dat1),
+		      cbind(data=rep("HF",4), dat2),
+		      cbind(data=rep("WW",4), dat3),
+		      cbind(data=rep("ALL",4), dat4)
+)
+
+
+write.table(as.data.frame(t(all.dat)), "/home/shaman/Documents/Publications/IMP-manuscript/tables/metaQUAST_pipeline_comparison.tsv",  row.names=rownames(t(all.dat)), quote=F, sep = "\t")
 
