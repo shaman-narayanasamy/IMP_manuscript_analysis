@@ -1,0 +1,20 @@
+
+configfile: "config.iterative_MG.json"
+
+## Parameters required from the config file
+MEMCORE = os.environ.get("MEMCORE", config['memory_per_core_gb'])
+THREADS = os.environ.get("THREADS", config['threads'])
+
+## Input and output parameters
+OUT_LOG = os.environ.get("OUT_LOG")
+INPUT_DIR = os.environ.get("INPUT_DIR")
+REFERENCE = os.environ.get("REFERENCE")
+OUT_DIR = os.environ.get("OUT_DIR")
+TMP = os.environ.get("TMP")
+
+### Index gene catalog using bwa 
+
+### Map preprocessed MG reads and count them
+
+### Map preprocessed MT reads and count them
+
