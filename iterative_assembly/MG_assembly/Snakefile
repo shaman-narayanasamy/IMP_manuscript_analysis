@@ -234,4 +234,3 @@ rule QUAST:
         --max-ref-number 0 --no-check --fast -f \
         >> {log} 2>&1
         """
-

@@ -18,6 +18,10 @@ export PATH=/mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/sam
 export PATH=/mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/bedtools2/bin:$PATH
 export PATH=$PATH:/mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/bedtools2/bin
 export PATH=$PATH:$IMP_ENV/bedtools2/bin
+<<<<<<< HEAD
+export PATH=/mnt/nfs/projects/ecosystem_biology/local_tools/IMP/dependencies/quast:$IMP_ENV:$PATH
+=======
+>>>>>>> steps
 
 #source this file before execution of snakefile
 #module load Python
