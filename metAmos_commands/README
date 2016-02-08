@@ -1,4 +1,5 @@
-The names of the samples are different in the analyses.
+The sample names used in the paper are named differently within the file
+system:
 
 1.  The simulated mock (SM) community dataset is named either "simDat" or "simulated_data".
 2.  The human fecal (HF) community dataset is named X310763260.
@@ -6,9 +7,8 @@ The names of the samples are different in the analyses.
 
 There are a total of six launcher scripts. Precisely, two (2) launcher scripts for each sample:
 
-1. Running IMP on default mode (IDBA-UD assembler)
-2. Running IMP on using MEGAHIT assembler
+1. Running metAmos on default mode (SOAPdenovo assembler)
+2. Running metAmos on using IDBA-UD assembler
 
-There are two config files used to run the analyses:
-
-
+For the IDBA-UD based assemblies, libraries require concatenation prior to
+using them as input for the pipeline (commands within script).
