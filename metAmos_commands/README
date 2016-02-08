@@ -1,0 +1,14 @@
+The names of the samples are different in the analyses.
+
+1.  The simulated mock (SM) community dataset is named either "simDat" or "simulated_data".
+2.  The human fecal (HF) community dataset is named X310763260.
+3.  The wastewater (WW) sludge community dataset is named A02.
+
+There are a total of six launcher scripts. Precisely, two (2) launcher scripts for each sample:
+
+1. Running IMP on default mode (IDBA-UD assembler)
+2. Running IMP on using MEGAHIT assembler
+
+There are two config files used to run the analyses:
+
+
