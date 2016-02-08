@@ -1,0 +1,9 @@
+{
+    "threads": 8,
+    "memory_total_gb": 256,
+    "memory_per_core_gb": 32,
+    "preprocessing_filtering": false,
+    "trimmomatic": {
+        "adapter": "TruSeq2"
+    }
+}
