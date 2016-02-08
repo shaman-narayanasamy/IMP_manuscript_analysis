@@ -10,7 +10,7 @@ python3.4 IMP \
   -t /mnt/md1200/snarayanasamy/IMP_data/A02/Lux-Lipids-Community-RNAlater-50ng_CGATGT_L006_R1_001.fastq \
   -t /mnt/md1200/snarayanasamy/IMP_data/A02/Lux-Lipids-Community-RNAlater-50ng_CGATGT_L006_R2_001.fastq \
   -o /home/snarayanasamy/Work/IMP_analysis/A02_20151202-megahit \
-  -c conf/LAO_bigbug_IMP_MS_config.imp.json \
+  -c conf/bigbug_config_noHGfilter.imp.json \
   -a megahit
 
 date
