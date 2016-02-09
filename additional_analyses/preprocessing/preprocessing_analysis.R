@@ -1,5 +1,7 @@
 #!/bin/R
 
+### This script is deprecated
+
 require(stringr)
 require(ggplot2)
 require(xtable)
