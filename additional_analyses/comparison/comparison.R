@@ -1,5 +1,7 @@
 #!/bin/R
 
+### This script genearates the simplified radar charts
+
 require(fmsb)
 require(ggplot2)
 require(grDevices)

@@ -1,5 +1,7 @@
 #!/bin/R
 
+### This script generates the detailed radar charts in the supplementary figures
+
 require(fmsb)
 require(ggplot2)
 require(grDevices)
