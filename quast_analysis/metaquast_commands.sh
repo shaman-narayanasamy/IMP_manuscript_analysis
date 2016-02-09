@@ -73,3 +73,5 @@
     /scratch/users/snarayanasamy/IMP_MS_data/metAmosAnalysis/A02_metAmos/Assemble/out/soapdenovo.31.asm.contig \
     /scratch/users/snarayanasamy/IMP_MS_data/metAmosAnalysis/A02_metAmos-IDBAUD_corrected/Assemble/out/idba-ud.31.asm/contig.fa
 
+### NOTE: Made a new folder "metaquast_analysis" which contains all the results for comparing single vs multi-omic assemblies
+### and multi-omic co-assemblies of differnt pipelines

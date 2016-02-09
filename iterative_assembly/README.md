@@ -21,5 +21,4 @@ The collapsing of contigs are done with cap3 for MG assemblies and CD-HIT-EST
 for MT assemblies. MetaQUAST is used for assessing the MG assemblies while
 MetaGeneMark is used for the MT assemblies.
 
-
-
+Created a new folder and moved all the data into it.

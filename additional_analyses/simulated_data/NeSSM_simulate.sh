@@ -1,8 +1,11 @@
 #!/bin/bash -l
 
+
+### Initialize scripts and binaries
 SCRIPTS="/home/users/snarayanasamy/NeSSM/scripts"
 BIN="/home/users/snarayanasamy/NeSSM/NeSSM_CPU/NeSSM"
 
+### Run NeSSM
 perl $SCRIPTS/mk_index.pl /mnt/nfs/projects/ecosystem_biology/test_datasets/CelajEtAl/73_species /mnt/nfs/projects/ecosystem_biology/test_datasets/CelajEtAl/indexes
 mv /mnt/nfs/projects/ecosystem_biology/test_datasets/CelajEtAl/indexes/index /mnt/nfs/projects/ecosystem_biology/test_datasets/CelajEtAl/indexes/index_back
 

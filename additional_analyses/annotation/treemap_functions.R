@@ -1,3 +1,5 @@
+### FUNCTION: Produce treemap with different colours
+
 n=100
 
 treemap<-function (id, area, group, color, scale = NULL, lab = c(TRUE, 

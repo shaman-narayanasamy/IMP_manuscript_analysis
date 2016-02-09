@@ -1,0 +1,11 @@
+This folder contains 8 directories:
+
+1. annotation: Scripts for visualizing taxonomic and functional annotation
+2. functional_analysis: Functional analysis of annotated genes
+3. iterative_assembly_analysis: Analysis of iterative assembly
+4. preprocessing: Analysis of preprocessed NGS reads
+5. simulated_data: Commands for generation of simulated data
+6. comparison: Comparing assemblies single vs multi-omic, IMP vs MetAMOS
+7. HMP_gene_catalog: Mapping data to HMP gene catalog (incomplete)
+8. MT_genomes: Analysis of genomes assembled only from MT data
+
