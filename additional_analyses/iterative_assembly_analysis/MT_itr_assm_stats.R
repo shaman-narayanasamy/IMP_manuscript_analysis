@@ -120,6 +120,8 @@ xlab("iteration")
 list(p1, dat.1)
 }
 
+### Read in data
+
 HF.dat <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/X310763260-iterative_MT/collapsed_contig_gene_stats.tsv"
 HF.pe <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/X310763260-iterative_MT/pair_counts.tsv"
 HF.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/X310763260-iterative_MT/single_counts.tsv"
