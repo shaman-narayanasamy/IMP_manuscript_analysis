@@ -7,14 +7,70 @@ THREADS = os.environ.get("THREADS", config['threads'])
 
 ## Input and output parameters
 OUT_LOG = os.environ.get("OUT_LOG")
-INPUT_DIR = os.environ.get("INPUT_DIR")
-REFERENCE = os.environ.get("REFERENCE")
+#INPUT_DIR = os.environ.get("INPUT_DIR")
+REFERENCE = os.environ.get("REFERENCE", "/work/projects/ecosystem_biology/MUST/databases/integrated_reference_catalog/IGC.fa")
 OUT_DIR = os.environ.get("OUT_DIR")
-TMP = os.environ.get("TMP")
+TMP = os.environ.get("TMP", "/tmp")
+MGR1 = os.environ.get("MGR1")
+MGR2 = os.environ.get("MGR1")
+MTR1 = os.environ.get("MTR1")
+MTR2 = os.environ.get("MTR2")
+SAMPLE = os.environ.get("SAMPLE")
+
 
 ### Index gene catalog using bwa 
+rule INDEX_DATABASE:
+    input:
+        {REFERENCE}
+    output:
+        {REFERENCE}.amb,
+        {REFERENCE}.bwt,
+        {REFERENCE}.pac,
+        {REFERENCE}.ann,
+        {REFERENCE}.sa
+    shell:
+        """
+        bwa index {input}
+        """
+    benchmark:
+        "%s/benchmarks/INDEX_DATABASE.json" % OUT_DIR
+    log:
+        OUT_LOG
 
 ### Map preprocessed MG reads and count them
+rule MAP_MG_READS:
+     input:
+        {MGR1},
+        {MGR2},
+        {REFERENCE}
+     output:
+        expand('{dir}/{name}', name=[
+            'MG.reads.sorted.bam',
+            'MG.reads.sorted.bam.bai'], dir=OUT_DIR),
+     shell:
+        SAMHEADER="@RG\\tID:{SAMPLE}\\tSM:MG"
+        PREFIX={OUT_DIR}/MG.reads
+
+        # merge paired and se
+        samtools merge -@ {THREADS} -f $PREFIX.merged.bam \
+        <(bwa mem -v 1 -t {THREADS} -M -R \"$SAMHEADER\" {input[3]} {input[0]} {input[1]} | \
+        samtools view -@ {THREADS} -bS -) \
+        <(bwa mem -v 1 -t {THREADS} -M -R \"$SAMHEADER\" {input[3]} {input[2]} | \
+        samtools view -@ {THREADS} -bS -)
+
+        # sort
+        samtools sort -@ {THREADS} -m {MEMCORE}G $PREFIX.merged.bam $PREFIX.sorted
+        rm $PREFIX.merged.bam
+
+        # index
+        samtools index $PREFIX.sorted.bam
+
+     benchmark:
+        "%s/benchmarks/INDEX_DATABASE.json" % OUT_DIR
+     log:
+        OUT_LOG
+
+rule GET_MAPPING_STATS
 
 ### Map preprocessed MT reads and count them
 
