@@ -1,5 +1,5 @@
-
-configfile: "config.iterative_MG.json"
+import os
+configfile: "config_mapping.json"
 
 ## Parameters required from the config file
 MEMCORE = os.environ.get("MEMCORE", config['memory_per_core_gb'])
@@ -21,13 +21,13 @@ SAMPLE = os.environ.get("SAMPLE")
 ### Index gene catalog using bwa 
 rule INDEX_DATABASE:
     input:
-        {REFERENCE}
+        "{REFERENCE}"
     output:
-        {REFERENCE}.amb,
-        {REFERENCE}.bwt,
-        {REFERENCE}.pac,
-        {REFERENCE}.ann,
-        {REFERENCE}.sa
+        "{REFERENCE}.amb",
+        "{REFERENCE}.bwt",
+        "{REFERENCE}.pac",
+        "{REFERENCE}.ann",
+        "{REFERENCE}.sa"
     shell:
         """
         bwa index {input}
@@ -37,26 +37,33 @@ rule INDEX_DATABASE:
     log:
         OUT_LOG
 
+### All rule
+rule ALL:
+    input:
+        "%s/MG.reads.sorted.bam" % OUT_DIR,
+        "%s/MT.reads.sorted.bam" % OUT_DIR,
+        "%s/MG.assembly.contig_flagstat.txt" % OUT_DIR,
+        "%s/MT.assembly.contig_flagstat.txt" % OUT_DIR
+    shell: "echo DONE"
+
 ### Map MG reads
 rule MAP_MG_READS:
     input:
-       {MGR1},
-       {MGR2},
-       {REFERENCE}
+       "{MGR1}",
+       "{MGR2}",
+       "{REFERENCE}"
     output:
        expand('{dir}/{name}', name=[
            'MG.reads.sorted.bam',
            'MG.reads.sorted.bam.bai'], dir=OUT_DIR),
     shell:
+       """
        SAMHEADER="@RG\\tID:{SAMPLE}\\tSM:MG"
        PREFIX={OUT_DIR}/MG.reads
 
        # merge paired and se
-       samtools merge -@ {THREADS} -f $PREFIX.merged.bam \
-       <(bwa mem -v 1 -t {THREADS} -M -R \"$SAMHEADER\" {input[3]} {input[0]} {input[1]} | \
-       samtools view -@ {THREADS} -bS -) \
-       <(bwa mem -v 1 -t {THREADS} -M -R \"$SAMHEADER\" {input[3]} {input[2]} | \
-       samtools view -@ {THREADS} -bS -)
+       bwa mem -v 1 -t {THREADS} -M -R \"$SAMHEADER\" {input[2]} {input[0]} {input[1]} | \
+       samtools view -@ {THREADS} -bS - > $PREFIX.bam
 
        # sort
        samtools sort -@ {THREADS} -m {MEMCORE}G $PREFIX.merged.bam $PREFIX.sorted
@@ -64,7 +71,7 @@ rule MAP_MG_READS:
 
        # index
        samtools index $PREFIX.sorted.bam
-
+       """
     benchmark:
        "%s/benchmarks/INDEX_DATABASE.json" % OUT_DIR
     log:
@@ -76,7 +83,12 @@ rule ANALYSIS_MG_CALL_CONTIG_DEPTH:
         "%s/MG.reads.sorted.bam" % OUT_DIR
     output:
         "%s/MG.assembly.contig_flagstat.txt" % OUT_DIR
+    log:
+        OUT_LOG
+    benchmark:
+        "%s/benchmarks/ANALYSIS_MG_CALL_CONTIG_DEPTH.json" % OUT_DIR
     shell:
+        """
         if [[ ! -f {input}.fai ]]
         then
           echo "No fasta index! Creating one." >> {log}
@@ -85,62 +97,62 @@ rule ANALYSIS_MG_CALL_CONTIG_DEPTH:
 
         echo "flagstat" >> {log}
         samtools flagstat {input} > {output}
-    log:
-        OUT_LOG
-    benchmark:
-        "%s/benchmarks/ANALYSIS_MG_CALL_CONTIG_DEPTH.json" % AN_OUT
+        """
    
 
-### Map MT reads
-rule MAP_MT_READS:
-    input:
-       {MTR1},
-       {MTR2},
-       {REFERENCE}
-    output:
-       expand('{dir}/{name}', name=[
-           'MT.reads.sorted.bam',
-           'MT.reads.sorted.bam.bai'], dir=OUT_DIR),
-    shell:
-       SAMHEADER="@RG\\tID:{SAMPLE}\\tSM:MT"
-       PREFIX={OUT_DIR}/MT.reads
-
-       # merge paired and se
-       samtools merge -@ {THREADS} -f $PREFIX.merged.bam \
-       <(bwa mem -v 1 -t {THREADS} -M -R \"$SAMHEADER\" {input[3]} {input[0]} {input[1]} | \
-       samtools view -@ {THREADS} -bS -) \
-       <(bwa mem -v 1 -t {THREADS} -M -R \"$SAMHEADER\" {input[3]} {input[2]} | \
-       samtools view -@ {THREADS} -bS -)
-
-       # sort
-       samtools sort -@ {THREADS} -m {MEMCORE}G $PREFIX.merged.bam $PREFIX.sorted
-       rm $PREFIX.merged.bam
-
-       # index
-       samtools index $PREFIX.sorted.bam
-
-    benchmark:
-       "%s/benchmarks/INDEX_DATABASE.json" % OUT_DIR
-    log:
-       OUT_LOG
-
-### Obtain read mapping statistics
-rule ANALYSIS_MT_CALL_CONTIG_DEPTH:
-    input:
-        "%s/MT.reads.sorted.bam" % OUT_DIR
-    output:
-        "%s/MT.assembly.contig_flagstat.txt" % OUT_DIR
-    shell:
-        if [[ ! -f {input}.fai ]]
-        then
-          echo "No fasta index! Creating one." >> {log}
-          samtools faidx {input}
-        fi
-
-        echo "flagstat" >> {log}
-        samtools flagstat {input} > {output}
-    log:
-        OUT_LOG
-    benchmark:
-        "%s/benchmarks/ANALYSIS_MT_CALL_CONTIG_DEPTH.json" % AN_OUT
- 
+#### Map MT reads
+#rule MAP_MT_READS:
+#    input:
+#       "{MTR1}",
+#       "{MTR2}",
+#       "{REFERENCE}"
+#    output:
+#       expand('{dir}/{name}', name=[
+#           'MT.reads.sorted.bam',
+#           'MT.reads.sorted.bam.bai'], dir=OUT_DIR),
+#    shell:
+#       """
+#       SAMHEADER="@RG\\tID:{SAMPLE}\\tSM:MT"
+#       PREFIX={OUT_DIR}/MT.reads
+#
+#       # merge paired and se
+#       samtools merge -@ {THREADS} -f $PREFIX.merged.bam \
+#       <(bwa mem -v 1 -t {THREADS} -M -R \"$SAMHEADER\" {input[3]} {input[0]} {input[1]} | \
+#       samtools view -@ {THREADS} -bS -) \
+#       <(bwa mem -v 1 -t {THREADS} -M -R \"$SAMHEADER\" {input[3]} {input[2]} | \
+#       samtools view -@ {THREADS} -bS -)
+#
+#       # sort
+#       samtools sort -@ {THREADS} -m {MEMCORE}G $PREFIX.merged.bam $PREFIX.sorted
+#       rm $PREFIX.merged.bam
+#
+#       # index
+#       samtools index $PREFIX.sorted.bam
+#       """
+#    benchmark:
+#       "%s/benchmarks/INDEX_DATABASE.json" % OUT_DIR
+#    log:
+#       OUT_LOG
+#
+#### Obtain read mapping statistics
+#rule ANALYSIS_MT_CALL_CONTIG_DEPTH:
+#    input:
+#        "%s/MT.reads.sorted.bam" % OUT_DIR
+#    output:
+#        "%s/MT.assembly.contig_flagstat.txt" % OUT_DIR
+#    log:
+#        OUT_LOG
+#    benchmark:
+#        "%s/benchmarks/ANALYSIS_MT_CALL_CONTIG_DEPTH.json" % OUT_DIR
+#    shell:
+#        """
+#        if [[ ! -f {input}.fai ]]
+#        then
+#          echo "No fasta index! Creating one." >> {log}
+#          samtools faidx {input}
+#        fi
+#
+#        echo "flagstat" >> {log}
+#        samtools flagstat {input} > {output}
+#        """
+#
