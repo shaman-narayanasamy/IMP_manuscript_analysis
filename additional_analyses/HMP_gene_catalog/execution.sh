@@ -18,6 +18,6 @@ MGR1=$MGR1 \
   SAMPLE=$SAMPLE \
   OUT_DIR=$OUT_DIR \
   OUT_LOG=$OUT_LOG \
-  snakemake ALL -np
+  snakemake ALL
 
 date
