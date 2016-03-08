@@ -17,33 +17,33 @@ MTR1 = os.environ.get("MTR1")
 MTR2 = os.environ.get("MTR2")
 SAMPLE = os.environ.get("SAMPLE")
 
-### Index gene catalog using bwa 
-rule INDEX_DATABASE:
-    input:
-        {REFERENCE}
-    output:
-        "{REFERENCE}.amb",
-        "{REFERENCE}.bwt",
-        "{REFERENCE}.pac",
-        "{REFERENCE}.ann",
-        "{REFERENCE}.sa"
-    shell:
-        """
-        bwa index {input}
-        """
-    benchmark:
-        "%s/benchmarks/INDEX_DATABASE.json" % OUT_DIR
-    log:
-        OUT_LOG
-
 ### All rule
 rule ALL:
     input:
         "%s/MG.reads.sorted.bam" % OUT_DIR,
         "%s/MT.reads.sorted.bam" % OUT_DIR,
         "%s/MG.assembly.contig_flagstat.txt" % OUT_DIR,
-        "%s/MT.assembly.contig_flagstat.txt" % OUT_DIR
+        "%s/MT.assembly.contig_flagstat.txt" % OUT_DIR,
     shell: "echo DONE"
+
+### Index gene catalog using bwa 
+rule INDEX_DATABASE:
+    input:
+        {REFERENCE}
+    output:
+        expand("{REFERENCE}.amb", REFERENCE=REFERENCE),
+        expand("{REFERENCE}.bwt", REFERENCE=REFERENCE),
+        expand("{REFERENCE}.pac", REFERENCE=REFERENCE),
+        expand("{REFERENCE}.ann", REFERENCE=REFERENCE),
+        expand("{REFERENCE}.sa", REFERENCE=REFERENCE)
+    benchmark:
+        "%s/benchmarks/INDEX_DATABASE.json" % OUT_DIR
+    log:
+        OUT_LOG
+    shell:
+        """
+        bwa index {input}
+        """
 
 ### Map MG reads
 rule MAP_MG_READS:
@@ -58,6 +58,10 @@ rule MAP_MG_READS:
     output:
        '%s/MG.reads.sorted.bam' % OUT_DIR,
        '%s/MG.reads.sorted.bam.bai' % OUT_DIR
+    benchmark:
+       "%s/benchmarks/MAP_MG_READS.json" % OUT_DIR
+    log:
+       OUT_LOG
     shell:
        """
        SAMHEADER="@RG\\tID:{SAMPLE}\\tSM:MG"
@@ -74,10 +78,6 @@ rule MAP_MG_READS:
        # index
        samtools index $PREFIX.sorted.bam
        """
-    benchmark:
-       "%s/benchmarks/INDEX_DATABASE.json" % OUT_DIR
-    log:
-       OUT_LOG
 
 ### Obtain read mapping statistics
 rule ANALYSIS_MG_CALL_CONTIG_DEPTH:
@@ -113,6 +113,10 @@ rule MAP_MT_READS:
     output:
        '%s/MT.reads.sorted.bam' % OUT_DIR,
        '%s/MT.reads.sorted.bam.bai' % OUT_DIR
+    benchmark:
+       "%s/benchmarks/MAP_MT_READS.json" % OUT_DIR
+    log:
+       OUT_LOG
     shell:
        """
        SAMHEADER="@RG\\tID:{SAMPLE}\\tSM:MT"
@@ -129,10 +133,6 @@ rule MAP_MT_READS:
        # index
        samtools index $PREFIX.sorted.bam
        """
-    benchmark:
-       "%s/benchmarks/INDEX_DATABASE.json" % OUT_DIR
-    log:
-       OUT_LOG
 
 ### Obtain read mapping statistics
 rule ANALYSIS_MT_CALL_CONTIG_DEPTH:
@@ -140,10 +140,10 @@ rule ANALYSIS_MT_CALL_CONTIG_DEPTH:
         "%s/MT.reads.sorted.bam" % OUT_DIR
     output:
         "%s/MT.assembly.contig_flagstat.txt" % OUT_DIR
-    log:
-        OUT_LOG
     benchmark:
         "%s/benchmarks/ANALYSIS_MT_CALL_CONTIG_DEPTH.json" % OUT_DIR
+    log:
+        OUT_LOG
     shell:
         """
         if [[ ! -f {input}.fai ]]

@@ -10,6 +10,7 @@ CMD="MGR1=$1 \
   MTR2=$4 \
   SAMPLE=$5 \
   OUT_DIR=$6 \
+  OUT_LOG=$OUT_DIR/$SAMPLE.log \
   snakemake ALL -np"
 echo $CMD
 
