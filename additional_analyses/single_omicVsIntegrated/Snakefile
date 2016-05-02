@@ -1,0 +1,162 @@
+import os
+configfile: "config_mapping.json"
+
+## Parameters required from the config file
+MEMCORE = os.environ.get("MEMCORE", config['memory_per_core_gb'])
+THREADS = os.environ.get("THREADS", config['threads'])
+
+## Input and output parameters
+OUT_LOG = os.environ.get("OUT_LOG")
+#INPUT_DIR = os.environ.get("INPUT_DIR")
+REFERENCE_MG = os.environ.get("REFERENCE_MG")
+REFERENCE_MT = os.environ.get("REFERENCE_MT")
+REFERENCE_MGMT = os.environ.get("REFERENCE_MGMT")
+OUT_DIR = os.environ.get("OUT_DIR")
+TMP = os.environ.get("TMP", "/tmp")
+MGR1 = os.environ.get("MGR1")
+MGR2 = os.environ.get("MGR2")
+MGSE = os.environ.get("MGSE")
+MTR1 = os.environ.get("MTR1")
+MTR2 = os.environ.get("MTR2")
+MTSE = os.environ.get("MTSE")
+SAMPLE = os.environ.get("SAMPLE")
+
+### All rule
+rule ALL:
+    input:
+        "%s/MG.reads.sorted.bam" % OUT_DIR,
+        "%s/MT.reads.sorted.bam" % OUT_DIR,
+        "%s/MG.assembly.contig_flagstat.txt" % OUT_DIR,
+        "%s/MT.assembly.contig_flagstat.txt" % OUT_DIR,
+    shell: "echo DONE"
+
+### Index gene catalog using bwa 
+rule INDEX_DATABASE:
+    input:
+        {REFERENCE}
+    output:
+        expand("{REFERENCE}.amb", REFERENCE=REFERENCE),
+        expand("{REFERENCE}.bwt", REFERENCE=REFERENCE),
+        expand("{REFERENCE}.pac", REFERENCE=REFERENCE),
+        expand("{REFERENCE}.ann", REFERENCE=REFERENCE),
+        expand("{REFERENCE}.sa", REFERENCE=REFERENCE)
+    benchmark:
+        "%s/benchmarks/INDEX_DATABASE.json" % OUT_DIR
+    log:
+        OUT_LOG
+    shell:
+        """
+        bwa index {input}
+        """
+
+### Map MG reads
+rule MAP_MG_READS:
+    input:
+       {MGR1},
+       {MGR2},
+       {REFERENCE},
+       expand("{REFERENCE}.amb", REFERENCE=REFERENCE),
+       expand("{REFERENCE}.bwt", REFERENCE=REFERENCE),
+       expand("{REFERENCE}.pac", REFERENCE=REFERENCE),
+       expand("{REFERENCE}.sa", REFERENCE=REFERENCE)
+    output:
+       '%s/MG.reads.sorted.bam' % OUT_DIR,
+       '%s/MG.reads.sorted.bam.bai' % OUT_DIR
+    benchmark:
+       "%s/benchmarks/MAP_MG_READS.json" % OUT_DIR
+    log:
+       OUT_LOG
+    shell:
+       """
+       SAMHEADER="@RG\\tID:{SAMPLE}\\tSM:MG"
+       PREFIX={OUT_DIR}/MG.reads
+
+       # merge paired and se
+       bwa mem -v 1 -t {THREADS} -M -R \"$SAMHEADER\" {input[2]} {input[0]} {input[1]} | \
+       samtools view -@ {THREADS} -bS - > $PREFIX.bam
+
+       # sort
+       samtools sort -@ {THREADS} -m {MEMCORE}G $PREFIX.bam $PREFIX.sorted
+       rm $PREFIX.bam
+
+       # index
+       samtools index $PREFIX.sorted.bam
+       """
+
+### Obtain read mapping statistics
+rule ANALYSIS_MG_CALL_CONTIG_DEPTH:
+    input:
+        "%s/MG.reads.sorted.bam" % OUT_DIR
+    output:
+        "%s/MG.assembly.contig_flagstat.txt" % OUT_DIR
+    log:
+        OUT_LOG
+    benchmark:
+        "%s/benchmarks/ANALYSIS_MG_CALL_CONTIG_DEPTH.json" % OUT_DIR
+    shell:
+        """
+        if [[ ! -f {input}.fai ]]
+        then
+          echo "No fasta index! Creating one." >> {log}
+          samtools faidx {input}
+        fi
+
+        echo "flagstat" >> {log}
+        samtools flagstat {input} > {output}
+        """
+### Map MT reads
+rule MAP_MT_READS:
+    input:
+       {MTR1},
+       {MTR2},
+       {REFERENCE},
+       expand("{REFERENCE}.amb", REFERENCE=REFERENCE),
+       expand("{REFERENCE}.bwt", REFERENCE=REFERENCE),
+       expand("{REFERENCE}.pac", REFERENCE=REFERENCE),
+       expand("{REFERENCE}.sa", REFERENCE=REFERENCE)
+    output:
+       '%s/MT.reads.sorted.bam' % OUT_DIR,
+       '%s/MT.reads.sorted.bam.bai' % OUT_DIR
+    benchmark:
+       "%s/benchmarks/MAP_MT_READS.json" % OUT_DIR
+    log:
+       OUT_LOG
+    shell:
+       """
+       SAMHEADER="@RG\\tID:{SAMPLE}\\tSM:MT"
+       PREFIX={OUT_DIR}/MT.reads
+
+       # merge paired and se
+       bwa mem -v 1 -t {THREADS} -M -R \"$SAMHEADER\" {input[2]} {input[0]} {input[1]} | \
+       samtools view -@ {THREADS} -bS - > $PREFIX.bam
+
+       # sort
+       samtools sort -@ {THREADS} -m {MEMCORE}G $PREFIX.bam $PREFIX.sorted
+       rm $PREFIX.bam
+
+       # index
+       samtools index $PREFIX.sorted.bam
+       """
+
+### Obtain read mapping statistics
+rule ANALYSIS_MT_CALL_CONTIG_DEPTH:
+    input:
+        "%s/MT.reads.sorted.bam" % OUT_DIR
+    output:
+        "%s/MT.assembly.contig_flagstat.txt" % OUT_DIR
+    benchmark:
+        "%s/benchmarks/ANALYSIS_MT_CALL_CONTIG_DEPTH.json" % OUT_DIR
+    log:
+        OUT_LOG
+    shell:
+        """
+        if [[ ! -f {input}.fai ]]
+        then
+          echo "No fasta index! Creating one." >> {log}
+          samtools faidx {input}
+        fi
+
+        echo "flagstat" >> {log}
+        samtools flagstat {input} > {output}
+        """
+   

@@ -1,28 +1,32 @@
 #!/bin/bash -l
 
 source ../preload_modules.sh
+INDIR="/scratch/users/snarayanasamy/test_output/Preprocessing"
+OUTDIR="/scratch/users/snarayanasamy/test_iterative_MG/"
+OUTLOG="/scratch/users/snarayanasamy/test_iterative_MG/test_iterative_MG.log"
+TMPDIR="/scratch/users/snarayanasamy/test_iterative_MG/tmp"
 
 ### Initialize first assembly ###
-INPUT_DIR="/scratch/users/snarayanasamy/test_output/Preprocessing" \
-  OUT_DIR="/scratch/users/snarayanasamy/test_iterative_MG/" \
-  OUT_LOG="/scratch/users/snarayanasamy/test_iterative_MG/test_iterative_MG.log" \
-  TMPDIR="/scratch/users/snarayanasamy/test_iterative_MG/tmp" \
-  snakemake -np ALL
+INPUT_DIR=$INDIR \
+  OUT_DIR=$OUTDIR \
+  OUT_LOG=$OUTLOG \
+  TMP=$TMPDIR \
+  snakemake ALL
 
-INPUT_DIR="/scratch/users/snarayanasamy/test_output/Preprocessing" \
-  OUT_DIR="/scratch/users/snarayanasamy/test_iterative_MG/" \
-  OUT_LOG="/scratch/users/snarayanasamy/test_iterative_MG/test_iterative_MG.log" \
-  TMP="/scratch/users/snarayanasamy/test_iterative_MG/tmp" \
-  snakemake -np EXTRACT_UNMAPPED
+  INPUT_DIR=$INDIR \
+  OUT_DIR=$OUTDIR \
+  OUT_LOG=$OUTLOG \
+  TMP=$TMPDIR \
+  snakemake EXTRACT_UNMAPPED
 
 for ITER in {2..5}
 do
   echo "Iteration $ITER"
-  INPUT_DIR="/scratch/users/snarayanasamy/test_output/Preprocessing" \
-    OUT_DIR="/scratch/users/snarayanasamy/test_iterative_MG" \
-    OUT_LOG="/scratch/users/snarayanasamy/test_iterative_MG/test_iterative_MG.log" \
-    TMP="/scratch/users/snarayanasamy/test_iterative_MG/tmp" \
-    STEP=${ITER} snakemake -np ALL
+  INPUT_DIR=$INDIR \
+  OUT_DIR=$OUTDIR \
+  OUT_LOG=$OUTLOG \
+  TMP=$TMPDIR \
+    STEP=${ITER} snakemake ALL
 done
   
 ### Initialize second assembly ###

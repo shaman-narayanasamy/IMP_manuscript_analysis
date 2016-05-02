@@ -4,7 +4,7 @@ import os
 STEP = os.environ.get("STEP", "1")
 STEPp1 = int(STEP) + 1
 
-configfile: "../config.imp.json"
+configfile: "config.iterative_MT.json"
 #configfile: "config.iterative_MT.json"
 
 ## Parameters required from the config file

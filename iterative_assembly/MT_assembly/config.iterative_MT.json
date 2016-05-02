@@ -1,7 +1,7 @@
 {
-    "threads": 24,
-    "memory_total_gb": 600,
-    "memory_per_core_gb": 25,
+    "threads": 12,
+    "memory_total_gb": 48,
+    "memory_per_core_gb": 4,
     "tmp_dir": "tmp",
     "imp_src": "src",
     "raws": {
