@@ -9,16 +9,16 @@ MT_REF=$3
 OUTDIR=$4
 OUTLOG=$5
 SAMPLE=$6
-#
+
 date
 source ../preload_modules.sh
-
 
 INPUT_DIR=$INDIR \
   REFERENCE_MG=$MG_REF \
   REFERENCE_MT=$MT_REF \
   OUT_DIR=$OUTDIR \
+  OUT_LOG=$OUTLOG \
   SAMPLE=$SAMPLE \
-  snakemake -np
+  snakemake
 
 date
