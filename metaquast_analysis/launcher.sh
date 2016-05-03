@@ -32,7 +32,14 @@ do
     IMP="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/${S}/Assembly/MGMT.assembly.merged.fa"
     IMP_MEGAHIT="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/${S}_megahit/Assembly/MGMT.assembly.merged.fa"
     METAMOS="/scratch/users/snarayanasamy/IMP_MS_data/metAmosAnalysis/${S1}/MGMT/default/${S}/Assemble/out/soapdenovo.31.asm.contig"
-    MOCAT=""
+    MOCAT="/scratch/users/snarayanasamy/IMP_MS_data/MOCAT_analysis/Combined2/${S1}/${S}/"
+    IMP_MG="/scratch/users/snarayanasamy/IMP_MS_data/iterative_assemblies/MG_assemblies/${S}/MG_contigs_merged_2.fa"
+    METAMOS_MG="/scratch/users/snarayanasamy/IMP_MS_data/metAmosAnalysis/${S1}/MG/default/${S}/Assemble/out/soapdenovo.31.asm.contig"
+    MOCAT_MG=""
+    IMP_MT="/scratch/users/snarayanasamy/IMP_MS_data/iterative_assemblies/MT_assemblies/${S}/MT_contigs_merged_2.fa"
+    METAMOS_MT="/scratch/users/snarayanasamy/IMP_MS_data/metAmosAnalysis/${S1}/MT/default/${S}/Assemble/out/soapdenovo.31.asm.contig"
+    MOCAT_MT=""
+
     OUTDIR="/scratch/users/snarayanasamy/IMP_MS_data/metaquast_analysis/${S}"
     
     ${OARSUB} -n "${S}_mapping" "./execution.sh $IMP $IMP_MEGAHIT $METAMOS $MOCAT $OUTDIR"
