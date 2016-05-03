@@ -57,15 +57,12 @@ rule MAP_MG2MG:
         echo $PREFIX
         
         # index
-        if [[ ! -f {output[0]} ]]
-        then
         bwa index {input[0]}
-        fi
 
         # map and merge pairs
-        samtools merge -@ {THREADS} -f $PREFIX.merged.bam \
-        <(bwa mem -v 1 -t {THREADS} -M -R "$SAMHEADER" {input[0]} {input[1]} {input[2]} | \
-        samtools view -@ {THREADS} -bS -)        
+        bwa mem -v 1 -t {THREADS} -M -R "$SAMHEADER" {input[0]} {input[1]} {input[2]} | \
+        samtools view -@ {THREADS} -bS - > $PREFIX.merged.bam
+
         # sort
         samtools sort -@ {THREADS} -m {MEMCORE}G $PREFIX.merged.bam $PREFIX.sorted
         rm $PREFIX.merged.bam
@@ -109,16 +106,12 @@ rule MAP_MT2MG:
         echo $PREFIX
         
         # index
-        if [[ ! -f {output[0]} ]]
-        then
         bwa index {input[0]}
-        fi
 
         # map and merge pairs
-        samtools merge -@ {THREADS} -f $PREFIX.merged.bam \
-        <(bwa mem -v 1 -t {THREADS} -M -R "$SAMHEADER" {input[0]} {input[1]} {input[2]} | \
-        samtools view -@ {THREADS} -bS -)
-        
+        bwa mem -v 1 -t {THREADS} -M -R "$SAMHEADER" {input[0]} {input[1]} {input[2]} | \
+        samtools view -@ {THREADS} -bS - > $PREFIX.merged.bam
+
         # sort
         samtools sort -@ {THREADS} -m {MEMCORE}G $PREFIX.merged.bam $PREFIX.sorted
         rm $PREFIX.merged.bam
@@ -162,16 +155,12 @@ rule MAP_MT2MT:
         echo $PREFIX
         
         # index
-        if [[ ! -f {output[0]} ]]
-        then
         bwa index {input[0]}
-        fi
 
         # map and merge pairs
-        samtools merge -@ {THREADS} -f $PREFIX.merged.bam \
-        <(bwa mem -v 1 -t {THREADS} -M -R "$SAMHEADER" {input[0]} {input[1]} {input[2]} | \
-        samtools view -@ {THREADS} -bS -)
-        
+        bwa mem -v 1 -t {THREADS} -M -R "$SAMHEADER" {input[0]} {input[1]} {input[2]} | \
+        samtools view -@ {THREADS} -bS - > $PREFIX.merged.bam
+
         # sort
         samtools sort -@ {THREADS} -m {MEMCORE}G $PREFIX.merged.bam $PREFIX.sorted
         rm $PREFIX.merged.bam
@@ -215,16 +204,12 @@ rule MAP_MG2MT:
         echo $PREFIX
         
         # index
-        if [[ ! -f {output[0]} ]]
-        then
         bwa index {input[0]}
-        fi
 
         # map and merge pairs
-        samtools merge -@ {THREADS} -f $PREFIX.merged.bam \
-        <(bwa mem -v 1 -t {THREADS} -M -R "$SAMHEADER" {input[0]} {input[1]} {input[2]} | \
-        samtools view -@ {THREADS} -bS -) 
-        
+        bwa mem -v 1 -t {THREADS} -M -R "$SAMHEADER" {input[0]} {input[1]} {input[2]} | \
+        samtools view -@ {THREADS} -bS - > $PREFIX.merged.bam
+       
         # sort
         samtools sort -@ {THREADS} -m {MEMCORE}G $PREFIX.merged.bam $PREFIX.sorted
         rm $PREFIX.merged.bam
@@ -268,16 +253,12 @@ rule MAP_MG2MGMT:
         echo $PREFIX
         
         # index
-        if [[ ! -f {output[0]} ]]
-        then
         bwa index {input[0]}
-        fi
 
         # map and merge pairs
-        samtools merge -@ {THREADS} -f $PREFIX.merged.bam \
-        <(bwa mem -v 1 -t {THREADS} -M -R "$SAMHEADER" {input[0]} {input[1]} {input[2]} | \
-        samtools view -@ {THREADS} -bS -)
-        
+        bwa mem -v 1 -t {THREADS} -M -R "$SAMHEADER" {input[0]} {input[1]} {input[2]} | \
+        samtools view -@ {THREADS} -bS - > $PREFIX.merged.bam
+
         # sort
         samtools sort -@ {THREADS} -m {MEMCORE}G $PREFIX.merged.bam $PREFIX.sorted
         rm $PREFIX.merged.bam
@@ -321,16 +302,12 @@ rule MAP_MT2MGMT:
         echo $PREFIX
         
         # index
-        if [[ ! -f {output[0]} ]]
-        then
         bwa index {input[0]}
-        fi
 
         # map and merge pairs
-        samtools merge -@ {THREADS} -f $PREFIX.merged.bam \
-        <(bwa mem -v 1 -t {THREADS} -M -R "$SAMHEADER" {input[0]} {input[1]} {input[2]} | \
-        samtools view -@ {THREADS} -bS -) 
-        
+        bwa mem -v 1 -t {THREADS} -M -R "$SAMHEADER" {input[0]} {input[1]} {input[2]} | \
+        samtools view -@ {THREADS} -bS - > $PREFIX.merged.bam 
+
         # sort
         samtools sort -@ {THREADS} -m {MEMCORE}G $PREFIX.merged.bam $PREFIX.sorted
         rm $PREFIX.merged.bam

@@ -21,6 +21,6 @@ INPUT_DIR=$INDIR \
   OUT_DIR=$OUTDIR \
   OUT_LOG=$OUTLOG \
   SAMPLE=$SAMPLE \
-  snakemake
+  snakemake -F
 
 date
