@@ -1,0 +1,351 @@
+import os
+configfile: "../config_mapping.json"
+
+## Parameters required from the config file
+MEMCORE = os.environ.get("MEMCORE", config['memory_per_core_gb'])
+THREADS = os.environ.get("THREADS", config['threads'])
+
+## Input and output parameters
+OUT_LOG = os.environ.get("OUT_LOG")
+INPUT_DIR = os.environ.get("INPUT_DIR")
+REFERENCE_MG = os.environ.get("REFERENCE_MG")
+REFERENCE_MT = os.environ.get("REFERENCE_MT")
+REFERENCE_MGMT = os.environ.get("REFERENCE_MGMT")
+OUT_DIR = os.environ.get("OUT_DIR")
+TMP = os.environ.get("TMP", "/tmp")
+SAMPLE = os.environ.get("SAMPLE")
+
+### All rule
+rule ALL:
+    input:
+        "%s/MG_reads-x-%s_MG-assm.sorted.bam" % (OUT_DIR, SAMPLE),
+        "%s/MG_reads-x-%s_MG-assm.flagstat.txt" % (OUT_DIR, SAMPLE),
+        "%s/MT_reads-x-%s_MG-assm.sorted.bam" % (OUT_DIR, SAMPLE),
+        "%s/MT_reads-x-%s_MG-assm.flagstat.txt" % (OUT_DIR, SAMPLE),
+        "%s/MT_reads-x-%s_MT-assm.sorted.bam" % (OUT_DIR, SAMPLE),
+        "%s/MT_reads-x-%s_MT-assm.flagstat.txt" % (OUT_DIR, SAMPLE),
+        "%s/MG_reads-x-%s_MT-assm.sorted.bam" % (OUT_DIR, SAMPLE),
+        "%s/MG_reads-x-%s_MT-assm.flagstat.txt" % (OUT_DIR, SAMPLE),
+        "%s/MG_reads-x-%s_MGMT-assm.sorted.bam" % (OUT_DIR, SAMPLE),
+        "%s/MG_reads-x-%s_MGMT-assm.flagstat.txt" % (OUT_DIR, SAMPLE),
+        "%s/MT_reads-x-%s_MGMT-assm.sorted.bam" % (OUT_DIR, SAMPLE),
+        "%s/MT_reads-x-%s_MGMT-assm.flagstat.txt" % (OUT_DIR, SAMPLE)
+    shell: "echo DONE"
+
+rule MAP_MG2MG:
+    input:
+        {REFERENCE_MG},
+        "%s/Preprocess/out/lib1.1.fasta" % INPUT_DIR,
+        "%s/Preprocess/out/lib1.2.fasta" % INPUT_DIR
+    output:
+        expand("{REFERENCE_MG}.amb", REFERENCE_MG = REFERENCE_MG),
+        expand("{REFERENCE_MG}.bwt", REFERENCE_MG = REFERENCE_MG),
+        expand("{REFERENCE_MG}.pac", REFERENCE_MG = REFERENCE_MG),
+        expand("{REFERENCE_MG}.ann", REFERENCE_MG = REFERENCE_MG),
+        expand("{REFERENCE_MG}.sa", REFERENCE_MG = REFERENCE_MG),
+        "%s/MG_reads-x-%s_MG-assm.sorted.bam" % (OUT_DIR, SAMPLE),
+        "%s/MG_reads-x-%s_MG-assm.flagstat.txt" % (OUT_DIR, SAMPLE)
+    benchmark:
+        "%s/benchmarks/MG2MG.json" % OUT_DIR
+    log:
+        OUT_LOG
+    shell:
+        """
+        SAMHEADER="@RG\\tID:${SAMPLE}\\tSM:MG"
+        PREFIX={OUT_DIR}/MG_reads-x-{SAMPLE}_MG-assm
+        
+        echo $PREFIX
+        
+        # index
+        if [[ ! -f {output[0]} ]]
+        then
+        bwa index {input[0]}
+        fi
+
+        # map and merge pairs
+        samtools merge -@ {THREADS} -f $PREFIX.merged.bam \
+        <(bwa mem -v 1 -t {THREADS} -M -R "$SAMHEADER" {input[0]} {input[1]} {input[2]} | \
+        samtools view -@ {THREADS} -bS -)        
+        # sort
+        samtools sort -@ {THREADS} -m {MEMCORE}G $PREFIX.merged.bam $PREFIX.sorted
+        rm $PREFIX.merged.bam
+        
+        # index
+        samtools index $PREFIX.sorted.bam
+        
+        # Run flagstat
+        if [[ ! -f {output[5]}.fai ]]
+        then
+          echo "No fasta index! Creating one." >> {log}
+          samtools index {output[5]}
+        fi
+
+        echo "flagstat" >> {log}
+        samtools flagstat {output[5]} > {output[6]}
+        """
+
+rule MAP_MT2MG:
+    input:
+        {REFERENCE_MG},
+        "%s/Preprocess/out/lib2.1.fasta" % INPUT_DIR,
+        "%s/Preprocess/out/lib2.2.fasta" % INPUT_DIR
+    output:
+        expand("{REFERENCE_MG}.amb", REFERENCE_MG = REFERENCE_MG),
+        expand("{REFERENCE_MG}.bwt", REFERENCE_MG = REFERENCE_MG),
+        expand("{REFERENCE_MG}.pac", REFERENCE_MG = REFERENCE_MG),
+        expand("{REFERENCE_MG}.ann", REFERENCE_MG = REFERENCE_MG),
+        expand("{REFERENCE_MG}.sa", REFERENCE_MG = REFERENCE_MG),
+        "%s/MT_reads-x-%s_MG-assm.sorted.bam" % (OUT_DIR, SAMPLE),
+        "%s/MT_reads-x-%s_MG-assm.flagstat.txt" % (OUT_DIR, SAMPLE)
+    benchmark:
+        "%s/benchmarks/MT2MG.json" % OUT_DIR
+    log:
+        OUT_LOG
+    shell:
+        """
+        SAMHEADER="@RG\\tID:${SAMPLE}\\tSM:MT"
+        PREFIX={OUT_DIR}/MT_reads-x-{SAMPLE}_MG-assm
+        
+        echo $PREFIX
+        
+        # index
+        if [[ ! -f {output[0]} ]]
+        then
+        bwa index {input[0]}
+        fi
+
+        # map and merge pairs
+        samtools merge -@ {THREADS} -f $PREFIX.merged.bam \
+        <(bwa mem -v 1 -t {THREADS} -M -R "$SAMHEADER" {input[0]} {input[1]} {input[2]} | \
+        samtools view -@ {THREADS} -bS -)
+        
+        # sort
+        samtools sort -@ {THREADS} -m {MEMCORE}G $PREFIX.merged.bam $PREFIX.sorted
+        rm $PREFIX.merged.bam
+        
+        # index
+        samtools index $PREFIX.sorted.bam
+        
+        # Run flagstat
+        if [[ ! -f {output[5]}.fai ]]
+        then
+          echo "No fasta index! Creating one." >> {log}
+          samtools index {output[5]}
+        fi
+
+        echo "flagstat" >> {log}
+        samtools flagstat {output[5]} > {output[6]}
+        """
+
+rule MAP_MT2MT:
+    input:
+        {REFERENCE_MT},
+        "%s/Preprocess/out/lib2.1.fasta" % INPUT_DIR,
+        "%s/Preprocess/out/lib2.2.fasta" % INPUT_DIR
+    output:
+        expand("{REFERENCE_MT}.amb", REFERENCE_MT = REFERENCE_MT),
+        expand("{REFERENCE_MT}.bwt", REFERENCE_MT = REFERENCE_MT),
+        expand("{REFERENCE_MT}.pac", REFERENCE_MT = REFERENCE_MT),
+        expand("{REFERENCE_MT}.ann", REFERENCE_MT = REFERENCE_MT),
+        expand("{REFERENCE_MT}.sa", REFERENCE_MT = REFERENCE_MT),
+        "%s/MT_reads-x-%s_MT-assm.sorted.bam" % (OUT_DIR, SAMPLE),
+        "%s/MT_reads-x-%s_MT-assm.flagstat.txt" % (OUT_DIR, SAMPLE)
+    benchmark:
+        "%s/benchmarks/MT2MT.json" % OUT_DIR
+    log:
+        OUT_LOG
+    shell:
+        """
+        SAMHEADER="@RG\\tID:${SAMPLE}\\tSM:MT"
+        PREFIX={OUT_DIR}/MT_reads-x-{SAMPLE}_MT-assm
+        
+        echo $PREFIX
+        
+        # index
+        if [[ ! -f {output[0]} ]]
+        then
+        bwa index {input[0]}
+        fi
+
+        # map and merge pairs
+        samtools merge -@ {THREADS} -f $PREFIX.merged.bam \
+        <(bwa mem -v 1 -t {THREADS} -M -R "$SAMHEADER" {input[0]} {input[1]} {input[2]} | \
+        samtools view -@ {THREADS} -bS -)
+        
+        # sort
+        samtools sort -@ {THREADS} -m {MEMCORE}G $PREFIX.merged.bam $PREFIX.sorted
+        rm $PREFIX.merged.bam
+        
+        # index
+        samtools index $PREFIX.sorted.bam
+        
+        # Run flagstat
+        if [[ ! -f {output[5]}.fai ]]
+        then
+          echo "No fasta index! Creating one." >> {log}
+          samtools index {output[5]}
+        fi
+
+        echo "flagstat" >> {log}
+        samtools flagstat {output[5]} > {output[6]}
+        """
+
+rule MAP_MG2MT:
+    input:
+        {REFERENCE_MT},
+        "%s/Preprocess/out/lib1.1.fasta" % INPUT_DIR,
+        "%s/Preprocess/out/lib1.2.fasta" % INPUT_DIR
+    output:
+        expand("{REFERENCE_MT}.amb", REFERENCE_MT = REFERENCE_MT),
+        expand("{REFERENCE_MT}.bwt", REFERENCE_MT = REFERENCE_MT),
+        expand("{REFERENCE_MT}.pac", REFERENCE_MT = REFERENCE_MT),
+        expand("{REFERENCE_MT}.ann", REFERENCE_MT = REFERENCE_MT),
+        expand("{REFERENCE_MT}.sa", REFERENCE_MT = REFERENCE_MT),
+        "%s/MG_reads-x-%s_MT-assm.sorted.bam" % (OUT_DIR, SAMPLE),
+        "%s/MG_reads-x-%s_MT-assm.flagstat.txt" % (OUT_DIR, SAMPLE)
+    benchmark:
+        "%s/benchmarks/MG2MT.json" % OUT_DIR
+    log:
+        OUT_LOG
+    shell:
+        """
+        SAMHEADER="@RG\\tID:${SAMPLE}\\tSM:MG"
+        PREFIX={OUT_DIR}/MG_reads-x-{SAMPLE}_MT-assm
+        
+        echo $PREFIX
+        
+        # index
+        if [[ ! -f {output[0]} ]]
+        then
+        bwa index {input[0]}
+        fi
+
+        # map and merge pairs
+        samtools merge -@ {THREADS} -f $PREFIX.merged.bam \
+        <(bwa mem -v 1 -t {THREADS} -M -R "$SAMHEADER" {input[0]} {input[1]} {input[2]} | \
+        samtools view -@ {THREADS} -bS -) 
+        
+        # sort
+        samtools sort -@ {THREADS} -m {MEMCORE}G $PREFIX.merged.bam $PREFIX.sorted
+        rm $PREFIX.merged.bam
+        
+        # index
+        samtools index $PREFIX.sorted.bam
+        
+        # Run flagstat
+        if [[ ! -f {output[5]}.fai ]]
+        then
+          echo "No fasta index! Creating one." >> {log}
+          samtools index {output[5]}
+        fi
+
+        echo "flagstat" >> {log}
+        samtools flagstat {output[5]} > {output[6]}
+        """
+
+rule MAP_MG2MGMT:
+    input:
+        {REFERENCE_MGMT},
+        "%s/Preprocess/out/lib1.1.fasta" % INPUT_DIR,
+        "%s/Preprocess/out/lib1.2.fasta" % INPUT_DIR
+    output:
+        expand("{REFERENCE_MGMT}.amb", REFERENCE_MGMT = REFERENCE_MGMT),
+        expand("{REFERENCE_MGMT}.bwt", REFERENCE_MGMT = REFERENCE_MGMT),
+        expand("{REFERENCE_MGMT}.pac", REFERENCE_MGMT = REFERENCE_MGMT),
+        expand("{REFERENCE_MGMT}.ann", REFERENCE_MGMT = REFERENCE_MGMT),
+        expand("{REFERENCE_MGMT}.sa", REFERENCE_MGMT = REFERENCE_MGMT),
+        "%s/MG_reads-x-%s_MGMT-assm.sorted.bam" % (OUT_DIR, SAMPLE),
+        "%s/MG_reads-x-%s_MGMT-assm.flagstat.txt" % (OUT_DIR, SAMPLE)
+    benchmark:
+        "%s/benchmarks/MG2MGMT.json" % OUT_DIR
+    log:
+        OUT_LOG
+    shell:
+        """
+        SAMHEADER="@RG\\tID:${SAMPLE}\\tSM:MG"
+        PREFIX={OUT_DIR}/MG_reads-x-{SAMPLE}_MGMT-assm
+        
+        echo $PREFIX
+        
+        # index
+        if [[ ! -f {output[0]} ]]
+        then
+        bwa index {input[0]}
+        fi
+
+        # map and merge pairs
+        samtools merge -@ {THREADS} -f $PREFIX.merged.bam \
+        <(bwa mem -v 1 -t {THREADS} -M -R "$SAMHEADER" {input[0]} {input[1]} {input[2]} | \
+        samtools view -@ {THREADS} -bS -)
+        
+        # sort
+        samtools sort -@ {THREADS} -m {MEMCORE}G $PREFIX.merged.bam $PREFIX.sorted
+        rm $PREFIX.merged.bam
+        
+        # index
+        samtools index $PREFIX.sorted.bam
+        
+        # Run flagstat
+        if [[ ! -f {output[5]}.fai ]]
+        then
+          echo "No fasta index! Creating one." >> {log}
+          samtools index {output[5]}
+        fi
+
+        echo "flagstat" >> {log}
+        samtools flagstat {output[5]} > {output[6]}
+        """
+
+rule MAP_MT2MGMT:
+    input:
+        {REFERENCE_MGMT},
+        "%s/Preprocess/out/lib2.1.fasta" % INPUT_DIR,
+        "%s/Preprocess/out/lib2.2.fasta" % INPUT_DIR
+    output:
+        expand("{REFERENCE_MGMT}.amb", REFERENCE_MGMT = REFERENCE_MGMT),
+        expand("{REFERENCE_MGMT}.bwt", REFERENCE_MGMT = REFERENCE_MGMT),
+        expand("{REFERENCE_MGMT}.pac", REFERENCE_MGMT = REFERENCE_MGMT),
+        expand("{REFERENCE_MGMT}.ann", REFERENCE_MGMT = REFERENCE_MGMT),
+        expand("{REFERENCE_MGMT}.sa", REFERENCE_MGMT = REFERENCE_MGMT),
+        "%s/MT_reads-x-%s_MGMT-assm.sorted.bam" % (OUT_DIR, SAMPLE),
+        "%s/MT_reads-x-%s_MGMT-assm.flagstat.txt" % (OUT_DIR, SAMPLE)
+    benchmark:
+        "%s/benchmarks/MT2MGMT.json" % OUT_DIR
+    log:
+        OUT_LOG
+    shell:
+        """
+        SAMHEADER="@RG\\tID:${SAMPLE}\\tSM:MT"
+        PREFIX={OUT_DIR}/MT_reads-x-{SAMPLE}_MGMT-assm
+        
+        echo $PREFIX
+        
+        # index
+        if [[ ! -f {output[0]} ]]
+        then
+        bwa index {input[0]}
+        fi
+
+        # map and merge pairs
+        samtools merge -@ {THREADS} -f $PREFIX.merged.bam \
+        <(bwa mem -v 1 -t {THREADS} -M -R "$SAMHEADER" {input[0]} {input[1]} {input[2]} | \
+        samtools view -@ {THREADS} -bS -) 
+        
+        # sort
+        samtools sort -@ {THREADS} -m {MEMCORE}G $PREFIX.merged.bam $PREFIX.sorted
+        rm $PREFIX.merged.bam
+        
+        # index
+        samtools index $PREFIX.sorted.bam
+        
+        # Run flagstat
+        if [[ ! -f {output[5]}.fai ]]
+        then
+          echo "No fasta index! Creating one." >> {log}
+          samtools index {output[5]}
+        fi
+
+        echo "flagstat" >> {log}
+        samtools flagstat {output[5]} > {output[6]}
+        """
+

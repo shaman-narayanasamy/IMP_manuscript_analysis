@@ -18,14 +18,25 @@ declare -a SAMPLES=("SM" "HF1" "HF2" "HF3" "HF4" "HF5" "WW1" "WW2" "WW3" "WW4" "
 ### Repeat for all the data sets
 for S in "${SAMPLES[@]}" 
 do
-    INDIR="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/${S}"
-    MG_REF="/scratch/users/snarayanasamy/IMP_MS_data/iterative_assemblies/MG_assemblies/${S}/MG_contigs_merged_2.fa"
-    MT_REF="/scratch/users/snarayanasamy/IMP_MS_data/iterative_assemblies/MT_assemblies/${S}/MT_contigs_merged_2.fa"
-    OUTDIR="/scratch/users/snarayanasamy/IMP_MS_data/mappingSingleOmics/IMP/${S}"
+  check=${#S}
+  echo $check
+  if [ $check -eq 3 ]
+  then 
+    S1="${S::-1}"
+    echo "$S1" 
+  else 
+    S1="$S"
+    echo "Continue"
+  fi
+    INDIR="/scratch/users/snarayanasamy/IMP_MS_data/metAmosAnalysis/${S1}/MGMT/default/${S}"
+    MG_REF="/scratch/users/snarayanasamy/IMP_MS_data/metAmosAnalysis/${S1}/MG/default/${S}/Assemble/out/soapdenovo.31.asm.contig"
+    MT_REF="/scratch/users/snarayanasamy/IMP_MS_data/metAmosAnalysis/${S1}/MT/default/${S}/Assemble/out/soapdenovo.31.asm.contig"
+    MGMT_REF="/scratch/users/snarayanasamy/IMP_MS_data/metAmosAnalysis/${S1}/MGMT/default/${S}/Assemble/out/soapdenovo.31.asm.contig"
+    OUTDIR="/scratch/users/snarayanasamy/IMP_MS_data/mappingSingleOmics/metAmos/${S}"
     OUTLOG="${OUTDIR}/${S}.log"
     
-    ${OARSUB} -n "${S}_mapping" "./execution.sh $INDIR $MG_REF $MT_REF $OUTDIR $OUTLOG $SAMPLE"
-    #CMD="./execution.sh $INDIR $MG_REF $MT_REF $OUTDIR $OUTLOG $SAMPLE"
+    ${OARSUB} -n "${S}_mapping" "./execution.sh $INDIR $MG_REF $MT_REF $MGMT_REF $OUTDIR $OUTLOG $SAMPLE"
+    #CMD="./execution.sh $INDIR $MG_REF $MT_REF $MGMT_REF $OUTDIR $OUTLOG $SAMPLE"
     
     #echo $CMD
     #$CMD
