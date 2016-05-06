@@ -17,21 +17,22 @@ MOCAT_MT=${10}
 OUTDIR=${11}
 
 date
-source ../preload_modules.sh
+#source ../preload_modules.sh
 /mnt/gaiagpfs/projects/ecosystem_biology/local_tools/quast/metaquast.py \
-    -o $OUTDIR -t 12 \
-    -l IMP,IMP-megahit,MetAmos_MGMT,MOCAT_MGMT,IMP_MG,MetAmos_MG,MOCAT_MG,IMP_MT,MetAmos_MT,MOCAT_MT \
+    -o $OUTDIR -t 12 -f \
+    -l "IMP, IMP-megahit, MetAmos_MGMT, MOCAT_MGMT, IMP_MG, MetAmos_MG, MOCAT_MG, IMP_MT, MetAmos_MT, MOCAT_MT" \
     -R /mnt/nfs/projects/ecosystem_biology/test_datasets/CelajEtAl/73_species/ \
-    -f $IMP \
-    $IMP_MEGAHIT \
-    $METAMOS \
-    $MOCAT \
-    $IMP_MG \
-    $METAMOS_MG \
-    $MOCAT_MG \
-    $IMP_MT \
-    $METAMOS_MT \
-    $MOCAT_MT \
-    --max-ref-number 0 \
+    ${IMP} \
+    ${IMP_MEGAHIT} \
+    ${METAMOS} \
+    ${MOCAT} \
+    ${IMP_MG} \
+    ${METAMOS_MG} \
+    ${MOCAT_MG} \
+    ${IMP_MT} \
+    ${METAMOS_MT} \
+    ${MOCAT_MT} \
     --no-plots
+
 date
+
