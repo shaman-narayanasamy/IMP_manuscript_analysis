@@ -35,9 +35,11 @@ mytheme <- function(){
 	)
 }
 
-plot_dat <- function(dat.file, pe.file, se.file){
+plot_dat <- function(dat.file1, dat.file2, pe.file, se.file){
 ### Read in assembly assessment data
-dat <- read.delim(dat.file)
+dat1 <- read.delim(dat.file1)
+dat2 <- read.delim(dat.file2) [,2:3]
+dat <- cbind(dat1, dat2)
 
 ### Read in unmappable read data
 pe <- read.table(pe.file, header=F)
@@ -83,7 +85,7 @@ dat.1$additional_mapped <- as.numeric(as.character(dat.1$additional_mapped))
 dat.1$total_length <- as.numeric(as.character(dat.1$total_length))
 dat.1$no.of_contigs <- as.numeric(as.character(dat.1$no.of_contigs))
 dat.1$no.of_genes <- as.numeric(as.character(dat.1$no.of_genes))
-dat.1 <- dat.1[-nrow(dat.1),]
+dat.1 <- dat.1[-c((nrow(dat.1)-1):(nrow(dat.1))),]
 
 m.dat.1 <- melt(dat.1)
 colnames(m.dat.1) <- c("iteration", "type", "count")
@@ -103,8 +105,7 @@ scale_fill_manual(values = c("darkorange1", "lightseagreen", "salmon", "seagreen
 			   labels = c("1" = "Initial assembly",
 				      "2" = "First",
 				      "3" = "Second",
-				      "4" = "Third",
-				      "5" = "Fourth")) +
+				      "4" = "Third")) +
 guides(fill = guide_legend(title = "measure")) +
 theme(axis.title.x = element_text(size = 35),
       axis.text.x = element_text(size = 30, vjust=0),
@@ -117,55 +118,134 @@ list(p1, dat.1)
 
 ### Read in data
 
-HF.dat <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/X310763260-iterative_MG/collapsed_contigs_stats.tsv"
-HF.pe <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/X310763260-iterative_MG/pair_counts.tsv"
-HF.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/X310763260-iterative_MG/single_counts.tsv"
+## SM data
+SM.dat1 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/SM/full_report.tsv"
+SM.dat2 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/SM/collapsed_contigs_stats.tsv"
+SM.pe <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/SM/pair_counts.tsv"
+SM.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/SM/single_counts.tsv"
 
-HF.plots <- plot_dat(HF.dat, HF.pe, HF.se)
+SM.plots <- plot_dat(SM.dat1, SM.dat2, SM.pe, SM.se)
 
-WW.dat <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/A02-iterative_MG/collapsed_contigs_stats.tsv"
-WW.pe <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/A02-iterative_MG/pair_counts.tsv"
-WW.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/A02-iterative_MG/single_counts.tsv"
+## HF1 data
+HF1.dat1 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF1/full_report.tsv"
+HF1.dat2 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF1/collapsed_contigs_stats.tsv"
+HF1.pe <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF1/pair_counts.tsv"
+HF1.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF1/single_counts.tsv"
 
-WW.plots <- plot_dat(WW.dat, WW.pe, WW.se)
+HF1.plots <- plot_dat(HF1.dat1, HF1.dat2, HF1.pe, HF1.se)
 
-SD.dat <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/simDat-iterative_MG/collapsed_contigs_stats-edited.tsv.csv"
-SD.pe <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/simDat-iterative_MG/pair_counts-edited.tsv.csv"
-SD.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/simDat-iterative_MG/single_counts-edited.tsv.csv"
+## HF2 data
+HF2.dat1 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF2/full_report.tsv"
+HF2.dat2 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF2/collapsed_contigs_stats.tsv"
+HF2.pe <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF2/pair_counts.tsv"
+HF2.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF2/single_counts.tsv"
 
-SD.plots <- plot_dat(SD.dat, SD.pe, SD.se)
+HF2.plots <- plot_dat(HF2.dat1, HF2.dat2, HF2.pe, HF2.se)
 
-set_panel_size(SD.plots[[1]])
-set_panel_size(HF.plots[[1]])
-set_panel_size(WW.plots[[1]])
+## HF3 data
+HF3.dat1 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF3/full_report.tsv"
+HF3.dat2 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF3/collapsed_contigs_stats.tsv"
+HF3.pe <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF3/pair_counts.tsv"
+HF3.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF3/single_counts.tsv"
+
+HF3.plots <- plot_dat(HF3.dat1, HF3.dat2, HF3.pe, HF3.se)
+
+## HF4 data
+HF4.dat1 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF4/full_report.tsv"
+HF4.dat2 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF4/collapsed_contigs_stats.tsv"
+HF4.pe <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF4/pair_counts.tsv"
+HF4.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF4/single_counts.tsv"
+
+HF4.plots <- plot_dat(HF4.dat1, HF4.dat2, HF4.pe, HF4.se)
+
+## HF5 data
+HF5.dat1 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF5/full_report.tsv"
+HF5.dat2 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF5/collapsed_contigs_stats.tsv"
+HF5.pe <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF5/pair_counts.tsv"
+HF5.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/HF5/single_counts.tsv"
+
+HF5.plots <- plot_dat(HF5.dat1, HF5.dat2, HF5.pe, HF5.se)
+
+## WW1 data
+WW1.dat1 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/WW1/full_report.tsv"
+WW1.dat2 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/WW1/collapsed_contigs_stats.tsv"
+WW1.pe <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/WW1/pair_counts.tsv"
+WW1.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/WW1/single_counts.tsv"
+
+WW1.plots <- plot_dat(WW1.dat1, WW1.dat2, WW1.pe, WW1.se)
+
+## WW2 data
+WW2.dat1 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/WW2/full_report.tsv"
+WW2.dat2 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/WW2/collapsed_contigs_stats.tsv"
+WW2.pe <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/WW2/pair_counts.tsv"
+WW2.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/WW2/single_counts.tsv"
+
+WW2.plots <- plot_dat(WW2.dat1, WW2.dat2, WW2.pe, WW2.se)
+
+## WW3 data
+WW3.dat1 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/WW3/full_report.tsv"
+WW3.dat2 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/WW3/collapsed_contigs_stats.tsv"
+WW3.pe <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/WW3/pair_counts.tsv"
+WW3.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/WW3/single_counts.tsv"
+
+WW3.plots <- plot_dat(WW3.dat1, WW3.dat2, WW3.pe, WW3.se)
+
+## WW4 data
+WW4.dat1 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/WW4/full_report.tsv"
+WW4.dat2 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/WW4/collapsed_contigs_stats.tsv"
+WW4.pe <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/WW4/pair_counts.tsv"
+WW4.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/WW4/single_counts.tsv"
+
+WW4.plots <- plot_dat(WW4.dat1, WW4.dat2, WW4.pe, WW4.se)
+
+## BG data
+BG.dat1 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/BG/full_report.tsv"
+BG.dat2 <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/BG/collapsed_contigs_stats.tsv"
+BG.pe <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/BG/pair_counts.tsv"
+BG.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/BG/single_counts.tsv"
+
+BG.plots <- plot_dat(BG.dat1, BG.dat2, BG.pe, BG.se)
 
 ### Generate plots
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MG_iter_assm-v5.pdf", 
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MG_iter_assm-v6.pdf", 
     height=16, width=20)
 plot_grid(
-	  SD.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  SM.plots[[1]] + guides(fill=FALSE) + mytheme() +
 	  theme(axis.ticks.x = element_line(size=1), 
 		axis.title.x = element_blank(),
 		axis.text.x = element_blank()),
 
-	  HF.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  HF1.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1),
+		axis.title.x = element_blank(),
+		axis.text.x = element_blank()),
+	  
+	  WW1.plots[[1]] + guides(fill=FALSE) + mytheme() +
 	  theme(axis.ticks.x = element_line(size=1),
 		axis.title.x = element_blank(),
 		axis.text.x = element_blank()),
 
-	  WW.plots[[1]] + mytheme() +
+	  BG.plots[[1]] + mytheme() +
 	  theme(axis.ticks.x = element_line(size=1),
 		axis.title.x = element_blank(),
 		axis.text.x = element_blank()),
 
-	  ncol=1, align="v", labels=c("(A)", "(B)", "(C)"), label_size=45, hjust=-0.5)
+	  ncol=1, align="v", labels=c("(A)", "(B)", "(C)", "(D)"), label_size=45, hjust=-0.5)
 dev.off()
 
 ### Produce the complementary table
-table <- rbind(cbind(data = rep("SM", nrow(SD.plots[[2]])), SD.plots[[2]]), 
-	       cbind(data = rep("HF", nrow(HF.plots[[2]])), HF.plots[[2]]), 
-	       cbind(data = rep("WW", nrow(WW.plots[[2]])),  WW.plots[[2]]))
+table <- rbind(cbind(data = rep("SM", nrow(SM.plots[[2]])), SM.plots[[2]]), 
+	       cbind(data = rep("HF1", nrow(HF1.plots[[2]])), HF1.plots[[2]]), 
+	       cbind(data = rep("HF2", nrow(HF2.plots[[2]])), HF2.plots[[2]]), 
+	       cbind(data = rep("HF3", nrow(HF3.plots[[2]])), HF3.plots[[2]]), 
+	       cbind(data = rep("HF4", nrow(HF4.plots[[2]])), HF4.plots[[2]]), 
+	       cbind(data = rep("HF5", nrow(HF5.plots[[2]])), HF5.plots[[2]]), 
+	       cbind(data = rep("WW1", nrow(WW1.plots[[2]])),  WW1.plots[[2]]),
+	       cbind(data = rep("WW2", nrow(WW2.plots[[2]])),  WW2.plots[[2]]),
+	       cbind(data = rep("WW3", nrow(WW3.plots[[2]])),  WW3.plots[[2]]),
+	       cbind(data = rep("WW4", nrow(WW4.plots[[2]])),  WW4.plots[[2]]),
+	       cbind(data = rep("BG", nrow(BG.plots[[2]])),  BG.plots[[2]]))
 
-write.table(table, "/home/shaman/Documents/Publications/IMP-manuscript/tables/MG_iterative_assm.tsv",
+write.table(table, "/home/shaman/Documents/Publications/IMP-manuscript/tables/MG_iterative_assm_v6.tsv",
 	    quote = F, row.names = F, sep = "\t")
 
