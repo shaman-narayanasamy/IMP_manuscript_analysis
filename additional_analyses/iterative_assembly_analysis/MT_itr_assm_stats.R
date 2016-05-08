@@ -199,35 +199,79 @@ BG.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative
 
 BG.plots <- plot_dat(BG.dat, BG.pe, BG.se)
 
+## Labels for all files
+all.labels <- c("SM",
+		"HF1",
+		"HF2",
+		"HF3",
+		"HF4",
+		"HF5",
+		"WW1",
+		"WW2",
+		"WW3",
+		"WW4",
+		"BG")
+
 ### Generate plots
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MT_iter_assm-v3.pdf", 
-    height=16, width=20)
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MT_iter_assm-supp.pdf", 
+    paper="a4r")
 plot_grid(
 	  SM.plots[[1]] + guides(fill=FALSE) + mytheme() +
 	  theme(axis.ticks.x = element_line(size=1), 
 		axis.title.x = element_blank(),
-		axis.text.x = element_blank()) +
-	  ylim(0,8),
+		axis.text.x = element_blank()),
 
 	  HF1.plots[[1]] + guides(fill=FALSE) + mytheme() +
 	  theme(axis.ticks.x = element_line(size=1),
 		axis.title.x = element_blank(),
-		axis.text.x = element_blank()) +
-	  ylim(0,8),
+		axis.text.x = element_blank()),
 
-          WW1.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  HF2.plots[[1]] + guides(fill=FALSE) + mytheme() +
 	  theme(axis.ticks.x = element_line(size=1),
 		axis.title.x = element_blank(),
-		axis.text.x = element_blank()) +
-	  ylim(0,8),
+		axis.text.x = element_blank()),
+
+	  HF3.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1),
+		axis.title.x = element_blank(),
+		axis.text.x = element_blank()),
+
+	  HF4.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1),
+		axis.title.x = element_blank(),
+		axis.text.x = element_blank()),
+
+	  HF5.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1),
+		axis.title.x = element_blank(),
+		axis.text.x = element_blank()),
+
+	  WW1.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1),
+		axis.title.x = element_blank(),
+		axis.text.x = element_blank()),
+
+	  WW2.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1),
+		axis.title.x = element_blank(),
+		axis.text.x = element_blank()),
+
+	  WW3.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1),
+		axis.title.x = element_blank(),
+		axis.text.x = element_blank()),
+	  
+          WW4.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1),
+		axis.title.x = element_blank(),
+		axis.text.x = element_blank()),
 
 	  BG.plots[[1]] + mytheme() +
-	  theme(axis.ticks.x = element_line(size=1), 
+	  theme(axis.ticks.x = element_line(size=1),
 		axis.title.x = element_blank(),
-		axis.text.x = element_blank()) +
-	  ylim(0,8),
+		axis.text.x = element_blank()),
 
-	  ncol=1, align="v", labels=c("(A)", "(B)", "(C)", "(D)"), label_size=45, hjust=-0.5)
+	  ncol=1, align="v", labels=all.labels, label_size=20, hjust=-0.5)
 dev.off()
 
 ### Produce the complementary table
@@ -243,6 +287,6 @@ table <- rbind(cbind(data = rep("SM", nrow(SM.plots[[2]])), SM.plots[[2]]),
 	       cbind(data = rep("WW4", nrow(WW4.plots[[2]])), WW4.plots[[2]]), 
 	       cbind(data = rep("BG", nrow(BG.plots[[2]])),  BG.plots[[2]]))
 
-write.table(table, "/home/shaman/Documents/Publications/IMP-manuscript/tables/MT_iterative_assm-v3.tsv",
+write.table(table, "/home/shaman/Documents/Publications/IMP-manuscript/tables/MT_iterative_assm-supp.tsv",
 	    quote = F, row.names = F, sep = "\t")
 

@@ -206,11 +206,8 @@ BG.se <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative
 
 BG.plots <- plot_dat(BG.dat1, BG.dat2, BG.pe, BG.se)
 
-### Generate plots
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MG_iter_assm-v6.pdf", 
-    height=16, width=20)
-plot_grid(
-	  SM.plots[[1]] + guides(fill=FALSE) + mytheme() +
+### Generate main plot
+plots <- list(  SM.plots[[1]] + guides(fill=FALSE) + mytheme() +
 	  theme(axis.ticks.x = element_line(size=1), 
 		axis.title.x = element_blank(),
 		axis.text.x = element_blank()),
@@ -226,11 +223,106 @@ plot_grid(
 		axis.text.x = element_blank()),
 
 	  BG.plots[[1]] + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1))
+	      )
+grobs = lapply(plots, ggplotGrob)
+g = do.call(rbind, grobs) #  uses gridExtra::rbind.gtable
+panels <- g$layout[g$layout$name=="panel",]
+
+LABELS=c("(A)", "(B)", "(C)", "(D)")
+
+g <- gtable::gtable_add_grob(g, lapply(LABELS[1:nrow(panels)],
+                                       textGrob, vjust=20, y=1, 
+                                       gp=gpar(fontface=2, fontsize=20)), 
+                             t=panels$t, l=2)
+
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MG_iter_assm-v6.pdf", 
+    height=16, width=20, onefile=FALSE)
+grid.newpage()
+grid.draw(g)
+dev.off()
+	  
+## Generate supplementary plot
+plots <- list(  
+	  SM.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1), 
+		axis.title.x = element_blank(),
+		axis.text.x = element_blank()),
+
+	  HF1.plots[[1]] + guides(fill=FALSE) + mytheme() +
 	  theme(axis.ticks.x = element_line(size=1),
 		axis.title.x = element_blank(),
 		axis.text.x = element_blank()),
 
-	  ncol=1, align="v", labels=c("(A)", "(B)", "(C)", "(D)"), label_size=45, hjust=-0.5)
+	  HF2.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1),
+		axis.title.x = element_blank(),
+		axis.text.x = element_blank()),
+
+	  HF3.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1),
+		axis.title.x = element_blank(),
+		axis.text.x = element_blank()),
+
+	  HF4.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1),
+		axis.title.x = element_blank(),
+		axis.text.x = element_blank()),
+
+	  HF5.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1),
+		axis.title.x = element_blank(),
+		axis.text.x = element_blank()),
+
+	  WW1.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1),
+		axis.title.x = element_blank(),
+		axis.text.x = element_blank()),
+
+	  WW2.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1),
+		axis.title.x = element_blank(),
+		axis.text.x = element_blank()),
+
+	  WW3.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1),
+		axis.title.x = element_blank(),
+		axis.text.x = element_blank()),
+	  
+          WW4.plots[[1]] + guides(fill=FALSE) + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1),
+		axis.title.x = element_blank(),
+		axis.text.x = element_blank()),
+
+	  BG.plots[[1]] + mytheme() +
+	  theme(axis.ticks.x = element_line(size=1)))
+
+grobs = lapply(plots, ggplotGrob)
+g = do.call(rbind, grobs) #  uses gridExtra::rbind.gtable
+panels <- g$layout[g$layout$name=="panel",]
+
+g <- gtable::gtable_add_grob(g, lapply(all.labels[1:nrow(panels)],
+                                       textGrob, vjust=20, y=1, 
+                                       gp=gpar(fontface=2, fontsize=20)), 
+                             t=panels$t, l=2)
+
+## Labels for all samples
+all.labels <- c("SM",
+		"HF1",
+		"HF2",
+		"HF3",
+		"HF4",
+		"HF5",
+		"WW1",
+		"WW2",
+		"WW3",
+		"WW4",
+		"BG")
+
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MG_iter_assm-supp.pdf", 
+    height=48, width=20, onefile=FALSE)
+grid.newpage()
+grid.draw(g)
 dev.off()
 
 ### Produce the complementary table
