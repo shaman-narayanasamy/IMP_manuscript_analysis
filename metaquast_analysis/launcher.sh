@@ -1,31 +1,33 @@
 #!/bin/bash -l
 
 #OARSUB="oarsub --notify "mail:shaman.narayanasamy@uni.lu" -t bigmem -t idempotent -t besteffort -l core=8/nodes=1,walltime=120"
+#OARSUB="oarsub --notify "mail:shaman.narayanasamy@uni.lu" -l core=12/nodes=1,walltime=48 -t bigmem -t besteffort -t idempotent"
 OARSUB="oarsub --notify "mail:shaman.narayanasamy@uni.lu" -l nodes=1,walltime=120"
 
-## MGMT assemblies
-IMP="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/SM/Assembly/MGMT.assembly.merged.fa"
-IMP_MEGAHIT="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/SM_megahit/Assembly/MGMT.assembly.merged.fa"
-METAMOS="/scratch/users/snarayanasamy/IMP_MS_data/metAmosAnalysis/SM/MGMT/default/SM/Assemble/out/soapdenovo.31.asm.contig"
-MOCAT="/scratch/users/snarayanasamy/IMP_MS_data/MOCAT_analysis/Combined/SM/SM_MOCAT_MGMT"
+### MGMT assemblies
+#IMP="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/SM/Assembly/MGMT.assembly.merged.fa"
+#IMP_MEGAHIT="/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis/SM_megahit/Assembly/MGMT.assembly.merged.fa"
+#METAMOS="/scratch/users/snarayanasamy/IMP_MS_data/metAmosAnalysis/SM/MGMT/default/SM/Assemble/out/soapdenovo.31.asm.contig"
+#MOCAT="/scratch/users/snarayanasamy/IMP_MS_data/MOCAT_analysis/Combined/SM/SM_MOCAT_MGMT"
+#
+### MG assemblies
+#IMP_MG="/scratch/users/snarayanasamy/IMP_MS_data/iterative_assemblies/MG_assemblies/SM/MG_contigs_merged_2.fa"
+#METAMOS_MG="/scratch/users/snarayanasamy/IMP_MS_data/metAmosAnalysis/SM/MG/default/SM/Assemble/out/soapdenovo.31.asm.contig"
+#MOCAT_MG="/scratch/users/snarayanasamy/IMP_MS_data/MOCAT_analysis/MG/SM/SM_MOCAT_MG"
+#
+### MT assemblies
+#IMP_MT="/scratch/users/snarayanasamy/IMP_MS_data/iterative_assemblies/MT_assemblies/SM/MT_contigs_merged_2.fa"
+#METAMOS_MT="/scratch/users/snarayanasamy/IMP_MS_data/metAmosAnalysis/SM/MT/default/SM/Assemble/out/soapdenovo.31.asm.contig"
+#MOCAT_MT="/scratch/users/snarayanasamy/IMP_MS_data/MOCAT_analysis/MT/SM/SM_MOCAT_MT"
+#
+#OUTDIR="/scratch/users/snarayanasamy/IMP_MS_data/metaquast_analysis/SM"
+#
+#${OARSUB} -n "SM_metaquast" "./execution_SM.sh $IMP $IMP_MEGAHIT $METAMOS $MOCAT $IMP_MG $METAMOS_MG $MOCAT_MG $IMP_MT $METAMOS_MT $MOCAT_MT $OUTDIR"
 
-## MG assemblies
-IMP_MG="/scratch/users/snarayanasamy/IMP_MS_data/iterative_assemblies/MG_assemblies/SM/MG_contigs_merged_2.fa"
-METAMOS_MG="/scratch/users/snarayanasamy/IMP_MS_data/metAmosAnalysis/SM/MG/default/SM/Assemble/out/soapdenovo.31.asm.contig"
-MOCAT_MG="/scratch/users/snarayanasamy/IMP_MS_data/MOCAT_analysis/MG/SM/SM_MOCAT_MG"
+#declare -a SAMPLES=("HF1" "HF2" "HF3" "HF4" "HF5" "WW1" "WW2" "WW3" "WW4" "BG")
+declare -a SAMPLES=("WW2" "WW3" "WW4")
 
-## MT assemblies
-IMP_MT="/scratch/users/snarayanasamy/IMP_MS_data/iterative_assemblies/MT_assemblies/SM/MT_contigs_merged_2.fa"
-METAMOS_MT="/scratch/users/snarayanasamy/IMP_MS_data/metAmosAnalysis/SM/MT/default/SM/Assemble/out/soapdenovo.31.asm.contig"
-MOCAT_MT="/scratch/users/snarayanasamy/IMP_MS_data/MOCAT_analysis/MT/SM/SM_MOCAT_MT"
-
-OUTDIR="/scratch/users/snarayanasamy/IMP_MS_data/metaquast_analysis/SM"
-
-${OARSUB} -n "SM_metaquast" "./execution_SM.sh $IMP $IMP_MEGAHIT $METAMOS $MOCAT $IMP_MG $METAMOS_MG $MOCAT_MG $IMP_MT $METAMOS_MT $MOCAT_MT $OUTDIR"
-
-declare -a SAMPLES=("HF1" "HF2" "HF3" "HF4" "HF5" "WW1" "WW2" "WW3" "WW4" "BG")
-
-### Repeat for all the data sets
+## Repeat for all the data sets
 for S in "${SAMPLES[@]}" 
 do
  check=${#S}
