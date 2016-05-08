@@ -212,10 +212,7 @@ all.labels <- c("SM",
 		"WW4",
 		"BG")
 
-### Generate plots
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MT_iter_assm-supp.pdf", 
-    paper="a4r")
-plot_grid(
+plots <- list(  
 	  SM.plots[[1]] + guides(fill=FALSE) + mytheme() +
 	  theme(axis.ticks.x = element_line(size=1), 
 		axis.title.x = element_blank(),
@@ -269,10 +266,24 @@ plot_grid(
 	  BG.plots[[1]] + mytheme() +
 	  theme(axis.ticks.x = element_line(size=1),
 		axis.title.x = element_blank(),
-		axis.text.x = element_blank()),
+		axis.text.x = element_blank())
+	  )
 
-	  ncol=1, align="v", labels=all.labels, label_size=20, hjust=-0.5)
+grobs = lapply(plots, ggplotGrob)
+g = do.call(rbind, grobs) #  uses gridExtra::rbind.gtable
+panels <- g$layout[g$layout$name=="panel",]
+g <- gtable::gtable_add_grob(g, lapply(all.labels[1:nrow(panels)],
+                                       textGrob, vjust=2, y=1, 
+                                       gp=gpar(fontface=2, fontsize=20)), 
+                             t=panels$t, l=2)
+
+### Generate plots
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MT_iter_assm-supp.pdf", 
+    height=48, width=20, onefile=FALSE)
+grid.newpage()
+grid.draw(g)
 dev.off()
+
 
 ### Produce the complementary table
 table <- rbind(cbind(data = rep("SM", nrow(SM.plots[[2]])), SM.plots[[2]]), 

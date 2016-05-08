@@ -232,7 +232,7 @@ panels <- g$layout[g$layout$name=="panel",]
 LABELS=c("(A)", "(B)", "(C)", "(D)")
 
 g <- gtable::gtable_add_grob(g, lapply(LABELS[1:nrow(panels)],
-                                       textGrob, vjust=20, y=1, 
+                                       textGrob, vjust=2, y=1, 
                                        gp=gpar(fontface=2, fontsize=20)), 
                              t=panels$t, l=2)
 
@@ -300,13 +300,6 @@ plots <- list(
 grobs = lapply(plots, ggplotGrob)
 g = do.call(rbind, grobs) #  uses gridExtra::rbind.gtable
 panels <- g$layout[g$layout$name=="panel",]
-
-g <- gtable::gtable_add_grob(g, lapply(all.labels[1:nrow(panels)],
-                                       textGrob, vjust=20, y=1, 
-                                       gp=gpar(fontface=2, fontsize=20)), 
-                             t=panels$t, l=2)
-
-## Labels for all samples
 all.labels <- c("SM",
 		"HF1",
 		"HF2",
@@ -319,6 +312,13 @@ all.labels <- c("SM",
 		"WW4",
 		"BG")
 
+
+g <- gtable::gtable_add_grob(g, lapply(all.labels[1:nrow(panels)],
+                                       textGrob, vjust=2, y=1, 
+                                       gp=gpar(fontface=2, fontsize=20)), 
+                             t=panels$t, l=2)
+
+## Labels for all samples
 pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MG_iter_assm-supp.pdf", 
     height=48, width=20, onefile=FALSE)
 grid.newpage()
