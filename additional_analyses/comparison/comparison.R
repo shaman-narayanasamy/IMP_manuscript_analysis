@@ -107,7 +107,7 @@ title(title, outer = FALSE, line = 2, font = 2, cex.main = 7.5)
 
 ### Produce radar chart for the basic assembly statistics
 ## Read in simulated data
-dat1 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/quast_output/quast_simDat_20151028/combined_reference/transposed_report.tsv", header=T)
+dat1 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/metaquast_output/", header=T)
 
 ## Read in HF
 dat2 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/quast_output/quast_X310763260-20151028/combined_reference/transposed_report.tsv", header=T)
@@ -120,6 +120,19 @@ dat4 <- read.delim("/home/shaman/Documents/Publications/IMP-manuscript/tables/su
 
 ## Read in mean of all metrices
 dat5 <- read.delim("/home/shaman/Documents/Publications/IMP-manuscript/tables/summary_mean.csv", header=T)
+
+indir <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/metaquast_output/"
+samples <- c("SM", "HF1", "HF2", "HF3", "HF4", "HF5", "WW1", "WW2", "WW3", "WW4", "BG")
+
+for(i in seq_along(samples)){
+  assign(paste(samples[i], "_quast", sep=""), 
+	 read.delim(paste(indir, "/", samples[i],  "/", "report.tsv", sep=""), 
+			header=T))
+}
+
+
+write.table(as.data.frame(t(all.dat)), "/home/shaman/Documents/Publications/IMP-manuscript/tables/metaQUAST_pipeline_comparison.tsv",  row.names=rownames(t(all.dat)), quote=F, sep = "\t")
+
 
 ## Set plot values
 cols <- makeTransparent("darkred", "darkblue", "darkgreen", "darkorange2", alpha=0.75)
@@ -171,7 +184,6 @@ legend("bottom", legend=c("IMP", "IMP-MEGAHIT", "MetAMOS", "MetAMOS-IDBA_UD"), x
 dev.off()
 
 ### Create a full table for the data
-
 all.dat <- rbind.fill( 
 		      cbind(data=rep("SM",4), dat1),
 		      cbind(data=rep("HF",4), dat2),
@@ -179,6 +191,4 @@ all.dat <- rbind.fill(
 		      cbind(data=rep("ALL",4), dat4)
 )
 
-
-write.table(as.data.frame(t(all.dat)), "/home/shaman/Documents/Publications/IMP-manuscript/tables/metaQUAST_pipeline_comparison.tsv",  row.names=rownames(t(all.dat)), quote=F, sep = "\t")
 
