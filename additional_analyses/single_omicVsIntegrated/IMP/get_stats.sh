@@ -25,16 +25,14 @@ do
   MT2MGMT_megahit="${INDIR}/${S}_megahit/Assembly/MT.reads.sorted.bam"
 
 
-  ls $MG2MGMT
-  ls $MT2MGMT
   mkdir ${OUTDIR}/$S/default
   samtools flagstat $MG2MGMT > ${OUTDIR}/$S/default/MG_reads-x-_MGMT-assm.flagstat.txt
-  samtools flagstat $MG2MGMT > ${OUTDIR}/$S/default/MT_reads-x-_MGMT-assm.flagstat.txt
+  samtools flagstat $MT2MGMT > ${OUTDIR}/$S/default/MT_reads-x-_MGMT-assm.flagstat.txt
 
   mkdir ${OUTDIR}/$S/megahit
   ls $MG2MGMT_megahit
   ls $MT2MGMT_megahit
   samtools flagstat $MG2MGMT_megahit > ${OUTDIR}/$S/megahit/MG_reads-x-_MGMT-assm.flagstat.txt
-  samtools flagstat $MG2MGMT_megahit > ${OUTDIR}/$S/megahit/MT_reads-x-_MGMT-assm.flagstat.txt
+  samtools flagstat $MT2MGMT_megahit > ${OUTDIR}/$S/megahit/MT_reads-x-_MGMT-assm.flagstat.txt
 
 done
