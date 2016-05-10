@@ -278,7 +278,7 @@ g <- gtable::gtable_add_grob(g, lapply(all.labels[1:nrow(panels)],
                              t=panels$t, l=2)
 
 ### Generate plots
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/MT_iter_assm-supp.pdf", 
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MT_iter_assm-supp.pdf", 
     height=48, width=20, onefile=FALSE)
 grid.newpage()
 grid.draw(g)
@@ -298,6 +298,6 @@ table <- rbind(cbind(data = rep("SM", nrow(SM.plots[[2]])), SM.plots[[2]]),
 	       cbind(data = rep("WW4", nrow(WW4.plots[[2]])), WW4.plots[[2]]), 
 	       cbind(data = rep("BG", nrow(BG.plots[[2]])),  BG.plots[[2]]))
 
-write.table(table, "/home/shaman/Documents/Publications/IMP-manuscript/tables/MT_iterative_assm-supp.tsv",
+write.table(table, "/home/shaman/Documents/Publications/IMP-manuscript/tables/second_iteration/MT_iterative_assm-supp.tsv",
 	    quote = F, row.names = F, sep = "\t")
 

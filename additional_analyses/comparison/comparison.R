@@ -178,7 +178,9 @@ for(i in seq_along(samples)){
 }
 
 assm_mgmt <- c("IMP","IMP-megahit","MOCAT_MGMT","MetAmos_MGMT")
- 
+
+## Remove NaN's from WW1 data!
+WW1_quast[is.na(WW1_quast)] <- 0
 
 cols <- makeTransparent("darkred", "darkblue", "darkgreen", "darkorange2", alpha=0.75)
 dens <- makeTransparent("red", "blue", "green", "orange", alpha=0.10)
@@ -246,10 +248,7 @@ pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration
 plot.5axis(BG_quast[BG_quast$Assembly%in%assm_mgmt,], cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd) 
 dev.off()
 
-
-
-
-
+### Prepare complete table
 all.dat <- cbind.data.frame(dataset=rep(samples[1],nrow(SM_quast)), SM_quast[,colnames(SM_quast)%in%colnames(HF1_quast)])
 samples_1 <- samples[-1]
 
@@ -263,56 +262,31 @@ for(i in seq_along(samples_1)){
 				)
 }
 
+ref.dat <- SM_quast[,!colnames(SM_quast)%in%colnames(all.dat)]
 
-write.table(as.data.frame(all.dat), "/home/shaman/Documents/Publications/IMP-manuscript/tables/second_iteration/all_comparison.tsv",  row.names=F, quote=F, sep = "\t")
+empty <- as.data.frame(matrix(NA,100,ncol(ref.dat)))
+colnames(empty) <- colnames(ref.dat)
+ref.dat <- rbind.data.frame(ref.dat, empty)
+all.dat <- cbind.data.frame(all.dat, ref.dat)
+
+write.table(as.data.frame(all.dat), "/home/shaman/Documents/Publications/IMP-manuscript/tables/second_iteration/all_comparison.tsv",  
+	    row.names=F, quote=F, sep = "\t")
+
+### Prepare for data summary radar chart
+all.dat$Assembly <- as.factor(all.dat$Assembly)
+
+all.dat.sum <- aggregate(all.dat[,-c(1:2, 28:31)], by=list(all.dat$Assembly), FUN=sum)
+colnames(all.dat.sum)[1] <- "Assembly"
+
+all.dat.mean <- aggregate(all.dat[,c(28:31)], by=list(all.dat$Assembly), FUN=mean)
+colnames(all.dat.mean)[1] <- "Assembly"
 
 
-## Set plot values
-cols <- makeTransparent("darkred", "darkblue", "darkgreen", "darkorange2", alpha=0.75)
-dens <- makeTransparent("red", "blue", "green", "orange", alpha=0.10)
-font=10
-linetype <- c(1,1,2,2)
-fsize=10
-linewd=15
-mcex=8
-lwd=16
-plwd=15
+all.dat.agg <- cbind.data.frame(all.dat.sum, all.dat.mean, ref.dat)
 
-## Start producing plots
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/SM_radarChart_v3.pdf", 
+## Generate summary/cummulative radar chart
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/ALL_radarChart_v4.pdf", 
     width=38, height=25)
-plot.5axis(dat1, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd) 
-dev.off()
-
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/HF_radarChart_v3.pdf", 
-    width=38, height=25)
-plot.3axis(dat2, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd) 
-dev.off()
-
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/WW_radarChart_v3.pdf", 
-    width=38, height=25)
-plot.3axis(dat3, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd) 
-dev.off()
-
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/summaryRadarChartSum.pdf", 
-    width=38, height=25)
-plot.5axis(dat4, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd) 
-dev.off()
-
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/summaryRadarChartMean.pdf", 
-    width=38, height=25)
-plot.5axis(dat5, cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd) 
-dev.off()
-
-## Produce legend
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/radarChart_legend-v4.pdf", 
-    width=40, height=2.5)
-par(fig = c(0, 1, 0, 1), oma = c(0.5, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
-plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
-legend("bottom", legend=c("IMP", "IMP-megahit", "MetAMOS", "MOCAT"), xpd = TRUE, horiz = TRUE, inset = c(0, 
-    0), bty = "o", col = cols, lty=linetype, lwd = c(15,15,15,15), cex = 4,
-       text.font=c(4,4,4,4), box.lty=1, box.lwd=0, box.col="gray",
-       text.col=cols)
-
+plot.8axis(all.dat.agg[all.dat.agg$Assembly%in%assm_mgmt,], cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd) 
 dev.off()
 
