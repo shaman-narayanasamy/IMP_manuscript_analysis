@@ -14,18 +14,18 @@ OUT_DIR = os.environ.get("OUT_DIR")
 OUT_LOG = os.environ.get("OUT_LOG")
 
 ## MOCAT
-MOCAT_MGR1 = os.environ.get("MOCAT_MGR1")
-MOCAT_MGR2 = os.environ.get("MOCAT_MGR2")
-MOCAT_MGSE = os.environ.get("MOCAT_MGSE")
-MOCAT_MTR1 = os.environ.get("MOCAT_MTR1")
-MOCAT_MTR2 = os.environ.get("MOCAT_MTR2")
-MOCAT_MTSE = os.environ.get("MOCAT_MTSE")
+MGR1_MOCAT = os.environ.get("MGR1_MOCAT")
+MGR2_MOCAT = os.environ.get("MGR2_MOCAT")
+MGSE_MOCAT = os.environ.get("MGSE_MOCAT")
+MTR1_MOCAT = os.environ.get("MTR1_MOCAT")
+MTR2_MOCAT = os.environ.get("MTR2_MOCAT")
+MTSE_MOCAT = os.environ.get("MTSE_MOCAT")
 
 ## MetAmos
-METAMOS_MGR1 = os.environ.get("METAMOS_MGR1")
-METAMOS_MGR2 = os.environ.get("METAMOS_MGR2")
-METAMOS_MTR1 = os.environ.get("METAMOS_MTR1")
-METAMOS_MTR2 = os.environ.get("METAMOS_MTR2")
+MGR1_METAMOS = os.environ.get("MGR1_METAMOS")
+MGR2_METAMOS = os.environ.get("MGR2_METAMOS")
+MTR1_METAMOS = os.environ.get("MTR1_METAMOS")
+MTR2_METAMOS = os.environ.get("MTR2_METAMOS")
 
 ## IMP
 MGR1_IMP = os.environ.get("MGR1_IMP")
@@ -49,23 +49,23 @@ rule ALL:
     shell: "echo DONE"
 
 ### Index gene catalog using bwa 
-rule INDEX_DATABASE:
-    input:
-        {REFERENCE}
-    output:
-        expand("{REFERENCE}.amb", REFERENCE=REFERENCE),
-        expand("{REFERENCE}.bwt", REFERENCE=REFERENCE),
-        expand("{REFERENCE}.pac", REFERENCE=REFERENCE),
-        expand("{REFERENCE}.ann", REFERENCE=REFERENCE),
-        expand("{REFERENCE}.sa", REFERENCE=REFERENCE)
-    benchmark:
-        "%s/benchmarks/INDEX_DATABASE.json" % OUT_DIR
-    log:
-        OUT_LOG
-    shell:
-        """
-        bwa index {input}
-        """
+#rule INDEX_DATABASE:
+#    input:
+#        {REFERENCE}
+#    output:
+#        expand("{REFERENCE}.amb", REFERENCE=REFERENCE),
+#        expand("{REFERENCE}.bwt", REFERENCE=REFERENCE),
+#        expand("{REFERENCE}.pac", REFERENCE=REFERENCE),
+#        expand("{REFERENCE}.ann", REFERENCE=REFERENCE),
+#        expand("{REFERENCE}.sa", REFERENCE=REFERENCE)
+#    benchmark:
+#        "%s/benchmarks/INDEX_DATABASE.json" % OUT_DIR
+#    log:
+#        OUT_LOG
+#    shell:
+#        """
+#        bwa index {input}
+#        """
 
 include:
     "map_MOCAT.rules"

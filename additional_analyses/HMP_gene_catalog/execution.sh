@@ -27,7 +27,7 @@ MTSE_IMP=${16}
 
 SAMPLE=${17}
 OUT_DIR=${18}
-OUT_LOG=${16}/${15}_IGC.log
+OUT_LOG=${19}
 
 MGR1_MOCAT=$MGR1_MOCAT \
 MGR2_MOCAT=$MGR2_MOCAT \
@@ -48,6 +48,6 @@ MTSE_IMP=$MTSE_IMP \
 SAMPLE=$SAMPLE \
 OUT_DIR=$OUT_DIR \
 OUT_LOG=$OUT_LOG \
-snakemake ALL -np
+snakemake ALL
 
 date
