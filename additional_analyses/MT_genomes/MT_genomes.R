@@ -45,7 +45,20 @@ get.MT.genes <- function(MG.file, MT.file, workspace){
     #dat <- dat[is.na(dat$MG_contig_depth),]
     return(dat)
 }
+####################################################################################################################
+### Initialize all the data sets and the input folders
+### This needs to be redone
+samples <- c("SM", "HF1", "HF2", "HF3", "HF4", "HF5", "WW1", "WW2", "WW3", "WW4", "BG")
+indir.flagstat <- "/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis"
 
+### Read in all the data
+for(i in seq_along(samples)){
+  assign(paste(samples[i], "_IMP_MG_x_MGMT", sep=""), 
+	 read.flagstat(
+		       paste(indir.flagstat, "/", samples[i], "/", "IMP", "/", "default", "/", "MG_reads-x-_MGMT-assm.flagstat.txt", sep="")
+		       ))
+}
+####################################################################################################################
 
 A02.MG <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/datasets/IMP_analysis/A02_20150725/Analysis/MG.gene_depth.avg"
 A02.MT <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/datasets/IMP_analysis/A02_20150725/Analysis/MT.gene_depth.avg"
