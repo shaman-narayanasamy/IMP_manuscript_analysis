@@ -260,14 +260,6 @@ for(i in seq_along(samples_1)){
 
 ref.dat <- SM_quast[,!colnames(SM_quast)%in%colnames(all.dat)]
 
-empty <- as.data.frame(matrix(NA,100,ncol(ref.dat)))
-colnames(empty) <- colnames(ref.dat)
-ref.dat <- rbind.data.frame(ref.dat, empty)
-all.dat <- cbind.data.frame(all.dat, ref.dat)
-
-write.table(as.data.frame(all.dat), "/home/shaman/Documents/Publications/IMP-manuscript/tables/second_iteration/all_comparison.tsv",  
-	    row.names=F, quote=F, sep = "\t")
-
 ### Prepare for data summary radar chart
 all.dat$Assembly <- as.factor(all.dat$Assembly)
 
@@ -286,3 +278,15 @@ pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration
 plot.6axis(all.dat.agg[all.dat.agg$Assembly%in%assm_mgmt,], cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd) 
 dev.off()
 
+empty <- as.data.frame(matrix(NA,100,ncol(ref.dat)))
+colnames(empty) <- colnames(ref.dat)
+ref.dat <- rbind.data.frame(ref.dat, empty)
+all.dat <- cbind.data.frame(all.dat, ref.dat)
+colnames(all.dat) <- gsub("X..", "", colnames(all.dat))
+colnames(all.dat) <- gsub("\\.\\.\\.\\.\\.", " ", colnames(all.dat))
+colnames(all.dat)[1] <- "Dataset"
+
+write.table(as.data.frame(all.dat), "/home/shaman/Documents/Publications/IMP-manuscript/tables/second_iteration/all_comparison.tsv",  
+	    row.names=F, quote=F, sep = "\t")
+
+save.image("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/comparison/data_usage/comparison.Rdat")
