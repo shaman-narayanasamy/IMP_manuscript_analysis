@@ -142,24 +142,6 @@ title(title, outer = FALSE, line = 2, font = 2, cex.main = 7.5)
 }
 
 
-#### Produce radar chart for the basic assembly statistics
-### Read in simulated data
-#dat1 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/metaquast_output/", header=T)
-#
-### Read in HF
-#dat2 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/quast_output/quast_X310763260-20151028/combined_reference/transposed_report.tsv", header=T)
-#
-### Read in WW vs Bio17-1
-#dat3 <- read.delim("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/quast_output/quast_A02_Microthrix_Bio17-20151208/combined_reference/transposed_report.tsv", header=T)
-#
-### Read in sum of all metrices
-#dat4 <- read.delim("/home/shaman/Documents/Publications/IMP-manuscript/tables/summary_sum.csv", header=T)
-#
-### Read in mean of all metrices
-#dat5 <- read.delim("/home/shaman/Documents/Publications/IMP-manuscript/tables/summary_mean.csv", header=T)
-#
-
-
 indir <- "/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/metaquast_output/"
 samples <- c("SM", "HF1", "HF2", "HF3", "HF4", "HF5", "WW1", "WW2", "WW3", "WW4", "BG")
 
