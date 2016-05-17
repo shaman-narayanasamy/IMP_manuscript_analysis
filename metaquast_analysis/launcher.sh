@@ -25,7 +25,8 @@ OARSUB="oarsub --notify "mail:shaman.narayanasamy@uni.lu" -l nodes=1,walltime=12
 #${OARSUB} -n "SM_metaquast" "./execution_SM.sh $IMP $IMP_MEGAHIT $METAMOS $MOCAT $IMP_MG $METAMOS_MG $MOCAT_MG $IMP_MT $METAMOS_MT $MOCAT_MT $OUTDIR"
 
 #declare -a SAMPLES=("HF1" "HF2" "HF3" "HF4" "HF5" "WW1" "WW2" "WW3" "WW4" "BG")
-declare -a SAMPLES=("WW2" "WW3" "WW4")
+#declare -a SAMPLES=("WW2" "WW3" "WW4")
+declare -a SAMPLES=("WW1")
 
 ## Repeat for all the data sets
 for S in "${SAMPLES[@]}" 
