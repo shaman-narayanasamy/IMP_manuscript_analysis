@@ -318,32 +318,35 @@ row.sort <- c("SM", "HF1", "HF2", "HF3", "HF4", "HF5", "WW1", "WW2", "WW3", "WW4
 col.sort <- c("IMP", "IMP-megahit", "IMP_MG", "MOCAT_MG", "MetAmos_MG", "IMP_MT", "IGC")
 annot.cols <- c(rep("purple", 2), rep("darkblue", 3), "darkred", "black" )
 
+### Plot MG reads mapping
 MG.mapped <- acast(m.dat[m.dat$variable=="MG_properly_paired",-3], Dataset~Assembly)
 MG.mapped <- MG.mapped[row.sort,col.sort]
 
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MG_mapping.pdf")
-heatmap.2(as.matrix(MG.mapped), scale="none", dendrogram="none", 
-	  col=colorRampPalette(c("white", "blue")), na.color="gray25",
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MG_mapping-v2.pdf")
+heatmap.2(as.matrix(MG.mapped), scale="row", dendrogram="none", 
+	  col=colorRampPalette(c("white", "blue", "darkblue"), space="rgb"), na.color="gray25",
 	  trace="none",
 	  Rowv=F, Colv=F,
 	  ColSideColors=annot.cols,
-	  key.xlab="% proper pairs mapped",
-	  density.info="none"
+	  density.info="none",
+	  cexRow=2,
+	  cexCol=2
 	  )
 dev.off()
 
+### Plot MT reads mapping
 MT.mapped <- acast(m.dat[m.dat$variable=="MT_properly_paired",-3], Dataset~Assembly)
 MT.mapped <- MT.mapped[row.sort,col.sort]
 
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MT_mapping.pdf")
-heatmap.2(as.matrix(MT.mapped), scale="none", dendrogram="none", 
-	  col=colorRampPalette(c("white", "red")), na.color="gray25",
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MT_mapping-v2.pdf")
+heatmap.2(as.matrix(MT.mapped), scale="row", dendrogram="none", 
+	  col=colorRampPalette(c("white", "red", "darkred"), space="rgb"), na.color="gray25",
 	  trace="none",
 	  Rowv=F, Colv=F,
           ColSideColors=annot.cols,
-	  key.xlab="% proper pairs mapped",
-	  density.info="none"
-
+	  density.info="none",
+	  cexRow=2,
+	  cexCol=2,
 	  )
 legend("top", 
        legend = c("Co-assembly", "MG assembly", "MT assembly", "Reference"),
@@ -353,6 +356,65 @@ legend("top",
        cex= 1
     )
 dev.off()
+
+### Plot contigs and genes
+m.all <- melt(all.dat)
+m.all <- m.all[-which(m.all$Assembly%in%c("MetAmos_MGMT", "MOCAT_MGMT", "MetAmos_MT", "MOCAT_MT", "MetAmos_IGC", "MOCAT_IGC")),]
+m.all <- m.all[m.all$variable%in%c("contigs.1000.bp.", "predicted.genes..unique."),]
+
+### Plot contigs 
+contigs <- acast(m.all[m.all$variable=="contigs.1000.bp.",-3], Dataset~Assembly)
+contigs <- contigs[row.sort,col.sort[-length(col.sort)]]
+
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/noContigs.pdf")
+heatmap.2(as.matrix(contigs), scale="row", dendrogram="none", 
+	  col=colorRampPalette(c("white", "green", "darkgreen"), space="rgb"), na.color="gray25",
+	  trace="none",
+	  Rowv=F, Colv=F,
+          ColSideColors=annot.cols[-length(annot.cols)],
+	  density.info="none",
+	  cexRow=2,
+	  cexCol=2,
+	  )
+legend("top", 
+       legend = c("Co-assembly", "MG assembly", "MT assembly", "Reference"),
+       col = unique(annot.cols),
+       lty= 1,             
+       lwd = 8,           
+       cex= 1
+    )
+dev.off()
+
+### Plot genes
+genes <- acast(m.all[m.all$variable=="predicted.genes..unique.",-3], Dataset~Assembly)
+genes <- genes[row.sort,col.sort[-length(col.sort)]]
+
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/noGenes.pdf")
+heatmap.2(as.matrix(genes), scale="row", dendrogram="none", 
+	  col=colorRampPalette(c("white", "magenta", "darkmagenta"), space="rgb"), na.color="gray25",
+	  trace="none",
+	  Rowv=F, Colv=F,
+          ColSideColors=annot.cols[-length(annot.cols)],
+	  density.info="none",
+	  cexRow=2,
+	  cexCol=2,
+	  )
+legend("top", 
+       legend = c("Co-assembly", "MG assembly", "MT assembly", "Reference"),
+       col = unique(annot.cols),
+       lty= 1,             
+       lwd = 8,           
+       cex= 1
+    )
+dev.off()
+
+all.dat.2 <- merge(all.dat, HMP.mapped, by=c("Dataset", "Assembly", "MG_mapped", "MG_properly_paired", 
+					     "MT_mapped", "MT_properly_paired"), all=T)
+all.dat.3 <- all.dat.2[-which(all.dat.2$Assembly%in%c("MetAmos_MT", "MOCAT_MT", 
+						      "MetAmos_IGC", "MOCAT_IGC")),
+				 -which(colnames(all.dat.2)%in%c("MG_mapped", "MT_mapped"))]
+
+write.table(all.dat.3, "/home/shaman/Documents/Publications/IMP-manuscript/tables/second_iteration/all_comparison-v3.tsv", sep="\t", quote=F, row.names=F)
 
 #save.image("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/HMP_IGC_mapping/HMP_IGC_mapping.Rdat")
 #load("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/HMP_IGC_mapping/HMP_IGC_mapping.Rdat")
