@@ -244,10 +244,12 @@ plot.6axis(all.dat.agg[all.dat.agg$Assembly%in%assm_mgmt,], cols, dens, font, li
 dev.off()
 
 ## Generate legend for figure
+legend_labels <- c("IMP","IMP-megahit","MOCAT_MGMT","MetAMOS_MGMT")
+
 pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/radarChart_legend_v6.pdf", 
     width=45, height=25)
 plot(1, type="n", axes=FALSE, xlab="", ylab="")
-legend("bottom", legend=assm_mgmt, xpd = TRUE, horiz = TRUE,
+legend("bottom", legend=legend_labels, xpd = TRUE, horiz = TRUE,
        bty = "o", col = cols, lty=linetype,
        lwd = c(8,8,8,8), cex = 5, box.lty=1, box.lwd=0,
        box.col="gray", text.col=cols, text.font=c(2,2,2,2))
@@ -265,4 +267,5 @@ colnames(all.dat)[1] <- "Dataset"
 write.table(as.data.frame(all.dat), "/home/shaman/Documents/Publications/IMP-manuscript/tables/second_iteration/all_comparison_v2.tsv",  
 	    row.names=F, quote=F, sep = "\t")
 
-save.image("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/comparison/data_usage/comparison.Rdat")
+#save.image("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/comparison/data_usage/comparison.Rdat")
+#load("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/comparison/data_usage/comparison.Rdat")

@@ -303,9 +303,7 @@ levels(m.dat$Assembly)[match("IMP_IGC", levels(m.dat$Assembly))] <- "IGC"
 
 #merge(hf.dat, HMP.mapped, by=c("Dataset", "Assembly"))
 
-## Save image
-
-ggplot(m.dat, aes(x=Assembly, y=value, fill=variable)) + 
+ggplot(m.dat, aes(x=Assembly, y=log(value), fill=variable)) + 
 geom_bar(stat="identity", position="dodge") + 
 scale_fill_manual(values=c("blue", "red", "lightblue", "salmon")) +
 facet_grid(Dataset ~ .) 
@@ -313,7 +311,6 @@ facet_grid(Dataset ~ .)
 heatmap.2(as.matrix(all.hf.mapped[,-c(1:2)]), scale="none", dendrogram="none", labRow=as.character(all.hf.mapped$Assembly))
 
 ### Plot MG and MT mapping separately
-
 row.sort <- c("SM", "HF1", "HF2", "HF3", "HF4", "HF5", "WW1", "WW2", "WW3", "WW4", "BG")
 col.sort <- c("IMP", "IMP-megahit", "IMP_MG", "MOCAT_MG", "MetAmos_MG", "IMP_MT", "IGC")
 annot.cols <- c(rep("purple", 2), rep("darkblue", 3), "darkred", "black" )
@@ -321,8 +318,9 @@ annot.cols <- c(rep("purple", 2), rep("darkblue", 3), "darkred", "black" )
 ### Plot MG reads mapping
 MG.mapped <- acast(m.dat[m.dat$variable=="MG_properly_paired",-3], Dataset~Assembly)
 MG.mapped <- MG.mapped[row.sort,col.sort]
+colnames(MG.mapped)[5] <- "MetAMOS_MG"
 
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MG_mapping-v2.pdf")
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MG_mapping-v3.pdf")
 heatmap.2(as.matrix(MG.mapped), scale="row", dendrogram="none", 
 	  col=colorRampPalette(c("white", "blue", "darkblue"), space="rgb"), na.color="gray25",
 	  trace="none",
@@ -330,15 +328,18 @@ heatmap.2(as.matrix(MG.mapped), scale="row", dendrogram="none",
 	  ColSideColors=annot.cols,
 	  density.info="none",
 	  cexRow=2,
-	  cexCol=2
+	  cexCol=2,
+	  labCol=
 	  )
 dev.off()
 
 ### Plot MT reads mapping
+
 MT.mapped <- acast(m.dat[m.dat$variable=="MT_properly_paired",-3], Dataset~Assembly)
 MT.mapped <- MT.mapped[row.sort,col.sort]
+colnames(MT.mapped)[5] <- "MetAMOS_MG"
 
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MT_mapping-v2.pdf")
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MT_mapping-v3.pdf")
 heatmap.2(as.matrix(MT.mapped), scale="row", dendrogram="none", 
 	  col=colorRampPalette(c("white", "red", "darkred"), space="rgb"), na.color="gray25",
 	  trace="none",
@@ -365,8 +366,9 @@ m.all <- m.all[m.all$variable%in%c("contigs.1000.bp.", "predicted.genes..unique.
 ### Plot contigs 
 contigs <- acast(m.all[m.all$variable=="contigs.1000.bp.",-3], Dataset~Assembly)
 contigs <- contigs[row.sort,col.sort[-length(col.sort)]]
+colnames(contigs)[5] <- "MetAMOS_MG"
 
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/noContigs.pdf")
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/noContigs-v2.pdf")
 heatmap.2(as.matrix(contigs), scale="row", dendrogram="none", 
 	  col=colorRampPalette(c("white", "green", "darkgreen"), space="rgb"), na.color="gray25",
 	  trace="none",
@@ -388,8 +390,9 @@ dev.off()
 ### Plot genes
 genes <- acast(m.all[m.all$variable=="predicted.genes..unique.",-3], Dataset~Assembly)
 genes <- genes[row.sort,col.sort[-length(col.sort)]]
+colnames(genes)[5] <- "MetAMOS_MG"
 
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/noGenes.pdf")
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/noGenes-v2.pdf")
 heatmap.2(as.matrix(genes), scale="row", dendrogram="none", 
 	  col=colorRampPalette(c("white", "magenta", "darkmagenta"), space="rgb"), na.color="gray25",
 	  trace="none",
