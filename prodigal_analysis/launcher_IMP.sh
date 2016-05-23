@@ -12,7 +12,7 @@ do
     MG_REF="/scratch/users/snarayanasamy/IMP_MS_data/iterative_assemblies/MG_assemblies/${S}/MG_contigs_merged_2.fa"
     MT_REF="/scratch/users/snarayanasamy/IMP_MS_data/iterative_assemblies/MT_assemblies/${S}/MT_contigs_merged_2.fa"
 
-    OUTDIR_MGMT="/scratch/users/snarayanasamy/IMP_MS_data/prodigal_analysis/IMP/${S}"
+    OUTDIR_MGMT="/scratch/users/snarayanasamy/IMP_MS_data/prodigal_analysis/IMP_MGMT/${S}"
     ${OARSUB} -n "${S}_IMP_MGMT_prodigal" "./makeGenePredictionsProdigal.sh $ $MGMT_REF $OUTDIR"
 
     OUTDIR_MG="/scratch/users/snarayanasamy/IMP_MS_data/prodigal_analysis/IMP_MG/${S}"
