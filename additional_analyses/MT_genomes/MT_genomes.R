@@ -196,6 +196,7 @@ theme_nothing()
 dev.off()
 
 ###
+
 # Check no. of reads constituting E. coli
 ecoli.reads <- colSums(unique(all.dat[grep("Escherichia_coli_P12b", all.dat$ref_id),c(3,6)])) 
 cintest.reads <- colSums(unique(all.dat[grep("Collinsella_intestinalis_DSM_13280", all.dat$ref_id),c(3,6)])) 

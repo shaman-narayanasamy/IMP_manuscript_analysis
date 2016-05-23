@@ -47,16 +47,15 @@ all.dat <- dat.1[, which(colnames(dat.1)%in%c("Dataset",
 m.dat <- melt(all.dat)
 colnames(m.dat) <- c("Dataset", "Assembly","value")
 
-png("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/genome_recovery-Supp.png", 
+png("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/genome_recovery-Supp-v2.png", 
     width=7.5, height=7.5, units='in', res=200)
 ggplot(m.dat, aes(x=Assembly, y=value, fill=Assembly)) + 
 geom_bar(stat="identity", position="dodge") + 
 facet_grid(Dataset~.) +
 ylab("Genome fraction (%)") +
 theme_bw() +
-theme(legend.position="bottom",
-      axis.text.x=element_blank(),
-      axis.ticks.x=element_blank()
+theme(legend.position="none",
+      axis.text.x=element_text(angle=45, hjust=1)
       )
 dev.off()
 
@@ -64,3 +63,5 @@ write.table(dat, "/home/shaman/Documents/Publications/IMP-manuscript/tables/seco
 	    row.names=F, sep="\t", quote=F)
 
 #save.image("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/MT_genomes/HF_ref/MT_genomes_new.Rdat")
+#load("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/MT_genomes/HF_ref/MT_genomes_new.Rdat")
+
