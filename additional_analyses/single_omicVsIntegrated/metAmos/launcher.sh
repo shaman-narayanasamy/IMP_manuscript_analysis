@@ -1,7 +1,7 @@
 #!/bin/bash -l
 
-OARSUB="oarsub --notify "mail:shaman.narayanasamy@uni.lu" -t bigmem -t idempotent -t besteffort -l core=8/nodes=1,walltime=120"
-#OARSUB="oarsub --notify "mail:shaman.narayanasamy@uni.lu" -l nodes=1,walltime=120"
+#OARSUB="oarsub --notify "mail:shaman.narayanasamy@uni.lu" -t bigmem -t idempotent -t besteffort -l core=8/nodes=1,walltime=120"
+OARSUB="oarsub --notify "mail:shaman.narayanasamy@uni.lu" -l nodes=1,walltime=120"
 
 #OARSUB=""
 #
@@ -14,7 +14,8 @@ OARSUB="oarsub --notify "mail:shaman.narayanasamy@uni.lu" -t bigmem -t idempoten
 
 
 #declare -a SAMPLES=("SM" "HF1" "HF2" "HF3" "HF4" "HF5" "WW1" "WW2" "WW3" "WW4" "BG")
-declare -a SAMPLES=("BG")
+#declare -a SAMPLES=("BG")
+declare -a SAMPLES=("WW1")
 
 ### Repeat for all the data sets
 for S in "${SAMPLES[@]}" 
