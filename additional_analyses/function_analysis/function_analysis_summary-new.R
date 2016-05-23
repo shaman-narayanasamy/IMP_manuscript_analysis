@@ -43,7 +43,7 @@ get_expressed <- function(MG.file, MT.file, workspace){
 
 	hypo.num <- nrow(hypo[hypo$MT_depth > 5,])
 	
-	return(c(mg.only, mgmt, mt.only, hypo.num, all, 
+	return(c(all, mg.only, mgmt, mt.only,
 		 mg.only/all*100, mgmt/all*100, mt.only/all*100))
 }
 
@@ -63,30 +63,63 @@ contig_summary <- function(workspace){
 samples <- c("SM", "HF1", "HF2", "HF3", "HF4", "HF5", "WW1", "WW2", "WW3", "WW4", "BG")
 indir <- "/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis"
 
-dat <- data.frame(Dataset=as.character(),
+contigs <- data.frame(Dataset=as.character(),
 		  ALL_contigs=as.numeric(),
 		  MG_contigs=as.numeric(),
 		  MGMT_contigs=as.numeric(),
 		  MT_contigs=as.numeric(),
-		  MG_fraction=as.numeric(),
-		  MGMT_fraction=as.numeric(),
-		  MT_fraction=as.numeric()
+		  MG_contigs_fraction=as.numeric(),
+		  MGMT_contigs_fraction=as.numeric(),
+		  MT_contigs_fraction=as.numeric()
 		  )
 
-### Bind the data together
+### Bind the contigsa together
 for(i in seq_along(samples)){ 
-    line <- c(samples[i], contig_summary(paste(indir, samples[i], "Analysis/results/MGMT_results.Rdat", sep="/")))
+    line <- c(samples[i], contig_summary(paste(indir, samples[i], "Analysis/results/MGMT_results.Rcontigs", sep="/")))
    
-    dat <- rbind.data.frame(dat, 
+    contigs <- rbind.data.frame(contigs, 
 	    data.frame(Dataset=as.character(line[1]),
 	    		  ALL_contigs=as.numeric(line[2]),
 	    		  MG_contigs=as.numeric(line[3]),
 	    		  MGMT_contigs=as.numeric(line[4]),
 	    		  MT_contigs=as.numeric(line[5]),
-	    		  MG_fraction=as.numeric(line[6]),
-	    		  MGMT_fraction=as.numeric(line[7]),
-	    		  MT_fraction=as.numeric(line[8])
+	    		  MG_contigs_fraction=as.numeric(line[6]),
+	    		  MGMT_contigs_fraction=as.numeric(line[7]),
+	    		  MT_contigs_fraction=as.numeric(line[8])
 	    		  ) 
 	    )
 }
 
+genes <- data.frame(Dataset=as.character(),
+		  ALL_genes=as.numeric(),
+		  MG_genes=as.numeric(),
+		  MGMT_genes=as.numeric(),
+		  MT_genes=as.numeric(),
+		  MG_genes_fraction=as.numeric(),
+		  MGMT_genes_fraction=as.numeric(),
+		  MT_genes_fraction=as.numeric()
+		  )
+
+for(i in seq_along(samples)){ 
+    line <- c(samples[i], get_expressed(
+					paste(indir, samples[i], "Analysis/MG.gene_depth.avg", sep="/"),
+					paste(indir, samples[i], "Analysis/MT.gene_depth.avg", sep="/"),
+					paste(indir, samples[i], "Analysis/results/MGMT_results.Rdat", sep="/")
+					))
+   
+    genes <- rbind.data.frame(genes, 
+	    data.frame(Dataset=as.character(line[1]),
+	    		  ALL_genes=as.numeric(line[2]),
+	    		  MG_genes=as.numeric(line[3]),
+	    		  MGMT_genes=as.numeric(line[4]),
+	    		  MT_genes=as.numeric(line[5]),
+	    		  MG_genes_fraction=as.numeric(line[6]),
+	    		  MGMT_genes_fraction=as.numeric(line[7]),
+	    		  MT_genes_fraction=as.numeric(line[8])
+	    		  ) 
+	    )
+}
+
+
+
+write.table(dat, "/scratch/users/snarayanasamy/IMP_MS_data/IMP_data_usage/IMP_data_usage.tsv", sep="\t", quote=F, row.names=F)
