@@ -7,7 +7,6 @@ gpdir=$2
 
 mkdir -p ${gpdir}
 
-
 cd ${gpdir}
 #ln -s ../${contig}
 

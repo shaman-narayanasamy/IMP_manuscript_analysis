@@ -54,15 +54,17 @@ contig_summary <- function(workspace){
     mg.only <- length(which(is.na(all.dat$MT_depth))) 
     mt.only <- length(which(is.na(all.dat$MG_depth))) 
     all <- nrow(all.dat)
-    return(c(mg.only, mgmt, mt.only, all,
+    return(c(all, mg.only, mgmt, mt.only,
 	     mg.only/all*100, mgmt/all*100, mt.only/all*100))
+    #rm(list=ls())
 }
 
-### Read in flagstat data
+### Read in all the different Rdat workspaces
 samples <- c("SM", "HF1", "HF2", "HF3", "HF4", "HF5", "WW1", "WW2", "WW3", "WW4", "BG")
 indir <- "/scratch/users/snarayanasamy/IMP_MS_data/IMP_analysis"
 
 dat <- data.frame(Dataset=as.character(),
+		  ALL_contigs=as.numeric(),
 		  MG_contigs=as.numeric(),
 		  MGMT_contigs=as.numeric(),
 		  MT_contigs=as.numeric(),
@@ -71,12 +73,20 @@ dat <- data.frame(Dataset=as.character(),
 		  MT_fraction=as.numeric()
 		  )
 
-for(i in seq <- along(samples)){ 
-    dat <- rbind(dat, c(samples[i], 
-			contig_summary(paste(indir, samples[i], 
-					     "Analysis/result/MGMT_results.Rdat", sep="/"))
-			)
-    )
+### Bind the data together
+for(i in seq_along(samples)){ 
+    line <- c(samples[i], contig_summary(paste(indir, samples[i], "Analysis/results/MGMT_results.Rdat", sep="/")))
+   
+    dat <- rbind.data.frame(dat, 
+	    data.frame(Dataset=as.character(line[1]),
+	    		  ALL_contigs=as.numeric(line[2]),
+	    		  MG_contigs=as.numeric(line[3]),
+	    		  MGMT_contigs=as.numeric(line[4]),
+	    		  MT_contigs=as.numeric(line[5]),
+	    		  MG_fraction=as.numeric(line[6]),
+	    		  MGMT_fraction=as.numeric(line[7]),
+	    		  MT_fraction=as.numeric(line[8])
+	    		  ) 
+	    )
 }
-
 
