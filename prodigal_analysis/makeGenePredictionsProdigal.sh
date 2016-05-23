@@ -5,12 +5,13 @@ prodigal=/work/projects/ecosystem_biology/local_tools/MOCAT/bin/prodigal
 contig=$1
 gpdir=$2
 
-mkdir -p $gpdir  
-cd $gpdir
+mkdir -p ${gpdir}
 
-ln -s ../$contig
 
-$prodigal -f gff -a contig.Prodigal.faa.tmp -d contig.Prodigal.fna.tmp -p meta -o contig.Prodigal.gff -i $contig -q 2>>gene.prediction.log >>gene.prediction.log 
+cd ${gpdir}
+#ln -s ../${contig}
+
+${prodigal} -f gff -a contig.Prodigal.faa.tmp -d contig.Prodigal.fna.tmp -p meta -o contig.Prodigal.gff -i ${contig} -q 2>>gene.prediction.log >>gene.prediction.log 
 
 /work/projects/ecosystem_biology/local_tools/MOCAT/src/MOCATGenePredictionProdigal_aux.pl contig.Prodigal.fna.tmp contig.Prodigal.faa.tmp contig.Prodigal.tab  2>> gene_prediction.log >> gene_prediction.log
 
