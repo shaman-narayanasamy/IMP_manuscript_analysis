@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-OARSUB="oarsub --notify "mail:shaman.narayanasamy@uni.lu" -l nodes=1,walltime=120"
+OARSUB="oarsub --notify "mail:shaman.narayanasamy@uni.lu" -l nodes=1,walltime=24 -t besteffort -t idempotent"
 
 declare -a SAMPLES=("HF1" "HF2" "HF3" "HF4" "HF5")
 
@@ -33,7 +33,7 @@ do
     METAMOS_MT="/scratch/users/snarayanasamy/IMP_MS_data/metAmosAnalysis/${S1}/MT/default/${S}/Assemble/out/soapdenovo.31.asm.contig"
     MOCAT_MT="/scratch/users/snarayanasamy/IMP_MS_data/MOCAT_analysis/MT/${S1}/${S}_MOCAT_MT"
 
-    OUTDIR="/scratch/users/snarayanasamy/IMP_MS_data/metaquast_analysis/${S}"
+    OUTDIR="/scratch/users/snarayanasamy/IMP_MS_data/metaquast_analysis/HF_ref/${S}"
     
     ${OARSUB} -n "${S}_ref_metaquast" "./execution_HF_ref.sh $IMP $IMP_MEGAHIT $METAMOS $MOCAT $IMP_MG $METAMOS_MG $MOCAT_MG $IMP_MT $METAMOS_MT $MOCAT_MT $OUTDIR"
 done
