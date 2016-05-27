@@ -312,15 +312,17 @@ heatmap.2(as.matrix(all.hf.mapped[,-c(1:2)]), scale="none", dendrogram="none", l
 
 ### Plot MG and MT mapping separately
 row.sort <- c("SM", "HF1", "HF2", "HF3", "HF4", "HF5", "WW1", "WW2", "WW3", "WW4", "BG")
-col.sort <- c("IMP", "IMP-megahit", "IMP_MG", "MOCAT_MG", "MetAmos_MG", "IMP_MT", "IGC")
-annot.cols <- c(rep("purple", 2), rep("darkblue", 3), "darkred", "black" )
+#col.sort <- c("IMP", "IMP-megahit", "IMP_MG", "MOCAT_MG", "MetAmos_MG", "IMP_MT", "IGC")
+col.sort <- c("IMP", "IMP-megahit", "IMP_MG", "MOCAT_MG", "MetAmos_MG", "IGC")
+#annot.cols <- c(rep("purple", 2), rep("darkblue", 3), "darkred", "black" )
+annot.cols <- c(rep("purple", 2), rep("darkblue", 3), "black" )
 
 ### Plot MG reads mapping
 MG.mapped <- acast(m.dat[m.dat$variable=="MG_properly_paired",-3], Dataset~Assembly)
 MG.mapped <- MG.mapped[row.sort,col.sort]
 colnames(MG.mapped)[5] <- "MetAMOS_MG"
 
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MG_mapping-v3.pdf")
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MG_mapping-v4.pdf")
 heatmap.2(as.matrix(MG.mapped), scale="row", dendrogram="none", 
 	  col=colorRampPalette(c("white", "blue", "darkblue"), space="rgb"), na.color="gray25",
 	  trace="none",
@@ -328,8 +330,7 @@ heatmap.2(as.matrix(MG.mapped), scale="row", dendrogram="none",
 	  ColSideColors=annot.cols,
 	  density.info="none",
 	  cexRow=2,
-	  cexCol=2,
-	  labCol=
+	  cexCol=2
 	  )
 dev.off()
 
@@ -339,7 +340,7 @@ MT.mapped <- acast(m.dat[m.dat$variable=="MT_properly_paired",-3], Dataset~Assem
 MT.mapped <- MT.mapped[row.sort,col.sort]
 colnames(MT.mapped)[5] <- "MetAMOS_MG"
 
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MT_mapping-v3.pdf")
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MT_mapping-v4.pdf")
 heatmap.2(as.matrix(MT.mapped), scale="row", dendrogram="none", 
 	  col=colorRampPalette(c("white", "red", "darkred"), space="rgb"), na.color="gray25",
 	  trace="none",
@@ -347,15 +348,8 @@ heatmap.2(as.matrix(MT.mapped), scale="row", dendrogram="none",
           ColSideColors=annot.cols,
 	  density.info="none",
 	  cexRow=2,
-	  cexCol=2,
+	  cexCol=2
 	  )
-legend("top", 
-       legend = c("Co-assembly", "MG assembly", "MT assembly", "Reference"),
-       col = unique(annot.cols),
-       lty= 1,             
-       lwd = 8,           
-       cex= 1
-    )
 dev.off()
 
 ### Plot contigs and genes
@@ -368,7 +362,7 @@ contigs <- acast(m.all[m.all$variable=="contigs.1000.bp.",-3], Dataset~Assembly)
 contigs <- contigs[row.sort,col.sort[-length(col.sort)]]
 colnames(contigs)[5] <- "MetAMOS_MG"
 
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/noContigs-v2.pdf")
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/noContigs-v3.pdf")
 heatmap.2(as.matrix(contigs), scale="row", dendrogram="none", 
 	  col=colorRampPalette(c("white", "green", "darkgreen"), space="rgb"), na.color="gray25",
 	  trace="none",
@@ -376,15 +370,8 @@ heatmap.2(as.matrix(contigs), scale="row", dendrogram="none",
           ColSideColors=annot.cols[-length(annot.cols)],
 	  density.info="none",
 	  cexRow=2,
-	  cexCol=2,
+	  cexCol=2
 	  )
-legend("top", 
-       legend = c("Co-assembly", "MG assembly", "MT assembly", "Reference"),
-       col = unique(annot.cols),
-       lty= 1,             
-       lwd = 8,           
-       cex= 1
-    )
 dev.off()
 
 ### Plot genes
@@ -392,7 +379,7 @@ genes <- acast(m.all[m.all$variable=="predicted.genes..unique.",-3], Dataset~Ass
 genes <- genes[row.sort,col.sort[-length(col.sort)]]
 colnames(genes)[5] <- "MetAMOS_MG"
 
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/noGenes-v2.pdf")
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/noGenes-v3.pdf")
 heatmap.2(as.matrix(genes), scale="row", dendrogram="none", 
 	  col=colorRampPalette(c("white", "magenta", "darkmagenta"), space="rgb"), na.color="gray25",
 	  trace="none",
@@ -400,7 +387,7 @@ heatmap.2(as.matrix(genes), scale="row", dendrogram="none",
           ColSideColors=annot.cols[-length(annot.cols)],
 	  density.info="none",
 	  cexRow=2,
-	  cexCol=2,
+	  cexCol=2
 	  )
 legend("top", 
        legend = c("Co-assembly", "MG assembly", "MT assembly", "Reference"),
@@ -411,9 +398,11 @@ legend("top",
     )
 dev.off()
 
+
+
 all.dat.2 <- merge(all.dat, HMP.mapped, by=c("Dataset", "Assembly", "MG_mapped", "MG_properly_paired", 
 					     "MT_mapped", "MT_properly_paired"), all=T)
-all.dat.3 <- all.dat.2[-which(all.dat.2$Assembly%in%c("MetAmos_MT", "MOCAT_MT", 
+all.dat.3 <- all.dat.2[-which(all.dat.2$Assembly%in%c("IMP_MT", "MetAmos_MT", "MOCAT_MT", 
 						      "MetAmos_IGC", "MOCAT_IGC")),
 				 -which(colnames(all.dat.2)%in%c("MG_mapped", "MT_mapped"))]
 

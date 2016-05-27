@@ -34,20 +34,20 @@ makeTransparent = function(..., alpha=0.5) {
 }
 
 ###############################################################################################################################
-### FUNCTION: 5-axis radar chart
+### FUNCTION: 6-axis radar chart
 plot.6axis <- function(dat, cols, dens, font, linetype, 
 			     fsize, linewd, mcex, lwd, plwd, title = "") {
 dat <- dat[,c("Assembly", 
        "X..contigs.....1000.bp.", 
        "N50", 
        "X..predicted.genes..unique.",
-       "X..misassemblies",
+       #"X..misassemblies",
        "Genome.fraction....",
        "MG_properly_paired",
        "MT_properly_paired"
        )]
 
-colnames(dat) = c("Assembly", "contigs \u2265 1kb", "N50 length", "no. of genes", "misassemblies", 
+colnames(dat) = c("Assembly", "contigs \u2265 1kb", "N50 length", "no. of genes", #"misassemblies", 
 		  "genome fraction (%)", "MG properly paired", "MT properly paired")
 
 dat <- rbind(
@@ -77,7 +77,8 @@ par(mar=c(0,0,8,0))
 radarchart(dat[,-1], pcol=cols, pfcol=dens, plty=linetype, plwd=plwd,
 	   cglwd=lwd, palcex=font, calcex=font, vlcex=font, cglcol="darkgray",
 	   paxislabels = c("Assembly", "contigs \u2265 1kb", "N50 length", 
-			   "no. of genes", "misassemblies", "genome fraction (%)", 
+			   "no. of genes", #"misassemblies", 
+			   "genome fraction (%)", 
 			   "MG mapped", "MG properly paired", "MT mapped", "MT properly paired"),
 	   oma=c(0,0,0,0))#, title = title, cex.main = 6)
 title(title, outer = FALSE, line = 2, font = 2, cex.main = 7.5)
@@ -117,8 +118,6 @@ dat[2, names(dat) %in% c("MG properly paired")] <- 0
 dat[1, names(dat) %in% c("MT properly paired")] <- 100
 dat[2, names(dat) %in% c("MT properly paired")] <- 0
 
-
-
 par(mar=c(0,0,8,0)) 
 radarchart(dat[,-1], pcol=cols, pfcol=dens, plty=linetype, plwd=plwd,
 	   cglwd=lwd, palcex=font, calcex=font, vlcex=font, cglcol="darkgray",
@@ -155,7 +154,7 @@ lwd=16
 plwd=15
 
 
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/SM_radarChart_v6.pdf", 
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/SM_radarChart_v7.pdf", 
     width=38, height=25)
 plot.6axis(SM_quast[SM_quast$Assembly%in%assm_mgmt,], cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd) 
 dev.off()
@@ -238,7 +237,7 @@ colnames(all.dat.mean)[1] <- "Assembly"
 all.dat.agg <- cbind.data.frame(all.dat.sum, all.dat.mean, ref.dat[1:10,])
 
 ## Generate summary/cummulative radar chart
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/ALL_radarChart_v6.pdf", 
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/ALL_radarChart_v7.pdf", 
     width=38, height=25)
 plot.6axis(all.dat.agg[all.dat.agg$Assembly%in%assm_mgmt,], cols, dens, font, linetype, fsize, linewd, mcex, lwd, plwd) 
 dev.off()

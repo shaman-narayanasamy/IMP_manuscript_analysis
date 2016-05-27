@@ -1,13 +1,14 @@
 #!/bin/R
 
 require(ggplot2)
-require(reshape)
+require(reshape2)
 library(grid)
 library(gridExtra)
 library(scales)
 library(gtable)
 library(cowplot)
 require(stringr)
+require(gplots)
 
 mytheme <- function(){
     theme(
@@ -300,4 +301,77 @@ table <- rbind(cbind(data = rep("SM", nrow(SM.plots[[2]])), SM.plots[[2]]),
 
 write.table(table, "/home/shaman/Documents/Publications/IMP-manuscript/tables/second_iteration/MT_iterative_assm-supp.tsv",
 	    quote = F, row.names = F, sep = "\t")
+
+dat <- read.table("/home/shaman/Documents/Publications/IMP-manuscript/tables/second_iteration/MT_iterative_assm-supp.tsv", header=T)
+
+row.sort <- c("SM", "HF1", "HF2", "HF3", "HF4", "HF5", "WW1", "WW2", "WW3", "WW4", "BG")
+col.sort <- c("1", "2", "3", "4")
+
+contigs <- acast(dat[,c(1,2,3)], data~iteration)
+contigs[contigs < 0] <- NA
+contigs[contigs == 0] <- NA
+
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MT_iterative_contigs.pdf")
+heatmap.2(log(as.matrix(contigs)), scale="none", dendrogram="none",
+          col=colorRampPalette(c("black", "darkgreen", "green"), space="rgb"), na.color="black",
+          trace="none",
+          Rowv=F, Colv=F,
+          density.info="none",
+          cexRow=2,
+          cexCol=2
+          )
+dev.off()
+
+
+tlength <- acast(dat[,c(1,2,4)], data~iteration)
+tlength[tlength < 0] <- NA
+tlength[tlength == 0] <- NA
+
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MT_iterative_length.pdf")
+heatmap.2(log(as.matrix(tlength)), scale="none", dendrogram="none",
+          col=colorRampPalette(c("black", "darkorange", "orange"), space="rgb"), na.color="black",
+          trace="none",
+          Rowv=F, Colv=F,
+          density.info="none",
+          cexRow=2,
+          cexCol=2
+          )
+dev.off()
+
+genes <- acast(dat[,c(1,2,5)], data~iteration)
+genes[genes < 0] <- NA
+genes[genes == 0] <- NA
+
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MT_iterative_genes.pdf")
+heatmap.2(log(as.matrix(genes)), scale="none", dendrogram="none",
+          col=colorRampPalette(c("black", "darkmagenta", "magenta"), space="rgb"), na.color="black",
+          trace="none",
+          Rowv=F, Colv=F,
+          density.info="none",
+          cexRow=2,
+          cexCol=2
+          )
+dev.off()
+
+
+mapped <- acast(dat[,c(1,2,6)], data~iteration)
+mapped[mapped < 0] <- NA
+mapped[mapped == 0] <- NA
+
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MT_iterative_mapped.pdf")
+heatmap.2(log(as.matrix(mapped)), scale="none", dendrogram="none",
+          col=colorRampPalette(c("black", "darkred", "red"), space="rgb"), na.color="black",
+          trace="none",
+          Rowv=F, Colv=F,
+          density.info="none",
+          cexRow=2,
+          cexCol=2
+          )
+dev.off()
+
+
+#save.image("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/iterative_MT.Rdat")
+#load("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/iterative_assembly/MG_assemblies/iterative_MT.Rdat")
+
+
 
