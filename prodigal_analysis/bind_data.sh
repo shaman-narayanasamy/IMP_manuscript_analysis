@@ -1,6 +1,6 @@
 #!/bin/bash -l
 
-OUTFILE="prodigal_summary.tsv"
+OUTFILE="/scratch/users/snarayanasamy/IMP_MS_data/prodigal_analysis/prodigal_summary.tsv"
 declare -a SAMPLES=("SM" "HF1" "HF2" "HF3" "HF4" "HF5" "WW1" "WW2" "WW3" "WW4" "BG")
 
 echo -e "Dataset\tAssembly\tProdigal_total_genes\tProdigal_complete_genes\tProdigal_incomplete_genes" > ${OUTFILE}
