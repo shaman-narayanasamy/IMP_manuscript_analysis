@@ -313,16 +313,17 @@ heatmap.2(as.matrix(all.hf.mapped[,-c(1:2)]), scale="none", dendrogram="none", l
 ### Plot MG and MT mapping separately
 row.sort <- c("SM", "HF1", "HF2", "HF3", "HF4", "HF5", "WW1", "WW2", "WW3", "WW4", "BG")
 #col.sort <- c("IMP", "IMP-megahit", "IMP_MG", "MOCAT_MG", "MetAmos_MG", "IMP_MT", "IGC")
-col.sort <- c("IMP", "IMP-megahit", "IMP_MG", "MOCAT_MG", "MetAmos_MG", "IGC")
+#col.sort <- c("IMP", "IMP-megahit", "IMP_MG", "MOCAT_MG", "MetAmos_MG", "IGC")
+col.sort <- c("IMP", "IMP-megahit", "IMP_MG", "MOCAT_MG", "MetAmos_MG")
 #annot.cols <- c(rep("purple", 2), rep("darkblue", 3), "darkred", "black" )
-annot.cols <- c(rep("purple", 2), rep("darkblue", 3), "black" )
+annot.cols <- c(rep("purple", 2), rep("darkblue", 3))
 
 ### Plot MG reads mapping
 MG.mapped <- acast(m.dat[m.dat$variable=="MG_properly_paired",-3], Dataset~Assembly)
 MG.mapped <- MG.mapped[row.sort,col.sort]
 colnames(MG.mapped)[5] <- "MetAMOS_MG"
 
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MG_mapping-v4.pdf")
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MG_mapping-v5.pdf")
 heatmap.2(as.matrix(MG.mapped), scale="row", dendrogram="none", 
 	  col=colorRampPalette(c("white", "blue", "darkblue"), space="rgb"), na.color="gray25",
 	  trace="none",
@@ -335,12 +336,11 @@ heatmap.2(as.matrix(MG.mapped), scale="row", dendrogram="none",
 dev.off()
 
 ### Plot MT reads mapping
-
 MT.mapped <- acast(m.dat[m.dat$variable=="MT_properly_paired",-3], Dataset~Assembly)
 MT.mapped <- MT.mapped[row.sort,col.sort]
 colnames(MT.mapped)[5] <- "MetAMOS_MG"
 
-pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MT_mapping-v4.pdf")
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/second_iteration/MT_mapping-v5.pdf")
 heatmap.2(as.matrix(MT.mapped), scale="row", dendrogram="none", 
 	  col=colorRampPalette(c("white", "red", "darkred"), space="rgb"), na.color="gray25",
 	  trace="none",
