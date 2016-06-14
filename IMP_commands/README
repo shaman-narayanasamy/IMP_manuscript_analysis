@@ -15,5 +15,5 @@ There are two different configuration files available within the "conf"
 directory:
 
 1. With the human genome derived sequence filtering, used for SM and HF1-5
-1. Without the human genome derived sequence filtering, used for WW1-4 and BG
+2. Without the human genome derived sequence filtering, used for WW1-4 and BG
 
