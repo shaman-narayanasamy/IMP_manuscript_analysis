@@ -1,0 +1,20 @@
+There are three folders representing three different types of analysis carried
+out using MOCAT, separated into three folders accordingly.
+1. MG only analysis - MG folder
+2. MT only analysis - MT folder
+3. MG and MT analysis - Combined folder
+
+Inside each folder, one would find subdirectories of each of the environment
+types, where each of them contain further subdirectories with representing the
+relevant samples from those different environments:
+1. biogas_plant  
+2. human_fecal  
+   Subdirectories - X310763260, X311245214, X316192082, X316701492, X317690558
+3. simulated_data  
+4. wastewater_sludge
+   Subdirectories - A02, D32, D36, D49
+
+Inside each of the analysis subdirectories, one will find the script "runALL.sh"
+which the analyses.
+
+One will also fine the MOCAT config file "MOCAT.cfg"
