@@ -1,11 +1,12 @@
 The sample names used in the paper are named differently within the file
 system:
 
-1.  The simulated mock (SM) community dataset is named either "simDat" or "simulated_data".
-2.  The human fecal (HF) community dataset is named X310763260.
-3.  The wastewater (WW) sludge community dataset is named A02.
+1. The simulated mock (SM) community dataset
+2. The human fecal (HF1-5) community datasets
+3. The wastewater (WW1-4) sludge community datasets
+4. The production scale anaerobic biogas (BG) reactor dataset
 
-There are a total of six launcher scripts. Precisely, two (2) launcher scripts for each sample:
+Two (2) commands are launched for each dataset
 
 1. Running IMP on default mode (IDBA-UD assembler)
 2. Running IMP using MEGAHIT assembler
@@ -13,6 +14,6 @@ There are a total of six launcher scripts. Precisely, two (2) launcher scripts f
 There are two different configuration files available within the "conf"
 directory:
 
-1. With the human genome derived sequence filtering, used for SM and HF.
-1. Without the human genome derived sequence filtering, used for WW
+1. With the human genome derived sequence filtering, used for SM and HF1-5
+1. Without the human genome derived sequence filtering, used for WW1-4 and BG
 
