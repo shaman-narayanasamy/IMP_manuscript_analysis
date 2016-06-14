@@ -1,14 +1,14 @@
 The sample names used in the paper are named differently within the file
 system:
 
-1.  The simulated mock (SM) community dataset is named either "simDat" or "simulated_data".
-2.  The human fecal (HF) community dataset is named X310763260.
-3.  The wastewater (WW) sludge community dataset is named A02.
+1. The simulated mock (SM) community dataset
+2. The human fecal (HF1-5) community datasets
+3. The wastewater (WW1-4) sludge community datasets
+4. The production scale anaerobic biogas (BG) reactor dataset
 
-There are a total of six launcher scripts. Precisely, two (2) launcher scripts for each sample:
+Two (2) commands are launched for each dataset
 
-1. Running metAmos on default mode (SOAPdenovo assembler)
-2. Running metAmos on using IDBA-UD assembler
+1. Running metAMOS with only the MG data
+2. Running metAMOS with both MG and MT data
+3. Running metAMOS with both MT data
 
-For the IDBA-UD based assemblies, libraries require concatenation prior to
-using them as input for the pipeline (commands within script).

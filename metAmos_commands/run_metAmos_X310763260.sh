@@ -1,10 +1,6 @@
 #!/bin/bash -l
 
-### This script runs metAmos (default) on the simulated mock (SM) dataset 
-
 export PATH=$PATH:/home/snarayanasamy/Work/tools/metAMOS-1.5rc3/
-
-## Run metAmos
 
 date
 
