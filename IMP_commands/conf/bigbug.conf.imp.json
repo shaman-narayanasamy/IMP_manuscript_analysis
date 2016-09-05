@@ -1,0 +1,5 @@
+{
+    "threads": 8,
+    "mem_per_core_gb": 32,
+    "mem_total_gb": 256
+}
