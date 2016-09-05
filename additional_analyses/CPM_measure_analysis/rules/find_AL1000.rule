@@ -1,0 +1,9 @@
+rule find_AL1000:
+input:
+       "{assm}.processed.coords.filtered"
+output:
+       "{assm}.processed.coords.filtered_AL1000"
+shell:
+       """
+       Rscript
+       """

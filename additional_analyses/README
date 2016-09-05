@@ -8,4 +8,5 @@ This folder contains 8 directories:
 6. comparison: Comparing assemblies single vs multi-omic, IMP vs MetAMOS
 7. HMP_gene_catalog: Mapping data to HMP gene catalog (incomplete)
 8. MT_genomes: Analysis of genomes assembled only from MT data
+9. CPM_measure_analysis: This relates to the analysis based on the composite measure used by Deng et.al, (2015)
 

@@ -81,3 +81,5 @@ iterative_assembly/MT_assembly/launcher_back.sh
 prodigal_analysis/oarlogs/
 prodigal_analysis/prodigal_summary.tsv
 quast_analysis/
+additional_analyses/HMP_gene_catalog/IMP2IGC_mapping.txt
+additional_analyses/HMP_gene_catalog/OARlogs/

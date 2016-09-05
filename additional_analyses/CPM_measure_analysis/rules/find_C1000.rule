@@ -1,0 +1,9 @@
+rule find_C1000:
+input:
+       "{assm}.processed.coords.filtered_AL1000"
+output:
+       "{assm}.processed.coords.filtered_C1000"
+shell:
+       """
+       bedtools merge {input} > output
+       """
