@@ -1,6 +1,6 @@
 {
-    "threads": 8,
+    "threads": 4,
     "mem_per_core_gb": 32,
-    "mem_total_gb": 256,
-    "preprocessing_filtering": "false"
+    "mem_total_gb": 64,
+    "preprocessing_filtering": false
 }
