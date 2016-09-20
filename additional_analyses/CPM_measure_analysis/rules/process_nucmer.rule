@@ -1,9 +1,0 @@
-rule process_table:
-    input:
-       "%s/{assm}.coords.filtered" % NUCMER_RES
-    output:
-       "{assm}.processed.coords.filtered"
-    shell:
-        """
-        sed -e "s/ | /\t/g" {input} | grep -v "^==========" > {output}
-        """

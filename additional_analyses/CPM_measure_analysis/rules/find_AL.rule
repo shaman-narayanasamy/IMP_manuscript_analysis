@@ -1,9 +1,0 @@
-rule find_AL:
-    input:
-           "{assm}.processed.coords.filtered"
-    output:
-           "{assm}.processed.coords.filtered_AL"
-    shell:
-           """
-           Rscript
-           """
