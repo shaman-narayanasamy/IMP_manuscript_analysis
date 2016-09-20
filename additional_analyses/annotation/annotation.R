@@ -113,5 +113,32 @@ pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/IMP-vizbin_lengt
 grid.draw(legend) 
 dev.off()
 
+## Binning plot for third revision
+maxbin.res <- read.table("/home/shaman/Work/Data/integrated-omics-pipeline/MS_analysis/datasets/IMP_analysis/X310763260_20151004-idba/Binning/MaxBin/maxbin_res.summary", sep="\t", header=T)
+maxbin.res$Completeness <- gsub("%", "",  maxbin.res$Completeness)
+maxbin.res$Completeness <- as.numeric(maxbin.res$Completeness)
+maxbin.res$Bin.name <- gsub("maxbin_res.", "",  maxbin.res$Bin.name)
+maxbin.res$Bin.name <- gsub(".fasta", "",  maxbin.res$Bin.name)
+maxbin.res$Bin.name <- gsub("^0", "",  maxbin.res$Bin.name)
+maxbin.res$Bin.name <- gsub("^0", "",  maxbin.res$Bin.name)
+maxbin.res$Bin.name <- as.numeric(maxbin.res$Bin.name)
+#maxbin.res <- maxbin.res[order(maxbin.res$Completeness, decreasing=T),]
+maxbin.res <- transform(maxbin.res, Bin.name = reorder(Bin.name, -Abundance))
+
+cols <- colorRampPalette(brewer.pal(9,"Blues"))(100)
+
+bin.plot <- ggplot(maxbin.res, aes(x=Bin.name, y=Abundance)) + 
+geom_bar(stat="identity", aes(fill=Completeness)) +
+scale_fill_gradient(low="lightgreen", high="darkgreen") +
+xlab("Bin number") +
+ylab("Bin abundance (%)") +
+theme_classic(base_size=40) +
+theme(axis.text.x = element_text(angle = 90, hjust = 1),
+      legend.position=c(0.95,0.85)
+      ) 
 
 
+pdf("/home/shaman/Documents/Publications/IMP-manuscript/figures/third_iteration/IMP-BinCompleteness-v2.pdf",
+    width=28, height=13)
+bin.plot
+dev.off()
