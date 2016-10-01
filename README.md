@@ -10,3 +10,6 @@ There are five sub-directories within this repository:
 6. additional_analyses: Additional sub-directories containing scripts for data 
    extraction, summary and visualizations. Descriptions available inside each of the directories
 7. prodigal_analysis: Some additional analyses performed with prodigal
+
+
+In an effort to centralize all issues we request you to direct all your issus please direct all issues to the LCSB R3 GitLab page: https://git-r3lab.uni.lu/IMP/IMP_manuscript_analysis.
